@@ -9,7 +9,7 @@
 
 > **⚠ Schema updated May 2026** — Six new TPCI-V verification fields added (`TPCI-VERIFY`, `TPCI-VERIFY-DATE`, `TPCI-STORE-NAME`, `TPCI-STORE-DEV`, `TPCI-STORE-DATE`, `TPCI-IDENTITY`) plus four earlier additions (`ADD-SOURCES`, `CONTRIB-METHOD`, `CONTRIB-TYPE`, `CONTRIB-HANDLE`). Scripts using positional column indexing will need updating. Scripts using named headers (`csv.DictReader` or equivalent) require no changes. See [SCHEMA.md](SCHEMA.md) for full details and migration guidance.
 
-> **⚠ Delta import verification in progress** — 1,535 entries sourced from a third-party delta import (`CONTRIB-METHOD=Delta_Import`) have undergone Stage 5A static analysis. 300 entries have been upgraded with campaign attribution and `TPCI-VERIFY=1` following confirmed behavioral evidence. 32 entries were found to be likely false positives and are excluded from distribution outputs. Verification is ongoing. See [Data Quality](#data-quality) and [CHANGELOG.md](CHANGELOG.md).
+> **⚠ Delta import verification in progress** — 1,711 entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static analysis. 300 entries have been upgraded with campaign attribution and `TPCI-VERIFY=1` following confirmed behavioral evidence. 32 entries were found to be likely false positives and are excluded from distribution outputs. Verification is ongoing. Third-party sources include a one-time bulk delta import (1,535 entries) and ongoing ingestion from toborrm9/malicious_extension_sentry (176 entries to date). See [Data Quality](#data-quality) and [CHANGELOG.md](CHANGELOG.md).
 
 > **🔬 Research forthcoming** — The Privacy Commons Institute is conducting original research on this dataset examining malicious extension persistence, removal rates following public disclosure, IOC database quality, and supply chain attack remediation patterns. The first paper, *Still There*, is currently under a 30-day coordinated disclosure embargo with Google and is scheduled for publication on **June 30, 2026** at [tpc.institute](https://tpc.institute). Methodology and findings will be released at that time. Entries are being updated as research progresses; changes are tracked in [CHANGELOG.md](CHANGELOG.md). Consumers of this database may notice attribution, threat type, and verification fields being updated between releases — this reflects active research, not data instability.
 
@@ -22,8 +22,8 @@
 ## What this is
 
 Started in 2021 as a personal research project after noticing no single authoritative list
-of malicious Chrome extension IDs existed. Today it tracks **2,500+ documented malicious
-extension IOCs** across **30+ campaigns** — from credential stealers and browser hijackers to
+of malicious Chrome extension IDs existed. Today it tracks **2,700+ documented malicious
+extension IOCs** across **44 campaigns** — from credential stealers and browser hijackers to
 supply chain compromises and ad fraud rings.
 
 The database is maintained by [The Privacy Commons Institute](https://tpc.institute) (TPCI)
@@ -75,13 +75,14 @@ Full schema: [SCHEMA.md](SCHEMA.md)
 
 Entries in this database fall into two categories with different confidence levels:
 
-**Independently verified entries** (`CONTRIB-METHOD` ≠ `Delta_Import`) — 990 entries  
+**Independently verified entries** (`CONTRIB-METHOD` ≠ `Delta_Import`, ≠ `csv_import`) — 990 entries  
 Sourced from published security research, individually reviewed by a human before
 commit, with source citations and campaign attribution. These are confirmed malicious
 extensions backed by original research.
 
-**Delta import entries** (`CONTRIB-METHOD=Delta_Import`) — 1,535 entries  
-Bulk-imported from third-party IOC aggregation sources. These entries have **not**
+**Third-party source entries** (`CONTRIB-METHOD=Delta_Import` or `csv_import`) — 1,711 entries  
+Sourced from third-party IOC aggregation sources including a one-time bulk delta import and
+ongoing ingestion from toborrm9/malicious_extension_sentry. These entries have **not**
 been individually verified by this project. They represent leads for investigation,
 not independently confirmed malicious extensions. TPCI Stage 4 verification is
 in progress — check the `TPCI-VERIFY` and `TPCI-IDENTITY` fields for current
@@ -90,7 +91,7 @@ verification status.
 **Filtering by confidence level:**
 ```bash
 # High confidence — independently verified entries only
-grep -v "Delta_Import" data/current-list-meta.csv
+grep -v "Delta_Import\|csv_import" data/current-list-meta.csv
 
 # Check verification status
 awk -F',' '$19 != "" '} data/current-list-meta.csv   # TPCI verified entries
@@ -215,7 +216,7 @@ MISP → Feeds → Add Feed:
   Distribution: Your organisation only
 ```
 
-The feed creates one MISP event per campaign (30+ events) with full attribute metadata, TLP:WHITE tags, and source references. Updates automatically with every new database commit.
+The feed creates one MISP event per campaign (44 events) with full attribute metadata, TLP:WHITE tags, and source references. Updates automatically with every new database commit.
 
 ### 🧩 STIX 2.1 / OpenCTI
 
@@ -261,10 +262,10 @@ if match:
 
 > See [STATS.md](STATS.md) for the full auto-generated breakdown.
 
-- **2,525 extension IOCs** tracked
+- **2,708 extension IOCs** tracked
 - **990 independently verified** entries (from original security research)
-- **1,535 delta import** entries (third-party sources, verification in progress)
-- **30+ campaigns** covered
+- **1,711 third-party source** entries (delta import + toborrm9, verification in progress)
+- **44 campaigns** covered
 - **Chrome and Edge** extensions
 - **2020 – present** date range
 - Threat types include: spyware, data-theft, browser-hijack, credential-theft,
