@@ -281,10 +281,11 @@ All entries in this database are subject to ongoing verification using the
 
 | Stage | Method | Field |
 |-------|--------|-------|
+| Stage 1 | Source review and ingestion | `CONFIRM-MAL`, `REPORTED-MAL` |
 | Stage 2 | Chrome CRX update API | `TPCI-VERIFY`, `STILL-ACTIVE` |
 | Stage 3 | Headless browser store verification | `TPCI-VERIFY`, `STILL-ACTIVE` |
 | Stage 4 | Identity continuity check | `TPCI-IDENTITY`, `TPCI-STORE-NAME` |
-| Stage 5 | Behavioral analysis (planned) | `TPCI-BEHAVIORAL` (future) |
+| Stage 5 | Behavioral analysis (static CRX) | `TPCI-BEHAVIORAL`, `TPCI-BEHAVIORAL-DATE` |
 
 Full methodology: [tpc.institute](https://tpc.institute)
 
