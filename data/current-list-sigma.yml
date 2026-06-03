@@ -4,15 +4,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge browser
     extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2701 confirmed malicious extension IDs across
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2764 confirmed malicious extension IDs across
     30+ campaigns including credential theft, data exfiltration, browser hijacking,
     click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-06-02
-modified: 2026-06-02
+date: 2026-06-03
+modified: 2026-06-03
 tags:
     - attack.collection
     - attack.t1176
@@ -34,6 +34,7 @@ detection:
         - aajdkangkldmljmoaoehmbnchdjkgojk
         - aapdalkmclfaahehnmicbglkohkldhne
         - abbngaojehjekanfdipifimgmppiojpl
+        - abekedpmkgndeflcidpkkddapnjnocjp
         - abgfholnofpihncfdmombecmohpkojdb
         - abghmipjfclfpgmmelbgolfgmhnigbma
         - abgpfcaflplbnjkpeoimjchehdhakped
@@ -94,6 +95,7 @@ detection:
         - agepkkdokhlaoiaenedmjbfnblfdiboc
         - agfjbfkpehcnceblmdahjaejpnnnkjdn
         - aghafppaelpjbjajpgcogcojcbmappoi
+        - agjeofhaaekfnaalgjihiolgfmekhbhd
         - agldjlpmeladgadoikdbndmeljpmnajl
         - agleiimpggapjekcdhdjbmegjbbkleie
         - agmjobjagbllceafphmfgokobflfbbbc
@@ -264,11 +266,14 @@ detection:
         - bgnjnfoiglionjogebklhhhknbmlocpn
         - bgnkgembgfkfjipflkniiibgcedloekn
         - bgnpgpfjdpmgfdegmmjdbppccdhjhdpe
+        - bgpkfameamammnookomiamhokkhcihjd
         - bhahpmoebdipfoaadcclkcnieeokebnf
         - bhcfaglgcebaehogjenjcolacfaanmon
         - bhcjjbencodlgfoneipfnnpclempbdka
         - bhcpgfhiobcpokfpdahijhnipenkplji
         - bhdaecfcjmipomgngjhacbfmjafjnicl
+        - bhdkkcffcbililblmbhhgbalkilpgjnn
+        - bhdphfffaglgjelmkjocdmcpkidgiehm
         - bhfnifoebenbpbnlmaddnkniocoaagfg
         - bhfoemlllidnfefgkeaeocnageepbael
         - bhhdblckjkgijhjajngmjdijpmhoeobp
@@ -415,6 +420,7 @@ detection:
         - ceopoaldcnmhechacafgagdkklcogkgd
         - cepgcjakdboolfkcbihdokfjjkeaddin
         - ceplokfhfeekddamgoaojabdhkggafnk
+        - cfabdclfflljnmdmckicdalpfhhlfgma
         - cfadfngejcdogjkkdohpkgeodjooogip
         - cfbgbmdpdkmdpdpchmhpkkdcolpgnode
         - cfbgdmiobbicgjnaegnenlcgbdabkcli
@@ -458,6 +464,7 @@ detection:
         - cignjngpjdkbiekiblcjnfkmfnelpjnn
         - cihbmmokhmieaidfgamioabhhkggnehm
         - ciifcakemmcbbdpmljdohdmbodagmela
+        - cijobdncciemcimkomiehfanikkldjej
         - cinnpifenmpjfcbdbdmhnndfgcpmfhna
         - cjbdbomgdbdgdlainhobpjnfkoidcond
         - cjccjhkpejpnldpmcgpimmdinnaplcmk
@@ -466,6 +473,7 @@ detection:
         - cjmhegifablecgkkncjddcgkjmgoacfd
         - cjmpdadldchjmljhkigoeejegmghaabp
         - cjobgkekcenldbaenikebmbhffhhffef
+        - cjohlejpoalcdnnfelllhdcflepblfgm
         - cjpknfonjfjobbfpbhodmenghbpmcgpj
         - ckcfkaikieiicfdeomgehmnjglnofhde
         - ckdbfeccfocmhdclmmofmheljglmhhne
@@ -482,6 +490,7 @@ detection:
         - clajadbbjodhmojbejfhlegbepkpokba
         - cldllmlmkpkdgmcphohecljfdfbiaoag
         - clehpjldcdennhphcfihphbeoihllbki
+        - clemjlmoafddhamjmokmbkjooodmgldd
         - clfocgpnamchmalmdlcacllaembakhob
         - clglplmhjdibddcnnhdljjpnoaomjgnc
         - cljengcehefhflhoahaambmkknjekjib
@@ -515,15 +524,6 @@ detection:
         - colgdlijdieibnaccfdcdbpdffofkfeb
         - comknamophhecgmcchgcclmcodohlfap
         - condlopdddofpgcdjfnoepbdkcgckmgb
-        - copapdokdidobjjmkcpkalbgkiiafeja
-        - cpbbiepjnljbnngpepgeaojjeneacpld
-        - cpcdkmjddocikjdkbbeiaafnpdbdafmi
-        - cpcojeeblggnjjgnpiicndnahfhjdobd
-        - cpehflfpgdgofpocagbdeecjlfhjfjdh
-        - cpgoblgcfemdmaolmfhpoifikehgbjbf
-        - cphibdhgbdoekmkkcbbaoogedpfibeme
-        - cpigbbjhchinhpamicodkkcpihjjjlia
-        - cplaeebopfpnoebkaimlibpdickcjofa
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -552,15 +552,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge browser
     extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2701 confirmed malicious extension IDs across
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2764 confirmed malicious extension IDs across
     30+ campaigns including credential theft, data exfiltration, browser hijacking,
     click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-06-02
-modified: 2026-06-02
+date: 2026-06-03
+modified: 2026-06-03
 tags:
     - attack.collection
     - attack.t1176
@@ -572,6 +572,16 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - copapdokdidobjjmkcpkalbgkiiafeja
+        - cpbbiepjnljbnngpepgeaojjeneacpld
+        - cpcdkmjddocikjdkbbeiaafnpdbdafmi
+        - cpcojeeblggnjjgnpiicndnahfhjdobd
+        - cpehflfpgdgofpocagbdeecjlfhjfjdh
+        - cpficbpjnbekidkijhpbofgncpfolmeb
+        - cpgoblgcfemdmaolmfhpoifikehgbjbf
+        - cphibdhgbdoekmkkcbbaoogedpfibeme
+        - cpigbbjhchinhpamicodkkcpihjjjlia
+        - cplaeebopfpnoebkaimlibpdickcjofa
         - cplhlgabfijoiabgkigdafklbhhdkahj
         - cpmbdnkbpaabapidllalnfopojfimbno
         - cpmpipfpcgkoiedkehiobjidambkldfi
@@ -653,6 +663,7 @@ detection:
         - dhgmdjkeagnhamkedcejighocjkkijli
         - dhhmopcmpiadcgchhhldcpoeppcofdic
         - dhjmmcjnajkpnbnbpagglbbfpbacoffm
+        - dhlkplajpmgbhoekgkojenhkkchfcdlm
         - dhmoflfpggooodhaagcbfdkfkicebbdd
         - dhnibdhcanplpdkcljgmfhbipehkgdkk
         - dhpfidchcjjoicmmikaneognhiohnphe
@@ -698,10 +709,12 @@ detection:
         - dllplfhjknghhdneiblmkolbjappecbe
         - dlpimjmonhbmamocpboifndnnakgknbf
         - dlpiookhionidajbiopmaajeckifeehn
+        - dlplljmhphnabhmlhjplfgpakefmfhho
         - dmaibhbbpmdihedidicfeigilkbobcog
         - dmakkciciccnjgmfjflpbdfkdnmpfghp
         - dmbjkidogjmmlejdmnecpmfapdmidfjg
         - dmclpdnkojpjgeacajcaichgkkhfbeim
+        - dmehhcjdoejcpoffjpfnhfglcacofmdn
         - dmfccdhbfjmpgaldefnfeeknjfdnlbhe
         - dmjnmnjmddbbkbhkonhmifmdidinmeep
         - dmklpmfpkokephcjdmocddkhilglgajl
@@ -773,6 +786,7 @@ detection:
         - echacghfmpmedednbkfoalmpccdiajci
         - eciaojnpihmgkbacgpjnimcpkfeklgag
         - ecikmpoikkcelnakpgaeplcjoickgacj
+        - ecimbckphddmmgndcogbedhflgefdkfl
         - ecjpmdkbllfkofnkmigaofclepamongg
         - eckfhhngfhepmndojbnphnlnemglmojp
         - eckokfcjbjbgjifpcbdmengnabecdakp
@@ -892,6 +906,7 @@ detection:
         - enaigkcpmpohpbokbfllbkijmllmpafm
         - encombjcejjemnlienalodhndnmhkbei
         - endfahndaiibchcbfaphnhanpckdhmll
+        - endmmacdmacjnonhdkkbgkhofmhigamg
         - enemknlfbkchplbhdflblafnpfmgdpib
         - engjehngfignjpekjkpgjgapnlkndofk
         - enjhobkjefepjmmikomihdapcdilanai
@@ -1003,6 +1018,7 @@ detection:
         - fiekhkolnfbmffngblfnpmpbdajofpdm
         - fihbjcbnakkkhapcefljgnhfocbmafol
         - fiobgijambbbkgndmodakkpajghgnjbe
+        - fipcjgnajmkjnnofhejohblljnifhldi
         - fjamdmeidfoiimcdmakidnifokhjdpdc
         - fjbpccjakcncgogehcjbecabehamcjmm
         - fjclfmhapndgeabdcikbhemimpijpnah
@@ -1056,22 +1072,6 @@ detection:
         - fmmfeaoidanfcipomjfolmchjdnhmaio
         - fmnadcdniomhekonddamdlciknhnnjfl
         - fmncmpginchogfdnjfeopdopoiegjjjp
-        - fmngfipkcebejdconcibohjjgfmokhpa
-        - fmpgmcidlaojgncjlhjkhfbjchafcfoe
-        - fnblapfcdifokdbkpcbhpkajlkgmcjii
-        - fnbmdanldjcejflmflooiahjmacbkohh
-        - fncbkmmlcehhipmmofdhejcggdapcmon
-        - fnhnkcmbkibeacgbhloapcdgmgfdnpcc
-        - fnjinbdmidgjkpmlihcginjipjaoapol
-        - fnjnkjpjljhkeoofdjepachfjdagdafb
-        - fnlnhcbjijmpajeppnnmkeagdmnlgihp
-        - fnmihdojmnkclgjpcoonokmkhjpjechg
-        - fnnigcfbmghcefaboigkhfimeolhhbcp
-        - fnpejdoiggdgagmdfmkllgfpagjgjfoi
-        - fobaamfiblkoobhjpiigemmdegbmpohd
-        - fodcokjckpkfpegbekkiallamhedahjd
-        - foebfmkeamadbhjcdglihfijdaohomlm
-        - foffcafkphimgepdldlhedjmhciagfkm
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -1100,15 +1100,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge browser
     extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2701 confirmed malicious extension IDs across
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2764 confirmed malicious extension IDs across
     30+ campaigns including credential theft, data exfiltration, browser hijacking,
     click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-06-02
-modified: 2026-06-02
+date: 2026-06-03
+modified: 2026-06-03
 tags:
     - attack.collection
     - attack.t1176
@@ -1120,6 +1120,22 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - fmngfipkcebejdconcibohjjgfmokhpa
+        - fmpgmcidlaojgncjlhjkhfbjchafcfoe
+        - fnblapfcdifokdbkpcbhpkajlkgmcjii
+        - fnbmdanldjcejflmflooiahjmacbkohh
+        - fncbkmmlcehhipmmofdhejcggdapcmon
+        - fnhnkcmbkibeacgbhloapcdgmgfdnpcc
+        - fnjinbdmidgjkpmlihcginjipjaoapol
+        - fnjnkjpjljhkeoofdjepachfjdagdafb
+        - fnlnhcbjijmpajeppnnmkeagdmnlgihp
+        - fnmihdojmnkclgjpcoonokmkhjpjechg
+        - fnnigcfbmghcefaboigkhfimeolhhbcp
+        - fnpejdoiggdgagmdfmkllgfpagjgjfoi
+        - fobaamfiblkoobhjpiigemmdegbmpohd
+        - fodcokjckpkfpegbekkiallamhedahjd
+        - foebfmkeamadbhjcdglihfijdaohomlm
+        - foffcafkphimgepdldlhedjmhciagfkm
         - fohllhaekplgfcocgdbdaghdaphgekjl
         - foiopecknacmiihiocgdjgbjokkpkohc
         - fojokgfmpipggghfmfnnflbaenhffmol
@@ -1131,6 +1147,7 @@ detection:
         - fpafokmkjcnkflboiefkiokbklpjbfpp
         - fpdjcfokkeooncckcolkmmppebjnfhgh
         - fpeabamapgecnidibdmjoepaiehokgda
+        - fpeeookideimkcgcaodgekbgomnbkdkk
         - fphafkamioonlcelldogidajbcmmicco
         - fphiegmeigkjnjcpmdoecllfeanfbbhd
         - fpieikfplpkakilnkbplekppmhbpmdkp
@@ -1166,6 +1183,7 @@ detection:
         - gbkmkgfjngebdcpklbkeccelcjaobblk
         - gbnahglfafmhaehbdmjedfhdmimjcbed
         - gbnjejhgognmdkjeljbpecpnanakcooh
+        - gbofnmhbadjcjmhknjamkagckgnpbdgb
         - gbplafaelmgboglkaebmbkjnilcpkklf
         - gcbffpnpjigagefdgfonginepkpabioi
         - gcccfoehonbolcpaefopkboppjiaamkc
@@ -1231,6 +1249,7 @@ detection:
         - gidejehfgombmkfflghejpncblgfkagj
         - giecgobdmgdamgffeoankaipjkdjbfep
         - gihpjdkaalndncchppfeoeeelkdemfim
+        - giinnpfogdnpckecjdcobinfjcdnhbbg
         - gijdlcgcmadappinmgdgiihiepcgboaf
         - gijlkeaijpeaoihdajcgmiajeoonnkoj
         - gikcjnmpegacammmaigabkhiifjdacec
@@ -1262,6 +1281,7 @@ detection:
         - gkoaehhpdkfkjgjbnlahcneebidamclf
         - glbinjackcjdkljjkochlgfheebjongh
         - glckmpfajbjppappjlnhhlofhdhlcgaj
+        - glcnfenofhiojbncadgjocladkdeacep
         - glfddenhiaacfmhoiebfeljnfkkkmbjb
         - glgemekgfjppocilabhlcbngobillcgf
         - glibnbcgclecomknccifdaglefljfoej
@@ -1269,6 +1289,7 @@ detection:
         - gllogphgdmclhfledlcgmdolngohamcl
         - glmbceclkhkaebcadgmbcjihllcnpmjh
         - glofhphmolanicdaddgkmhfmjidjkaem
+        - glpjihohaedmlggmhpicpecpjnkdmndp
         - gmbebpcapalekeaoekfhpbioilghcfmp
         - gmciomcaholgmklbfangdjkneihfkddd
         - gmddfjhfjgbmabkihepijkanhmlooajl
@@ -1282,6 +1303,7 @@ detection:
         - gmmohhcojdhgbjjahhpkfhbapgcfgfne
         - gnaekhndaddbimfllbgmecjijbbfpabc
         - gnamdgilanlgeeljfnckhboobddoahbl
+        - gncblcnmhnfgfbbkhlppaagagclgcbng
         - gndlcpbcmhbcaadppjjekgbhfhceeikm
         - gnhgdhlkojnlgljamagoigaabdmfhfeg
         - gnmmfdohfcohcflccikmlodaeignlkce
@@ -1339,6 +1361,7 @@ detection:
         - hchmfokcihnfaljjkdafaclojmgibcgm
         - hcicfibkpbfgbiodaliaemhhoodakdco
         - hcnegdhonfnijjmiidinppcigdpchdlk
+        - hcpnjfcfcmnapbikeclkplnnacgbmeee
         - hdangknebhddccoocjodjkbgbbedeaam
         - hdbchphkjjidcfidaelcpmonodhhaahp
         - hdbipekpdpggjaipompnomhccfemaljm
@@ -1359,8 +1382,10 @@ detection:
         - heehbfcijoikjphilbhaldjgoplpplok
         - hegneaniplmfjcmohoclabblbahcbjoe
         - hegpgapbnfiibpbkanjemgmdpmmlecbc
+        - hehicfbdkgpbmffddekaehekgoeledae
         - hejdlnmhjmmgjbehibliiamplaenafea
         - heljkmdknlfhiecpknceodpbokeipigo
+        - hfdhodfhhlplgghhjbphhehaaglbacom
         - hfdpdgblphooommgcjdnnmhpglleaafj
         - hfeialplaojonefabmojhobdmghnjkmf
         - hffnjemmnepkggdecfbgmfbmncponjco
@@ -1377,6 +1402,7 @@ detection:
         - hhlcpmdhlcoghhfgiiopcjbkfmdliknc
         - hhllgokdpekfchhhiknedpppjhgicfgg
         - hhngeobomadcaamnncdaafhnankmmcic
+        - hhphfjpehbkbgcgbhnlbdndcmaaapgdi
         - hihblcmlaaademjlakdpicchbjnnnkbo
         - hiiahmfpljemgmnhlaepofeldnnhphmi
         - hiiildgldbpfbegcfgemoliikibfhaeh
@@ -1428,14 +1454,17 @@ detection:
         - hnadleianomnjcoeplifgbkiejchjmah
         - hncokbmdmbmmlkjhoagcpokehopdikhc
         - hnfabcchmopgohnhkcojhocneefbnffg
+        - hnfnnjohofgmlfmaplpnmedompbglnai
         - hnhpnbajfmmopedidmiablkcdnlegkmd
         - hnpbijogiiaegambgpaenjbcbgaeimlf
         - hnppehcgmflfkcdkbkaeemjfngffmeag
         - hoagaedakmopbokhnbjhoakgpdijahpg
+        - hochhggfcmeejhlnflabcpligajohjne
         - hoclolhilhbecpefaignjficiaaclpop
         - hodafefeincjlgijbiabbmaffambjeaa
         - hodfejbmfdhcgolcglcojkpfdjjdepji
         - hodiladlefdpcbemnbbcpclbmknkiaem
+        - hoeeojgceocplocgolojeblocambibnn
         - hofaaigdagglolgiefkbencchnekjejl
         - hogoebkpcnajkkjdidfhojkljppfalip
         - hohmldahlhbnckmkdilgflcmpcanabmh
@@ -1496,6 +1525,7 @@ detection:
         - ieeedagihannmmfohjajlhcebkdjhhgn
         - iefpkdilnfhogjbkhgnliaomoldgkdlj
         - ieihbaicbgpebhkfebnfkdhkpdemljfb
+        - ieinlppbiopehpocmjjkkemalajklfel
         - ielbkcjohpgmjhoiadncabphkglejgih
         - ielooaepfhfcnmihgnabkldnpddnnldl
         - ifbffcgakkboaffkidggpcjolehhhbfd
@@ -1546,10 +1576,12 @@ detection:
         - ijhbioflmfpgfmgapjnojopobfncdeif
         - ijohicfhndicpnmkaldafhbecijhdikd
         - ijpgccpmogehkjhdmomckpkfcpbjlmnj
+        - ikaghjdimdplapmfhnjnjmepnjnlmpdd
         - ikajognfijokhbgjdhgpemljgcjclpmn
         - ikfmaobmeapnkohnoaflbanhmfocgiob
         - ikgaleggljchgbihlaanjbkekmmgccam
         - ikhpipnkpbedjbmlgppdejmcdnjecded
+        - ikkmnmgiakiinjgfpfenaipjhmdioplj
         - ikkoanocgpdmmiamnkogipbpdpckcahn
         - iklgljbighkgbjoecoddejooldolenbj
         - ikliliinakofoiojghnipegfphmoljla
@@ -1566,6 +1598,7 @@ detection:
         - imgjapefioodjkjipgpnohmceghomkmb
         - imgjdmafnohpidfpbggfccpmmcnofmlh
         - imgobajicoilkgmmoolognglaljhokno
+        - imhedlpapnopjkbnhojdcknleolmjnbg
         - imhlnhlbiencamnbpigopiibddajimep
         - imjmnghlhiimodfkdkgnfplhlobehnpm
         - imkngaibigegepnlckfcbecjoilcjbhf
@@ -1575,51 +1608,18 @@ detection:
         - inbmcaiilhlpeepmlenjhnblgflmknme
         - incoejagnokjhlkjkgpbdbooagggckdg
         - ineempkjpmbdejmdgienaphomigjjiej
+        - infdfjcbjihebhibnkohpfpclobngahk
         - inhcgfpbfdjbjogdfjbclgolkmhnooop
         - inhdgbalcopmbpjfincjponejamhaeop
         - inhiciabodleebpfchicllicbijcefhg
         - inhliijakcoojghlfgbogapleildhghb
         - inhmbedecadikokanjcblbdaijhpjjln
         - inidhkdhmknfjijeokklpobceghknimk
+        - injehaoimkkdminimmmcmbfhcmppjpdf
         - injnjbcogjhcjhnhcbmlahgikemedbko
         - inkankpmoblmficechfgfinajifbfkdn
         - inlgdellfblpplcogjfedlhjnpgafnia
         - inloipbahbmhelpokmejailbmcegccal
-        - ioaeacncbhpmlkediaagefiegegknglc
-        - iocbgfeimcjdcnlppmhjpjonciejmhnp
-        - ioejcipbmdjinhfciojiacdjolkabkmn
-        - iofmialeiddolmdlkbheakaefefkjokp
-        - iojhbljpppeociniiemjfelmdcgikmep
-        - iojoiocmnkglehhfhfmhobpbikieodle
-        - iojpcjjdfhlcbgjnpngcmaojmlokmeii
-        - iondldgmpaoekbgabgconiajpbkebkin
-        - ionpbgeeliajehajombdeflogfpgmmel
-        - ioofbfcjhabkdfhngedpocamlakdanlk
-        - ipagcbjbgailmjeaojmpiddflpbgjngl
-        - ipanmolgobfbmpggfgpjjojjmbndafhn
-        - ipgnnndhgeaclopjgiihppbbfnmkmjcm
-        - iphacjobmeoknlhenjfiilbkddgaljad
-        - ipijpioemaopkhpjhihdibldodmdpfjl
-        - ipjbhjmcbgmdjfiichbgbmpmgonokpkb
-        - ipjgfhcjeckaibnohigmbcaonfcjepmb
-        - ipmmidjikilclkbnglogmgoofbhjikgb
-        - ipnidmjhnoipibbinllilgeohohehabl
-        - ipnlcfhfdicbfbchfoihipknbaeenenm
-        - ipokalojgdmhfpagmhnjokidnpjfnfik
-        - jacgfjfdnjamjbdkihblimkekfoiiafi
-        - jacilgchggenbmgbfnehcegalhlgpnhf
-        - jadgponjpllhepidoclncpogkhcnepac
-        - jaehldonmiabhfohkenmlimnceapgpnp
-        - jaekigmcljkkalnicnjoafgfjoefkpeg
-        - jafjlcbocjfijiholjkppjeaolblpbam
-        - jagbooldjnemiedoagckjomjegkopfno
-        - jaioobipjdejpeckgojiojjahmkiaihp
-        - jajikjbellknnfcomfjjinfjokihcfoi
-        - jalaoplogcelljfhlodnagfepednmilm
-        - jaojpdijbaolkhkifpgbjnhfbmckoojh
-        - jaonmiiccahaddjkdhaonhfhdiagfbdh
-        - jbajdpebknffiaenkdhopebkolgdlfaf
-        - jbbanajdakjmholbhekdkcfekhibilhg
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -1648,15 +1648,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge browser
     extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2701 confirmed malicious extension IDs across
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2764 confirmed malicious extension IDs across
     30+ campaigns including credential theft, data exfiltration, browser hijacking,
     click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-06-02
-modified: 2026-06-02
+date: 2026-06-03
+modified: 2026-06-03
 tags:
     - attack.collection
     - attack.t1176
@@ -1668,6 +1668,45 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - ioaeacncbhpmlkediaagefiegegknglc
+        - iocbgfeimcjdcnlppmhjpjonciejmhnp
+        - ioejcipbmdjinhfciojiacdjolkabkmn
+        - ioeplhdifdmcgooibcibjlaoacbldocc
+        - iofcjnefopghplghojjpglnjakejkein
+        - iofmialeiddolmdlkbheakaefefkjokp
+        - ioimkgpmigbhaddpgmbjjddoaagialah
+        - iojhbljpppeociniiemjfelmdcgikmep
+        - iojoiocmnkglehhfhfmhobpbikieodle
+        - iojpcjjdfhlcbgjnpngcmaojmlokmeii
+        - iondldgmpaoekbgabgconiajpbkebkin
+        - ionpbgeeliajehajombdeflogfpgmmel
+        - ioofbfcjhabkdfhngedpocamlakdanlk
+        - ipagcbjbgailmjeaojmpiddflpbgjngl
+        - ipanmolgobfbmpggfgpjjojjmbndafhn
+        - ipgnnndhgeaclopjgiihppbbfnmkmjcm
+        - iphacjobmeoknlhenjfiilbkddgaljad
+        - ipijpioemaopkhpjhihdibldodmdpfjl
+        - ipjbhjmcbgmdjfiichbgbmpmgonokpkb
+        - ipjgfhcjeckaibnohigmbcaonfcjepmb
+        - ipmmidjikilclkbnglogmgoofbhjikgb
+        - ipnidmjhnoipibbinllilgeohohehabl
+        - ipnlcfhfdicbfbchfoihipknbaeenenm
+        - ipokalojgdmhfpagmhnjokidnpjfnfik
+        - jacgfjfdnjamjbdkihblimkekfoiiafi
+        - jacilgchggenbmgbfnehcegalhlgpnhf
+        - jadgponjpllhepidoclncpogkhcnepac
+        - jaehldonmiabhfohkenmlimnceapgpnp
+        - jaekigmcljkkalnicnjoafgfjoefkpeg
+        - jafjlcbocjfijiholjkppjeaolblpbam
+        - jagbooldjnemiedoagckjomjegkopfno
+        - jaioobipjdejpeckgojiojjahmkiaihp
+        - jajikjbellknnfcomfjjinfjokihcfoi
+        - jalaoplogcelljfhlodnagfepednmilm
+        - jancnnilpjlicmdjocnihnmpfiocmnoo
+        - jaojpdijbaolkhkifpgbjnhfbmckoojh
+        - jaonmiiccahaddjkdhaonhfhdiagfbdh
+        - jbajdpebknffiaenkdhopebkolgdlfaf
+        - jbbanajdakjmholbhekdkcfekhibilhg
         - jbdegnmcajkhjemebonejojlgkgcddhc
         - jbfponbaiamgjmfpfghcjjhddjdjdpna
         - jbkldgcpnklohmbllpghikjpbookjkfa
@@ -1686,6 +1725,7 @@ detection:
         - jdehnhjckcbfdkgnlbfjokofagpbbdgl
         - jdfhogfabmocclgjnkfhokhaoecbmijj
         - jdheollkkpfglhohnpgkonecdealeebn
+        - jdhjanilphebgemhhbcaihffabfegbae
         - jdhlmbbkcnblagpianmgafolcpmlmbfa
         - jdjldbengpgdcfkljfdmakdgmfpneldd
         - jdlefhppknmjnjopnlhemlhofecafkhd
@@ -1721,6 +1761,7 @@ detection:
         - jglpailiijgdhnmgbjbjpcfeecjhjblp
         - jgofflaejgklikbnoefbfmhfohlnockd
         - jhanhfphenjhghflpeldoiklkikkjbpb
+        - jhbncicneonbpacmomkjlglpfiepoieb
         - jhcfnojahmdghhebdaoijngclknfkbjn
         - jhfipnjkdcnncppbfdplmikdhlppdepd
         - jhgfinhjcamijjoikplacnfknpchndgb
@@ -1777,6 +1818,7 @@ detection:
         - jlplnjdjnhkdigmpooonjmjppdkahljh
         - jmbegcegjknachdgnichfcnjilebcojn
         - jmbmildjdmppofnohldicmnkojfhggmb
+        - jmjcgjmipjiklbnfbdclkdikplgajhgc
         - jmklaacdggogjblaiofpikjjhblhicop
         - jmlbnlcodmikhdpbjjdemgaebjgmpooa
         - jmlgkeaofknfmnbpmlmadnfnfajdlehn
@@ -1788,6 +1830,7 @@ detection:
         - jndldoeopjgmpakgmieaeeelhnjnfgkj
         - jndpihobigkijmhfcedncpbebnjficad
         - jngekpmpoljpeflhnobadfokbmmoflfg
+        - jnghfafinjlkhgfbphnldgchmbahkjma
         - jnimfanjgmamoamlpfolknfooennpdef
         - jnjdjeepcbenfebncaemmboeplmdccaj
         - jnkmepoonohhfijlbajdphhinhkoefjn
@@ -1799,9 +1842,12 @@ detection:
         - jodgpofgbnifpjpikmagibgcfiipkgkb
         - jodocbbdcdclkhjkibnlfhbmllcpfkfo
         - johobikccpnmifjjpephegmfpipfbfme
+        - jojmbeahedfacpmljblmcdddlncbafii
+        - joogpadibghkgkeppmomggdbigikofpb
         - jooiimddfkjoomennmpjabdbbpdocjng
         - jpdhdeabikbmklmacididiaifpcploif
         - jpefmbpcbebpjpmelobfakahfdcgcmkl
+        - jpifkbikhaakajfklldhhhfpakaflndi
         - jpjljiibjkcgfgajdjhbfkocaoajnpjd
         - jplifhpepfnogkdnmimaoembccjpepmb
         - jpnamljnefhpbpcofcbonjjjkmfjbhdp
@@ -1829,6 +1875,9 @@ detection:
         - kbnkkecifeppobnemkielnpagifkobki
         - kcalbmhcjdlocbnbfebpjlgdjphmhanp
         - kcbmdejmlcdjmfdiaepfblnocimhlnfm
+        - kcdlihaidnmkenhlnofkjfoachidbnif
+        - kcedhobjnadhpeodbfmikooippmcbehb
+        - kcffejiafhmhliiemlmmonfildnhjhhb
         - kcjahchbheejjpdpohgfkaoknhcdjjnh
         - kckhadoijmchkeomaphocmobgpgmbnek
         - kconabncdpbdoapacohccnlgemnnghbp
@@ -1882,6 +1931,7 @@ detection:
         - khoapclcikhbeaggmmfcnckcnhfniijj
         - khoigeopdelmjmimedipaoebcmkoljdg
         - kicmnilchjfefpceoaiopdpbpkicgjjm
+        - kieakfgdeiflalkbfpflmbddoobcggek
         - kiecdaoopedhfgapicmpebbhodepnbbp
         - kigiheamdfmilbhkfdploghfnndcgkko
         - kihfdgpnhlkopkiadeopobhbpeplffam
@@ -2118,6 +2168,54 @@ detection:
         - loigeafmbglngofpkkddgobapkkcaena
         - loiofaagnefbonjdjklhacdhfkolcfgi
         - lojgkcienjoiogbfkbjiidpfnabhkckf
+    condition: selection
+falsepositives:
+    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
+    - Test environments with intentionally installed malicious extensions
+level: high
+logsources:
+    # Uncomment and adjust for your environment:
+    # Windows registry (Chrome/Edge extension installation):
+    # category: registry_event
+    # Windows filesystem (extension directory creation):
+    # category: file_event
+    # Browser history / network logs:
+    # category: proxy
+    # Endpoint detection:
+    # category: process_creation
+fields:
+    - ExtensionID
+    - RegistryKey
+    - FilePath
+    - NetworkURL
+
+---
+title: Malicious Chrome/Edge Extension Detected (part 5/6)
+id: chrome-mal-ids-sigma_part5
+status: experimental
+description: >
+    Detects the presence or activity of a known malicious Chrome or Edge browser
+    extension based on the Malicious Chrome Extension IOC Database
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2764 confirmed malicious extension IDs across
+    30+ campaigns including credential theft, data exfiltration, browser hijacking,
+    click fraud, and supply chain attacks via ownership transfer.
+references:
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
+author: Malicious Chrome Extension IOC Database (@mallorybowes)
+date: 2026-06-03
+modified: 2026-06-03
+tags:
+    - attack.collection
+    - attack.t1176
+    - attack.credential_access
+    - attack.t1539
+    - attack.exfiltration
+detection:
+    selection:
+        # Match extension IDs in filesystem paths, registry, logs, or network traffic
+        # Adjust field names to match your log source schema
+        |contains:
         - lojpdfjjionbhgplcangflkalmiadhfi
         - lollnjcjgkflfjicaijghbkoakeflolo
         - lonfhijnhlpehhmhgekhkmdominoiopi
@@ -2168,66 +2266,20 @@ detection:
         - mdkiofbiinbmlblcfhfjgmclhdfikkpm
         - mdlkdelnchilkeedllnnjfigkhhadlff
         - mdnmhbnbebabimcjggckeoibchhckemm
-    condition: selection
-falsepositives:
-    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
-    - Test environments with intentionally installed malicious extensions
-level: high
-logsources:
-    # Uncomment and adjust for your environment:
-    # Windows registry (Chrome/Edge extension installation):
-    # category: registry_event
-    # Windows filesystem (extension directory creation):
-    # category: file_event
-    # Browser history / network logs:
-    # category: proxy
-    # Endpoint detection:
-    # category: process_creation
-fields:
-    - ExtensionID
-    - RegistryKey
-    - FilePath
-    - NetworkURL
-
----
-title: Malicious Chrome/Edge Extension Detected (part 5/6)
-id: chrome-mal-ids-sigma_part5
-status: experimental
-description: >
-    Detects the presence or activity of a known malicious Chrome or Edge browser
-    extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2701 confirmed malicious extension IDs across
-    30+ campaigns including credential theft, data exfiltration, browser hijacking,
-    click fraud, and supply chain attacks via ownership transfer.
-references:
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
-author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-06-02
-modified: 2026-06-02
-tags:
-    - attack.collection
-    - attack.t1176
-    - attack.credential_access
-    - attack.t1539
-    - attack.exfiltration
-detection:
-    selection:
-        # Match extension IDs in filesystem paths, registry, logs, or network traffic
-        # Adjust field names to match your log source schema
-        |contains:
         - mdpgppkombninhkfhaggckdmencplhmg
         - mdpljndcmbeikfnlflcggaipgnhiedbl
         - mecbindcphcmdhhihhbagmedefbineob
         - meccdflhmmmohgicamalaakjifgapefn
         - medkneifmjcpgmmibfppjpfjbkgbgebl
         - meffljleomgifbbcffejnmhjagncfpbd
+        - mehipcdhalmoecjhhfcgmiodeokllnno
         - mehpokgiebgcnelgnlfkeldlfnpdhdha
         - meioomnaphfjchjidcfnbadkbaaoanok
         - mejjgaogggabifjfjdbnobinfibaamla
         - meljmedplehjlnnaempfdoecookjenph
         - membjdlghnjabalehklnkchehfhplibj
         - meobjhkdifjealkiaanikkpajiaalcad
+        - meophpndbjjojmledlkjganjiijhlleo
         - mephkmedpjhgihgboeiodaglkdghfppi
         - mfdjdcehbbppoogkamldmbihomamhmca
         - mffnoabholpepnlhglanfdlefgfknjki
@@ -2244,6 +2296,7 @@ detection:
         - mhjdjckeljinofckdibjiojbdpapoecj
         - mhpcabliilgadobjpkameggapnpeppdg
         - miadjhffliknkmljlggilcdabkiegifh
+        - micbejknmlmdembjamkhplmdnfccfihk
         - micijibojadbnadckjmpgkjicelohbil
         - midamgpdhbehjnjchnegghbhnpkcljmd
         - miejmllodobdobgjbeonandkjhnhpjbn
@@ -2255,6 +2308,7 @@ detection:
         - mijjlcdelglplkibhildchndciaafbep
         - milgkhjojahbbkclkppcjpnlcpakneec
         - mimplmibgdodhkjnclacjofjbgmhogce
+        - miopoagbelhjmaaebgmckcggcopegdfd
         - mipophmjfhpecleajkijfifmffcjdiac
         - mjbimaghobnkobfefccnnnjedoefbafl
         - mjbmelinkhpkmbjnocdklkjpiilpikba
@@ -2381,6 +2435,7 @@ detection:
         - nddkllhdjjgopaibekmobibbmoedkdmj
         - ndeejbgcbhehjpjmngniokeleedmjmap
         - ndeejgokieklaealoikgdmbmjdkmaoco
+        - ndhmbgnnienbmkefelhnaodahpjgpnnk
         - ndihciopmidkbamcfgpdmojcpalolfgo
         - ndlbedplllcgconngcnfmkadhokfaaln
         - neafafemicnbclhpojeoiemihogeejhl
@@ -2413,6 +2468,7 @@ detection:
         - ngapmoknefnodckipfjjapkpagaefjca
         - ngbfciefgjgijkkmpalnmhikoojilkob
         - ngchnhjdpgpkapghgpncmommhelegfbh
+        - ngecmgoblhegkdghknpfbkeehhefpdhc
         - ngeofnobniohmdmdkliflkeppfgbjpgn
         - ngglldgjkjekfbmbfpankdmmknabbgmp
         - ngiaafjblpmiejfgcnfcolhdccmaafjg
@@ -2559,9 +2615,11 @@ detection:
         - ocgfhclcahimdhfjgmakmfdnhomofljo
         - ocginjipilabheemhfbedijlhajbcabh
         - ocifcogajbgikalbpphmoedjlcfjkhgh
+        - ockelnmgipmhmcjedaekchaodpdegneb
         - ocopipabchoopeppmgiigphgbicocoea
         - ocpcmfmiidofonkbodpdhgddhlcmcofd
         - ocponkhpfikgnggeflddgkfcmhjejedo
+        - odccbnfjaebhpnplgkodpmkjkffkalfe
         - odccobbfnngplckpongkahajfjpnbcck
         - odcfdbjimjkipbopcfaohmffnbmnbfhb
         - odclgeagcoikcdkolkjnmafjcfocmnjk
@@ -2575,6 +2633,7 @@ detection:
         - oeefjlikahigmlnplgijgeeecbpemhip
         - oefgcfheipblokelgbnnldoolmikeljd
         - oehamnhnpejphgpkgnenefolepinadjj
+        - oehggdajkadeihebdokeglnofplebcde
         - oehimkphpeeeneindfeekidpmkpffkgc
         - oeiomhmbaapihbilkfkhmlajkeegnjhe
         - oejafikjmfmejaafjjkoeejjpdfkdkpc
@@ -2627,6 +2686,7 @@ detection:
         - ojdagjoeaaooofmeofppefbnebclnmkh
         - ojdkklpgpacpicaobnhankbalkkgaafp
         - ojfjgkolegfhneacbgcjaoajfgcfoapf
+        - ojhkplldlhhldmdfdpcmnfjmkbokplom
         - ojhlagjgjbjfgllocdhlpnkbdlcipnmo
         - ojkbafekojdcedacileemekjdfdpkbkf
         - ojkoofedgcdebdnajjeodlooojdphnlj
@@ -2656,6 +2716,54 @@ detection:
         - oknpgmaeedlbdichgaghebhiknmghffa
         - okphhehkikoonipdjmhglcmlgccjcblp
         - olaahjgjlhoehkpemnfognpgmkbedodk
+    condition: selection
+falsepositives:
+    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
+    - Test environments with intentionally installed malicious extensions
+level: high
+logsources:
+    # Uncomment and adjust for your environment:
+    # Windows registry (Chrome/Edge extension installation):
+    # category: registry_event
+    # Windows filesystem (extension directory creation):
+    # category: file_event
+    # Browser history / network logs:
+    # category: proxy
+    # Endpoint detection:
+    # category: process_creation
+fields:
+    - ExtensionID
+    - RegistryKey
+    - FilePath
+    - NetworkURL
+
+---
+title: Malicious Chrome/Edge Extension Detected (part 6/6)
+id: chrome-mal-ids-sigma_part6
+status: experimental
+description: >
+    Detects the presence or activity of a known malicious Chrome or Edge browser
+    extension based on the Malicious Chrome Extension IOC Database
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2764 confirmed malicious extension IDs across
+    30+ campaigns including credential theft, data exfiltration, browser hijacking,
+    click fraud, and supply chain attacks via ownership transfer.
+references:
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
+author: Malicious Chrome Extension IOC Database (@mallorybowes)
+date: 2026-06-03
+modified: 2026-06-03
+tags:
+    - attack.collection
+    - attack.t1176
+    - attack.credential_access
+    - attack.t1539
+    - attack.exfiltration
+detection:
+    selection:
+        # Match extension IDs in filesystem paths, registry, logs, or network traffic
+        # Adjust field names to match your log source schema
+        |contains:
         - oldhjammhkghhahhhdcifmmlefibciph
         - oldmglociedkafaafcaoojlmojbfmdpi
         - oliiideaalkijolilhhaibhbjfhbdcnm
@@ -2696,6 +2804,7 @@ detection:
         - opakkgodhhongnhbdkgjgdlcbknacpaa
         - opbobdfddmiemhekjiglckcenhpfdbjm
         - opcjjggkhndcdpedheeilommknkephik
+        - opfakiefjdnefefeaacamdpnipefflkp
         - opfogdennafhaoihhkocppaajlkpbfbn
         - opfppjjpcgojicomghpdjanjpeobaajo
         - opieiflijklfdmodelmjcbadicknbaec
@@ -2716,54 +2825,6 @@ detection:
         - paddichbcfehpelokpidnagccddbpkin
         - paghkadkhiladedijgodgghaajppmpcg
         - pahlnbfkogncdbkaeaamcmpmhjecicmh
-    condition: selection
-falsepositives:
-    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
-    - Test environments with intentionally installed malicious extensions
-level: high
-logsources:
-    # Uncomment and adjust for your environment:
-    # Windows registry (Chrome/Edge extension installation):
-    # category: registry_event
-    # Windows filesystem (extension directory creation):
-    # category: file_event
-    # Browser history / network logs:
-    # category: proxy
-    # Endpoint detection:
-    # category: process_creation
-fields:
-    - ExtensionID
-    - RegistryKey
-    - FilePath
-    - NetworkURL
-
----
-title: Malicious Chrome/Edge Extension Detected (part 6/6)
-id: chrome-mal-ids-sigma_part6
-status: experimental
-description: >
-    Detects the presence or activity of a known malicious Chrome or Edge browser
-    extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 2701 confirmed malicious extension IDs across
-    30+ campaigns including credential theft, data exfiltration, browser hijacking,
-    click fraud, and supply chain attacks via ownership transfer.
-references:
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
-author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-06-02
-modified: 2026-06-02
-tags:
-    - attack.collection
-    - attack.t1176
-    - attack.credential_access
-    - attack.t1539
-    - attack.exfiltration
-detection:
-    selection:
-        # Match extension IDs in filesystem paths, registry, logs, or network traffic
-        # Adjust field names to match your log source schema
-        |contains:
         - pajbempmgmalnfpbnpclkelnhfccikal
         - pajkjnmeojmbapicmbpliphjmcekeaac
         - pamchlfnkebmjbfbknoclehcpfclbhpl
@@ -2890,6 +2951,7 @@ detection:
         - pjjghngpidphgicpgdebpmdgdicepege
         - pjjmcpmjocebmjmhdclbiheoideefiad
         - pjkgiojffhoepookbhloenffjmelohol
+        - pjlcincdocmbnfjhgbklmagilpmdefdo
         - pjlheckmodimboibhpdcgkpkbpjfhooe
         - pjmlmmlmdpcbipdmeedomkeomokaljjd
         - pjpjefgijnjlhgegceegmpecklonpdjp
@@ -2950,6 +3012,7 @@ detection:
         - poeokidblnamjkagggonidcigafaobki
         - pofffhlknjbjolmfoeagdmbbdbjjmeki
         - pojgkmkfincpdkdgjepkmdekcahmckjp
+        - pokenhlckhaoenaipopidoddgdbhlegh
         - polgnkadhhhmlahkhhbicledbpklnake
         - ponodoigcmkglddlljanchegmkgkhmgb
         - pooaemmkohlphkekccfajnbcokjlbehk
