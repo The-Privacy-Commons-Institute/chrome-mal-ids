@@ -80,7 +80,7 @@ Sourced from published security research, individually reviewed by a human befor
 commit, with source citations and campaign attribution. These are confirmed malicious
 extensions backed by original research.
 
-**Third-party source entries** (`CONTRIB-METHOD=Delta_Import` or `csv_import`) — 1,796 entries (1,498 one-time bulk delta import; 298 ongoing ingestion from toborrm9/malicious_extension_sentry). These entries have not been individually human-reviewed but have undergone Stage 5A static behavioral analysis — 91.5% of analyzed entries exhibit confirmed malicious or elevated-risk behavioral patterns (see [Still There, Section 4.9](https://tpc.institute/research/still-there)). Check the `TPCI-VERIFY` and `TPCI-IDENTITY` fields for current verification status. Entries with `TPCI-VERIFY=Stage 5A` are behaviorally confirmed; entries marked `TPCI-VERIFY=stub` are pending individual analysis.
+**Third-party source entries** (`CONTRIB-METHOD=Delta_Import` or `csv_import`) — 1,796 entries (1,498 one-time bulk delta import; 298 ongoing ingestion from toborrm9/malicious_extension_sentry). These entries have not been individually human-reviewed but have undergone Stage 5A static behavioral analysis — 91.5% of analyzed entries exhibit confirmed malicious or elevated-risk behavioral patterns. Check the `TPCI-VERIFY` and `TPCI-IDENTITY` fields for current verification status. Entries with `TPCI-VERIFY=Stage 5A` are behaviorally confirmed; entries marked `TPCI-VERIFY=stub` are pending individual analysis.
 
 **Filtering by confidence level:**
 ```bash
