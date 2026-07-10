@@ -9,9 +9,26 @@
 
 > **⚠ Schema updated May 2026** — Six new TPCI-V verification fields added (`TPCI-VERIFY`, `TPCI-VERIFY-DATE`, `TPCI-STORE-NAME`, `TPCI-STORE-DEV`, `TPCI-STORE-DATE`, `TPCI-IDENTITY`) plus four earlier additions (`ADD-SOURCES`, `CONTRIB-METHOD`, `CONTRIB-TYPE`, `CONTRIB-HANDLE`). Scripts using positional column indexing will need updating. Scripts using named headers (`csv.DictReader` or equivalent) require no changes. See [SCHEMA.md](SCHEMA.md) for full details and migration guidance.
 
-> **⚠ Delta import verification status** — 1,796 entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static behavioral analysis; 91.5% exhibit confirmed malicious or elevated-risk patterns. Third-party sources include a one-time bulk delta import (1,498 entries) and ongoing ingestion from toborrm9/malicious_extension_sentry (298 entries to date). See [Data Quality](#data-quality) and [CHANGELOG.md](CHANGELOG.md).
+> **⚠ Delta import verification status** — A meaningful share of entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static behavioral analysis and shown confirmed malicious or elevated-risk patterns at a high rate. Third-party sources include a one-time bulk delta import plus ongoing ingestion from toborrm9/malicious_extension_sentry and PDF report intake. For current entry counts and the exact confirmation rate, see the **By Contribution Method** table in [STATS.md](STATS.md) — those numbers move as ingestion continues, so they're tracked there rather than restated here. See [Data Quality](#data-quality) and [CHANGELOG.md](CHANGELOG.md).
 
-> **🔬 Research forthcoming** — The Privacy Commons Institute is conducting original research on this dataset examining malicious extension persistence, removal rates following public disclosure, IOC database quality, and supply chain attack remediation patterns. The first paper is currently under a 30-day coordinated disclosure embargo with Google and is scheduled for publication on **June 30, 2026** at [tpc.institute](https://tpc.institute). Methodology and findings will be released at that time. Entries are being updated as research progresses; changes are tracked in [CHANGELOG.md](CHANGELOG.md). Consumers of this database may notice attribution, threat type, and verification fields being updated between releases — this reflects active research, not data instability.
+> **📄 Research published — "Still There"** — The Privacy Commons Institute's
+> first paper using this dataset is now available:
+> **[Still There: Measuring Malicious Chrome Extension Persistence and the
+> Effectiveness of Public Disclosure](https://tpc.institute/wp/01)**.
+> Using a snapshot of 2,525 verified entries from this database (May 2026),
+> the study found 20.1% of confirmed-malicious extensions remained live and
+> installable after public disclosure, with a combined install base of
+> 17.7 million users — including three extensions still carrying Google's
+> own "Featured" badge. Full methodology, findings, and evidence archive at
+> the link above. This is the first in a planned research series; entries
+> continue to be updated as later papers progress, tracked in
+> [CHANGELOG.md](CHANGELOG.md). Consumers of this database may notice
+> attribution, threat type, and verification fields being updated between
+> releases — this reflects active research, not data instability.
+>
+> *Note: the paper's figures reflect a May 2026 snapshot of this database
+> (2,525 entries). The live database has grown since — see [STATS.md](STATS.md)
+> for current counts.*
 
 ---
 
@@ -22,9 +39,11 @@
 ## What this is
 
 Started in 2021 as a personal research project after noticing no single authoritative list
-of malicious Chrome extension IDs existed. Today it tracks **2,700+ documented malicious
-extension IOCs** across **44 campaigns** — from credential stealers and browser hijackers to
-supply chain compromises and ad fraud rings.
+of malicious Chrome extension IDs existed. The database tracks thousands of documented
+malicious extension IOCs across dozens of campaigns — from credential stealers and browser
+hijackers to supply chain compromises and ad fraud rings. **Current totals change as
+ingestion continues — see [STATS.md](STATS.md) for the live count, campaign breakdown, and
+contribution-method breakdown, auto-generated on every update rather than restated here.**
 
 The database is maintained by [The Privacy Commons Institute](https://tpc.institute) (TPCI)
 and is an active research platform. TPCI conducts original research on browser extension
@@ -49,7 +68,7 @@ Distribution outputs (STIX, MISP, Sigma, blocklist) contain only TPCI-verified e
 | [`formats/chrome-mal-ids-stix.json`](formats/chrome-mal-ids-stix.json) | STIX 2.1 bundle for threat intel platforms |
 | [`formats/misp-export.json`](formats/misp-export.json) | MISP event JSON for manual import |
 | [`formats/misp-feed/`](formats/misp-feed/) | MISP feed directory for automatic polling |
-| [`STATS.md`](STATS.md) | Auto-generated statistics summary |
+| [`STATS.md`](STATS.md) | **Auto-generated statistics summary — current totals, campaign breakdown, contribution methods, and monitored sources live here** |
 | [`SCHEMA.md`](SCHEMA.md) | Full schema documentation |
 
 ### Schema overview
@@ -73,14 +92,22 @@ Full schema: [SCHEMA.md](SCHEMA.md)
 
 ### Data quality
 
-Entries in this database fall into two categories with different confidence levels:
+Entries in this database fall into two categories with different confidence levels.
+**Exact current counts for both categories, plus a full breakdown by contribution
+method (delta import, PDF report intake, AI enrichment, manual entry, etc.), are in
+[STATS.md](STATS.md)'s "By Contribution Method" table** rather than restated here as
+static numbers.
 
-**Independently verified entries** (`CONTRIB-METHOD` ≠ `Delta_Import`, ≠ `csv_import`) — 990 entries  
+**Independently verified entries** (`CONTRIB-METHOD` ≠ `Delta_Import`, ≠ `csv_import`)
 Sourced from published security research, individually reviewed by a human before
 commit, with source citations and campaign attribution. These are confirmed malicious
 extensions backed by original research.
 
-**Third-party source entries** (`CONTRIB-METHOD=Delta_Import` or `csv_import`) — 1,796 entries (1,498 one-time bulk delta import; 298 ongoing ingestion from toborrm9/malicious_extension_sentry). These entries have not been individually human-reviewed but have undergone Stage 5A static behavioral analysis — 91.5% of analyzed entries exhibit confirmed malicious or elevated-risk behavioral patterns. Check the `TPCI-VERIFY` and `TPCI-IDENTITY` fields for current verification status. Entries with `TPCI-VERIFY=Stage 5A` are behaviorally confirmed; entries marked `TPCI-VERIFY=stub` are pending individual analysis.
+**Third-party source entries** (`CONTRIB-METHOD=Delta_Import`, `csv_import`, `PDF_Import`, etc.)
+These entries have not necessarily been individually human-reviewed on ingest but have
+undergone Stage 5A static behavioral analysis. Check the `TPCI-VERIFY` and `TPCI-IDENTITY`
+fields for current verification status. Entries with `TPCI-VERIFY=Stage 5A` are behaviorally
+confirmed; entries marked `TPCI-VERIFY=stub` are pending individual analysis.
 
 **Filtering by confidence level:**
 ```bash
@@ -213,7 +240,7 @@ MISP → Feeds → Add Feed:
   Distribution: Your organisation only
 ```
 
-The feed creates one MISP event per campaign (44 events) with full attribute metadata, TLP:WHITE tags, and source references. Updates automatically with every new database commit.
+The feed creates one MISP event per campaign, with full attribute metadata, TLP:WHITE tags, and source references (see [STATS.md](STATS.md) for the current campaign count). Updates automatically with every new database commit.
 
 ### 🧩 STIX 2.1 / OpenCTI
 
@@ -257,16 +284,12 @@ if match:
 
 ## Statistics
 
-> See [STATS.md](STATS.md) for the full auto-generated breakdown.
-
-- **2,708 extension IOCs** tracked
-- **990 independently verified** entries (from original security research)
-- **1,711 third-party source** entries (delta import + toborrm9, verification in progress)
-- **44 campaigns** covered
-- **Chrome and Edge** extensions
-- **2020 – present** date range
-- Threat types include: spyware, data-theft, browser-hijack, credential-theft,
-  click-fraud, session-hijack, cryptojacking, adware, ai-chat-scraper
+**Live, auto-generated statistics — total IOC count, verified vs. third-party
+split, campaign breakdown, threat type breakdown, contribution methods, and
+currently monitored sources — are maintained in [STATS.md](STATS.md), not
+duplicated here.** STATS.md regenerates automatically as part of the commit
+pipeline, so it reflects the database's actual current state rather than a
+number frozen at whatever point this README was last edited.
 
 ---
 
