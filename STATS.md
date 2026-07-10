@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-07-10 20:01 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-07-10 20:22 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -135,7 +135,34 @@ The following sources are monitored daily for new malicious extension reports:
 | [chartingshow/crypto-firewall new issues](https://api.github.com/repos/chartingshow/crypto-firewall) | issues |
 | [axon-git/rapid-response commits](https://api.github.com/repos/axon-git/rapid-response) | commits |
 
-*10 RSS feeds · 3 GitHub repos · edit via the review UI Sources tab*
+### CSV Sources
+
+| Source | Contributor |
+|--------|-------------|
+| [toborrm9/malicious_extension_sentry](https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv) | @toborrm9 |
+
+*10 RSS feeds · 3 GitHub repos · 1 CSV sources · edit via the review UI Sources tab*
+
+---
+
+## By Contribution Method
+
+How entries entered the database — recurring monitored sources (RSS/GitHub/CSV, above) vs. one-off imports (PDF reports, manual rescue) vs. bulk/AI-assisted enrichment.
+
+| Method | Extensions |
+|--------|-----------|
+| csv_import+ThreatType_Classified | 1,117 (29.5%) |
+| Delta_Import | 1,092 (28.9%) |
+| Google_Search | 946 (25.0%) |
+| Delta_Import+Store_Enrichment | 393 (10.4%) |
+| PDF_Import | 107 (2.8%) |
+| AI_Enrichment | 79 (2.1%) |
+| Initial_Commit | 19 (0.5%) |
+| Manual | 10 (0.3%) |
+| Delta_Import+AI_Enrichment | 6 (0.2%) |
+| csv_import+ThreatType_Fallback | 6 (0.2%) |
+| Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
+| Delta_Import+Store_Enrichment+ThreatType_Classified | 2 (0.1%) |
 
 ---
 
