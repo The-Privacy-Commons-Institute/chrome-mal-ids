@@ -11,25 +11,6 @@
 
 > **⚠ Delta import verification status** — A meaningful share of entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static behavioral analysis and shown confirmed malicious or elevated-risk patterns at a high rate. Third-party sources include a one-time bulk delta import plus ongoing ingestion from toborrm9/malicious_extension_sentry and PDF report intake. For current entry counts and the exact confirmation rate, see the **By Contribution Method** table in [STATS.md](STATS.md) — those numbers move as ingestion continues, so they're tracked there rather than restated here. See [Data Quality](#data-quality) and [CHANGELOG.md](CHANGELOG.md).
 
-> **📄 Research published — "Still There"** — The Privacy Commons Institute's
-> first paper using this dataset is now available:
-> **[Still There: Measuring Malicious Chrome Extension Persistence and the
-> Effectiveness of Public Disclosure](https://tpc.institute/wp/01)**.
-> Using a snapshot of 2,525 verified entries from this database (May 2026),
-> the study found 20.1% of confirmed-malicious extensions remained live and
-> installable after public disclosure, with a combined install base of
-> 17.7 million users — including three extensions still carrying Google's
-> own "Featured" badge. Full methodology, findings, and evidence archive at
-> the link above. This is the first in a planned research series; entries
-> continue to be updated as later papers progress, tracked in
-> [CHANGELOG.md](CHANGELOG.md). Consumers of this database may notice
-> attribution, threat type, and verification fields being updated between
-> releases — this reflects active research, not data instability.
->
-> *Note: the paper's figures reflect a May 2026 snapshot of this database
-> (2,525 entries). The live database has grown since — see [STATS.md](STATS.md)
-> for current counts.*
-
 ---
 
 ## 🔍 [Search the database →](https://the-privacy-commons-institute.github.io/chrome-mal-ids)
