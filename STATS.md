@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-07-12 14:49 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-07-13 17:37 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **3,810** |
+| Total malicious extensions | **3,814** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs (ID confirmed, metadata pending) | **1,360** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-07-12** |
+| Most recent discovery | **2026-07-13** |
 
 ---
 
@@ -21,7 +21,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 3,668 (96.3%) |
+| Chrome | 3,672 (96.3%) |
 | Edge | 129 (3.4%) |
 | Both | 13 (0.3%) |
 
@@ -31,9 +31,9 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 1,896 (49.8%) |
-| adware | 1,040 (27.3%) |
-| data-theft | 912 (23.9%) |
+| unknown | 1,896 (49.7%) |
+| adware | 1,044 (27.4%) |
+| data-theft | 913 (23.9%) |
 | spyware | 664 (17.4%) |
 | click-fraud | 306 (8.0%) |
 | browser-hijack | 249 (6.5%) |
@@ -60,7 +60,7 @@ A total of **53** distinct campaigns are tracked.
 | Adware | 285 |
 | Malware | 242 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 231 |
-| Bundling Unwanted Software | 153 |
+| Bundling Unwanted Software | 157 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
 | Search Hijacking | 117 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
@@ -151,8 +151,8 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 1,143 (30.0%) |
-| Delta_Import | 1,092 (28.7%) |
+| csv_import+ThreatType_Classified | 1,147 (30.1%) |
+| Delta_Import | 1,092 (28.6%) |
 | Google_Search | 946 (24.8%) |
 | Delta_Import+Store_Enrichment | 393 (10.3%) |
 | PDF_Import | 107 (2.8%) |
