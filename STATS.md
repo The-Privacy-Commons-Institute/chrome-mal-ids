@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-07-14 06:51 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-07-14 15:43 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,7 +8,7 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **3,863** |
+| Total malicious extensions | **3,867** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs (ID confirmed, metadata pending) | **1,360** |
@@ -21,7 +21,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 3,721 (96.3%) |
+| Chrome | 3,725 (96.3%) |
 | Edge | 129 (3.3%) |
 | Both | 13 (0.3%) |
 
@@ -31,16 +31,16 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 1,896 (49.1%) |
-| adware | 1,081 (28.0%) |
-| data-theft | 924 (23.9%) |
-| spyware | 665 (17.2%) |
+| unknown | 1,896 (49.0%) |
+| adware | 1,082 (28.0%) |
+| data-theft | 927 (24.0%) |
+| spyware | 667 (17.2%) |
 | click-fraud | 306 (7.9%) |
 | browser-hijack | 249 (6.4%) |
-| credential-theft | 213 (5.5%) |
+| credential-theft | 214 (5.5%) |
 | session-hijack | 134 (3.5%) |
-| ownership-transfer | 29 (0.8%) |
-| fake-extension | 29 (0.8%) |
+| ownership-transfer | 29 (0.7%) |
+| fake-extension | 29 (0.7%) |
 | phishing | 27 (0.7%) |
 | malware | 14 (0.4%) |
 | ai-chat-scraper | 4 (0.1%) |
@@ -57,8 +57,8 @@ A total of **53** distinct campaigns are tracked.
 | Stub entry imported from malicious_extension_sentry | 1,149 |
 | Unknown | 361 |
 | Adware | 322 |
-| Policy Violation | 299 |
-| Malware | 243 |
+| Policy Violation | 300 |
+| Malware | 246 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 231 |
 | Bundling Unwanted Software | 157 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
@@ -151,8 +151,8 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 1,195 (30.9%) |
-| Delta_Import | 1,092 (28.3%) |
+| csv_import+ThreatType_Classified | 1,199 (31.0%) |
+| Delta_Import | 1,092 (28.2%) |
 | Google_Search | 946 (24.5%) |
 | Delta_Import+Store_Enrichment | 393 (10.2%) |
 | PDF_Import | 107 (2.8%) |
