@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-07-14 15:49 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-07-15 05:27 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,7 +8,7 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **3,867** |
+| Total malicious extensions | **4,096** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **1,131** |
@@ -22,8 +22,8 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 3,725 (96.3%) |
-| Edge | 129 (3.3%) |
+| Chrome | 3,954 (96.5%) |
+| Edge | 129 (3.1%) |
 | Both | 13 (0.3%) |
 
 ---
@@ -32,18 +32,18 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 1,896 (49.0%) |
-| adware | 1,082 (28.0%) |
-| data-theft | 927 (24.0%) |
-| spyware | 667 (17.2%) |
-| click-fraud | 306 (7.9%) |
-| browser-hijack | 249 (6.4%) |
-| credential-theft | 214 (5.5%) |
-| session-hijack | 134 (3.5%) |
+| unknown | 2,025 (49.4%) |
+| adware | 1,180 (28.8%) |
+| data-theft | 929 (22.7%) |
+| spyware | 669 (16.3%) |
+| click-fraud | 306 (7.5%) |
+| browser-hijack | 249 (6.1%) |
+| credential-theft | 214 (5.2%) |
+| session-hijack | 134 (3.3%) |
 | ownership-transfer | 29 (0.7%) |
 | fake-extension | 29 (0.7%) |
 | phishing | 27 (0.7%) |
-| malware | 14 (0.4%) |
+| malware | 14 (0.3%) |
 | ai-chat-scraper | 4 (0.1%) |
 | malvertising | 1 (0.0%) |
 
@@ -56,10 +56,10 @@ A total of **53** distinct campaigns are tracked.
 | Campaign | Extensions |
 |----------|-----------|
 | Stub entry imported from malicious_extension_sentry | 1,149 |
+| Adware | 548 |
 | Unknown | 361 |
-| Adware | 322 |
 | Policy Violation | 300 |
-| Malware | 246 |
+| Malware | 249 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 231 |
 | Bundling Unwanted Software | 157 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
@@ -152,18 +152,19 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 1,199 (31.0%) |
-| Delta_Import | 1,092 (28.2%) |
-| Google_Search | 946 (24.5%) |
-| Delta_Import+Store_Enrichment | 393 (10.2%) |
-| PDF_Import | 107 (2.8%) |
-| AI_Enrichment | 79 (2.0%) |
+| csv_import+ThreatType_Classified | 1,299 (31.7%) |
+| Delta_Import | 1,092 (26.7%) |
+| Google_Search | 946 (23.1%) |
+| Delta_Import+Store_Enrichment | 393 (9.6%) |
+| csv_import | 129 (3.1%) |
+| PDF_Import | 107 (2.6%) |
+| AI_Enrichment | 79 (1.9%) |
 | Initial_Commit | 19 (0.5%) |
-| Manual | 10 (0.3%) |
+| Manual | 10 (0.2%) |
 | csv_import+ThreatType_Fallback | 9 (0.2%) |
-| Delta_Import+AI_Enrichment | 6 (0.2%) |
+| Delta_Import+AI_Enrichment | 6 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
-| Delta_Import+Store_Enrichment+ThreatType_Classified | 2 (0.1%) |
+| Delta_Import+Store_Enrichment+ThreatType_Classified | 2 (0.0%) |
 
 ---
 
