@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-07-15 18:23 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-07-16 18:08 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,13 +8,13 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **4,106** |
+| Total malicious extensions | **4,109** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **1,131** |
+| Stubs — pending (ID confirmed, still searchable) | **1,121** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **229** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-07-15** |
+| Most recent discovery | **2026-07-16** |
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 3,964 (96.5%) |
+| Chrome | 3,967 (96.5%) |
 | Edge | 129 (3.1%) |
 | Both | 13 (0.3%) |
 
@@ -32,11 +32,11 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 1,896 (46.2%) |
-| adware | 1,310 (31.9%) |
-| data-theft | 935 (22.8%) |
-| spyware | 675 (16.4%) |
-| click-fraud | 306 (7.5%) |
+| unknown | 1,896 (46.1%) |
+| adware | 1,311 (31.9%) |
+| data-theft | 937 (22.8%) |
+| spyware | 677 (16.5%) |
+| click-fraud | 307 (7.5%) |
 | browser-hijack | 249 (6.1%) |
 | credential-theft | 217 (5.3%) |
 | session-hijack | 135 (3.3%) |
@@ -58,8 +58,8 @@ A total of **53** distinct campaigns are tracked.
 | Stub entry imported from malicious_extension_sentry | 1,149 |
 | Adware | 548 |
 | Unknown | 361 |
-| Policy Violation | 304 |
-| Malware | 253 |
+| Policy Violation | 306 |
+| Malware | 254 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 231 |
 | Bundling Unwanted Software | 159 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
@@ -152,12 +152,12 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 1,437 (35.0%) |
-| Delta_Import | 1,092 (26.6%) |
+| csv_import+ThreatType_Classified | 1,440 (35.0%) |
+| Delta_Import | 1,090 (26.5%) |
 | Google_Search | 946 (23.0%) |
-| Delta_Import+Store_Enrichment | 393 (9.6%) |
+| Delta_Import+Store_Enrichment | 403 (9.8%) |
 | PDF_Import | 107 (2.6%) |
-| AI_Enrichment | 79 (1.9%) |
+| AI_Enrichment | 71 (1.7%) |
 | Initial_Commit | 19 (0.5%) |
 | Manual | 10 (0.2%) |
 | csv_import+ThreatType_Fallback | 10 (0.2%) |
