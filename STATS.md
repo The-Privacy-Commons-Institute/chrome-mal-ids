@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-07-28 14:59 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-07-29 14:38 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,13 +8,13 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **4,517** |
+| Total malicious extensions | **4,523** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **881** |
-| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **272** |
+| Stubs — pending (ID confirmed, still searchable) | **861** |
+| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **292** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-07-27** |
+| Most recent discovery | **2026-07-28** |
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 4,375 (96.9%) |
+| Chrome | 4,381 (96.9%) |
 | Edge | 129 (2.9%) |
 | Both | 13 (0.3%) |
 
@@ -32,13 +32,13 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 1,896 (42.0%) |
-| adware | 1,596 (35.3%) |
-| data-theft | 1,026 (22.7%) |
-| spyware | 730 (16.2%) |
-| click-fraud | 323 (7.2%) |
+| unknown | 1,896 (41.9%) |
+| adware | 1,598 (35.3%) |
+| data-theft | 1,031 (22.8%) |
+| spyware | 733 (16.2%) |
+| click-fraud | 324 (7.2%) |
 | browser-hijack | 289 (6.4%) |
-| credential-theft | 244 (5.4%) |
+| credential-theft | 245 (5.4%) |
 | session-hijack | 136 (3.0%) |
 | ownership-transfer | 29 (0.6%) |
 | fake-extension | 29 (0.6%) |
@@ -57,9 +57,9 @@ A total of **53** distinct campaigns are tracked.
 |----------|-----------|
 | Stub entry imported from malicious_extension_sentry | 1,149 |
 | Adware | 783 |
-| Policy Violation | 368 |
+| Policy Violation | 372 |
 | Unknown | 361 |
-| Malware | 287 |
+| Malware | 289 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 231 |
 | Bundling Unwanted Software | 201 |
 | Search Hijacking | 153 |
@@ -152,9 +152,9 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 1,847 (40.9%) |
+| csv_import+ThreatType_Classified | 1,853 (41.0%) |
 | Google_Search | 946 (20.9%) |
-| Delta_Import | 924 (20.5%) |
+| Delta_Import | 924 (20.4%) |
 | Delta_Import+Store_Enrichment | 600 (13.3%) |
 | PDF_Import | 107 (2.4%) |
 | AI_Enrichment | 40 (0.9%) |
