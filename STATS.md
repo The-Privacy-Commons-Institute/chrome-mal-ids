@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-07-29 14:38 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-07-30 01:05 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,13 +8,13 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **4,523** |
+| Total malicious extensions | **4,705** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **861** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **292** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-07-28** |
+| Most recent discovery | **2026-07-29** |
 
 ---
 
@@ -22,8 +22,8 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 4,381 (96.9%) |
-| Edge | 129 (2.9%) |
+| Chrome | 4,563 (97.0%) |
+| Edge | 129 (2.7%) |
 | Both | 13 (0.3%) |
 
 ---
@@ -32,18 +32,18 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 1,896 (41.9%) |
-| adware | 1,598 (35.3%) |
-| data-theft | 1,031 (22.8%) |
-| spyware | 733 (16.2%) |
-| click-fraud | 324 (7.2%) |
-| browser-hijack | 289 (6.4%) |
-| credential-theft | 245 (5.4%) |
-| session-hijack | 136 (3.0%) |
+| unknown | 1,978 (42.0%) |
+| adware | 1,698 (36.1%) |
+| data-theft | 1,031 (21.9%) |
+| spyware | 733 (15.6%) |
+| click-fraud | 324 (6.9%) |
+| browser-hijack | 289 (6.1%) |
+| credential-theft | 245 (5.2%) |
+| session-hijack | 136 (2.9%) |
 | ownership-transfer | 29 (0.6%) |
 | fake-extension | 29 (0.6%) |
 | phishing | 27 (0.6%) |
-| malware | 16 (0.4%) |
+| malware | 16 (0.3%) |
 | ai-chat-scraper | 4 (0.1%) |
 | malvertising | 1 (0.0%) |
 
@@ -56,7 +56,7 @@ A total of **53** distinct campaigns are tracked.
 | Campaign | Extensions |
 |----------|-----------|
 | Stub entry imported from malicious_extension_sentry | 1,149 |
-| Adware | 783 |
+| Adware | 965 |
 | Policy Violation | 372 |
 | Unknown | 361 |
 | Malware | 289 |
@@ -152,11 +152,12 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 1,853 (41.0%) |
-| Google_Search | 946 (20.9%) |
-| Delta_Import | 924 (20.4%) |
-| Delta_Import+Store_Enrichment | 600 (13.3%) |
-| PDF_Import | 107 (2.4%) |
+| csv_import+ThreatType_Classified | 1,953 (41.5%) |
+| Google_Search | 946 (20.1%) |
+| Delta_Import | 924 (19.6%) |
+| Delta_Import+Store_Enrichment | 600 (12.8%) |
+| PDF_Import | 107 (2.3%) |
+| csv_import | 82 (1.7%) |
 | AI_Enrichment | 40 (0.9%) |
 | Initial_Commit | 19 (0.4%) |
 | csv_import+ThreatType_Fallback | 11 (0.2%) |
