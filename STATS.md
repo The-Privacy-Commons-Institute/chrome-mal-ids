@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-02 07:54 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-02 15:59 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,11 +8,11 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **5,391** |
+| Total malicious extensions | **5,390** |
 | Unique campaigns | **52** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **821** |
-| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **332** |
+| Stubs — pending (ID confirmed, still searchable) | **800** |
+| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **352** |
 | Earliest discovery | **2017-08-17** |
 | Most recent discovery | **2026-08-02** |
 
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 5,249 (97.4%) |
+| Chrome | 5,248 (97.4%) |
 | Edge | 129 (2.4%) |
 | Both | 13 (0.2%) |
 
@@ -33,7 +33,7 @@
 | Threat Type | Extensions |
 |-------------|-----------|
 | adware | 2,391 (44.4%) |
-| unknown | 1,879 (34.9%) |
+| unknown | 1,878 (34.8%) |
 | data-theft | 1,116 (20.7%) |
 | spyware | 782 (14.5%) |
 | click-fraud | 331 (6.1%) |
@@ -56,7 +56,7 @@ A total of **52** distinct campaigns are tracked.
 | Campaign | Extensions |
 |----------|-----------|
 | Adware | 1,552 |
-| Stub entry imported from malicious_extension_sentry | 1,146 |
+| Stub entry imported from malicious_extension_sentry | 1,145 |
 | Policy Violation | 413 |
 | Unknown | 361 |
 | Malware | 321 |
@@ -153,8 +153,8 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 | Method | Extensions |
 |--------|-----------|
 | csv_import+ThreatType_Classified | 2,721 (50.5%) |
-| Google_Search | 946 (17.5%) |
-| Delta_Import | 924 (17.1%) |
+| Google_Search | 945 (17.5%) |
+| Delta_Import | 923 (17.1%) |
 | Delta_Import+Store_Enrichment | 600 (11.1%) |
 | PDF_Import | 107 (2.0%) |
 | AI_Enrichment | 40 (0.7%) |
@@ -164,6 +164,7 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 2 (0.0%) |
+| Delta_Import+Google_Search | 1 (0.0%) |
 
 ---
 
