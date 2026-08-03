@@ -9,7 +9,9 @@
 
 > **⚠ Schema updated May 2026** — Six new TPCI-V verification fields added (`TPCI-VERIFY`, `TPCI-VERIFY-DATE`, `TPCI-STORE-NAME`, `TPCI-STORE-DEV`, `TPCI-STORE-DATE`, `TPCI-IDENTITY`) plus four earlier additions (`ADD-SOURCES`, `CONTRIB-METHOD`, `CONTRIB-TYPE`, `CONTRIB-HANDLE`). Scripts using positional column indexing will need updating. Scripts using named headers (`csv.DictReader` or equivalent) require no changes. See [SCHEMA.md](SCHEMA.md) for full details and migration guidance.
 
-> **⚠ Delta import verification status** — A meaningful share of entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static behavioral analysis and shown confirmed malicious or elevated-risk patterns at a high rate. Third-party sources include a one-time bulk delta import plus ongoing ingestion from toborrm9/malicious_extension_sentry and PDF report intake. For current entry counts and the exact confirmation rate, see the **By Contribution Method** table in [STATS.md](STATS.md) — those numbers move as ingestion continues, so they're tracked there rather than restated here. See [Data Quality](#data-quality) and [CHANGELOG.md](CHANGELOG.md).
+> **⚠ Delta import verification status** — A meaningful share of entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static behavioral analysis and shown confirmed malicious or elevated-risk patterns at a high rate. Third-party sources include a one-time bulk delta import plus ongoing ingestion from toborrm9/malicious_extension_sentry and PDF report intake. For current entry counts and the exact confirmation rate, see the **By Contribution Method** table in [STATS.md](STATS.md) — those numbers move as ingestion continues, so they're tracked there rather than restated here.
+
+> **ℹ New metadata staging** — Supplementary metadata (developer/author name, canonical listing URL, version history count, "Featured" status) is being added into a separate file, [`data/current-list-meta-staged-fields.csv`](data/current-list-meta-staged-fields.csv), ahead of a future schema migration. This runs in periodic batches rather than continuously, so coverage grows incrementally across passes rather than all at once; a given extension's staged data reflects whenever it was last checked, not real-time. See [CHANGELOG.md](CHANGELOG.md) for full reasoning.
 
 ---
 
@@ -32,6 +34,10 @@ threats including persistence measurement, removal rate analysis, IOC feed quali
 and behavioral verification. Entries are updated as research progresses. All changes are
 documented in [CHANGELOG.md](CHANGELOG.md).
 
+This work is independent and self-funded. If it's been useful to you or your team,
+you can [support it here](https://tpc.institute/support) — or put that same value
+toward a cause you'd rather back instead.
+
 All entries sourced from original research are human-reviewed before publication.
 Distribution outputs (STIX, MISP, Sigma, blocklist) contain only TPCI-verified entries.
 
@@ -42,6 +48,7 @@ Distribution outputs (STIX, MISP, Sigma, blocklist) contain only TPCI-verified e
 | File | Description |
 |------|-------------|
 | [`data/current-list-meta.csv`](data/current-list-meta.csv) | Full dataset with metadata |
+| [`data/current-list-meta-staged-fields.csv`](data/current-list-meta-staged-fields.csv) | Supplementary Chrome-Stats metadata (author, url, version count, featured), staged ahead of a future schema migration — see the callout above |
 | [`data/current-list.csv`](data/current-list.csv) | ID-only list for lightweight consumption |
 | [`data/current-list.txt`](data/current-list.txt) | Plain text blocklist, one ID per line |
 | [`data/current-list.json`](data/current-list.json) | JSON array with full metadata |
@@ -96,7 +103,7 @@ confirmed; entries marked `TPCI-VERIFY=stub` are pending individual analysis.
 grep -v "Delta_Import\|csv_import" data/current-list-meta.csv
 
 # Check verification status
-awk -F',' '$19 != "" '} data/current-list-meta.csv   # TPCI verified entries
+awk -F',' '$19 != ""' data/current-list-meta.csv   # TPCI verified entries
 
 # Unverified delta imports
 grep "Delta_Import" data/current-list-meta.csv | grep -v "Store_Enrichment"
@@ -349,5 +356,6 @@ See [LICENSE.md](LICENSE.md) for full terms.
 
 *Maintained by [@mallorybowes](https://github.com/mallorybowes) /
 [The Privacy Commons Institute](https://tpc.institute)*  
+*Support this work: [tpc.institute/support](https://tpc.institute/support)*  
 *Pipeline tooling built with [Claude](https://claude.ai) (Anthropic)*  
 *Verification protocol: [TPCI-V](https://tpc.institute)*
