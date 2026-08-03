@@ -11,8 +11,6 @@
 
 > **⚠ Delta import verification status** — A meaningful share of entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static behavioral analysis and shown confirmed malicious or elevated-risk patterns at a high rate. Third-party sources include a one-time bulk delta import plus ongoing ingestion from toborrm9/malicious_extension_sentry and PDF report intake. For current entry counts and the exact confirmation rate, see the **By Contribution Method** table in [STATS.md](STATS.md) — those numbers move as ingestion continues, so they're tracked there rather than restated here.
 
-> **ℹ New metadata staging** — Supplementary metadata (developer/author name, canonical listing URL, version history count, "Featured" status) is being added into a separate file, [`data/current-list-meta-staged-fields.csv`](data/current-list-meta-staged-fields.csv), ahead of a future schema migration. This runs in periodic batches rather than continuously, so coverage grows incrementally across passes rather than all at once; a given extension's staged data reflects whenever it was last checked, not real-time. See [CHANGELOG.md](CHANGELOG.md) for full reasoning.
-
 ---
 
 ## 🔍 [Search the database →](https://the-privacy-commons-institute.github.io/chrome-mal-ids)
@@ -48,7 +46,6 @@ Distribution outputs (STIX, MISP, Sigma, blocklist) contain only TPCI-verified e
 | File | Description |
 |------|-------------|
 | [`data/current-list-meta.csv`](data/current-list-meta.csv) | Full dataset with metadata |
-| [`data/current-list-meta-staged-fields.csv`](data/current-list-meta-staged-fields.csv) | Supplementary Chrome-Stats metadata (author, url, version count, featured), staged ahead of a future schema migration — see the callout above |
 | [`data/current-list.csv`](data/current-list.csv) | ID-only list for lightweight consumption |
 | [`data/current-list.txt`](data/current-list.txt) | Plain text blocklist, one ID per line |
 | [`data/current-list.json`](data/current-list.json) | JSON array with full metadata |
