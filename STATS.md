@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-03 14:57 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-04 03:21 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,13 +8,13 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **5,738** |
+| Total malicious extensions | **5,756** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **780** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **372** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-08-02** |
+| Most recent discovery | **2026-08-03** |
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 5,596 (97.5%) |
+| Chrome | 5,614 (97.5%) |
 | Edge | 129 (2.2%) |
 | Both | 13 (0.2%) |
 
@@ -32,10 +32,10 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,391 (41.7%) |
-| unknown | 1,878 (32.7%) |
-| data-theft | 1,136 (19.8%) |
-| spyware | 1,130 (19.7%) |
+| adware | 2,391 (41.5%) |
+| unknown | 1,896 (32.9%) |
+| data-theft | 1,136 (19.7%) |
+| spyware | 1,130 (19.6%) |
 | click-fraud | 331 (5.8%) |
 | browser-hijack | 305 (5.3%) |
 | credential-theft | 271 (4.7%) |
@@ -57,12 +57,12 @@ A total of **53** distinct campaigns are tracked.
 |----------|-----------|
 | Adware | 1,552 |
 | Stub entry imported from malicious_extension_sentry | 1,145 |
-| Policy Violation | 413 |
+| Policy Violation | 428 |
 | Unknown | 361 |
 | Spyware | 348 |
-| Malware | 321 |
+| Malware | 323 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
-| Bundling Unwanted Software | 220 |
+| Bundling Unwanted Software | 221 |
 | Search Hijacking | 158 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
@@ -152,13 +152,14 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,069 (53.5%) |
-| Google_Search | 945 (16.5%) |
-| Delta_Import | 923 (16.1%) |
-| Delta_Import+Store_Enrichment | 600 (10.5%) |
+| csv_import+ThreatType_Classified | 3,069 (53.3%) |
+| Google_Search | 945 (16.4%) |
+| Delta_Import | 923 (16.0%) |
+| Delta_Import+Store_Enrichment | 600 (10.4%) |
 | PDF_Import | 107 (1.9%) |
 | AI_Enrichment | 40 (0.7%) |
 | Initial_Commit | 19 (0.3%) |
+| csv_import | 18 (0.3%) |
 | csv_import+ThreatType_Fallback | 11 (0.2%) |
 | Manual | 10 (0.2%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
