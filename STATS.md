@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-04 19:42 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-05 08:34 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,7 +8,7 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **5,964** |
+| Total malicious extensions | **5,977** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **760** |
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 5,822 (97.6%) |
+| Chrome | 5,835 (97.6%) |
 | Edge | 129 (2.2%) |
 | Both | 13 (0.2%) |
 
@@ -33,9 +33,9 @@
 | Threat Type | Extensions |
 |-------------|-----------|
 | adware | 2,394 (40.1%) |
-| unknown | 1,886 (31.6%) |
+| unknown | 1,899 (31.8%) |
 | spyware | 1,326 (22.2%) |
-| data-theft | 1,178 (19.8%) |
+| data-theft | 1,178 (19.7%) |
 | click-fraud | 335 (5.6%) |
 | browser-hijack | 308 (5.2%) |
 | credential-theft | 271 (4.5%) |
@@ -63,7 +63,7 @@ A total of **53** distinct campaigns are tracked.
 | Malware | 326 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
 | Bundling Unwanted Software | 221 |
-| Search Hijacking | 158 |
+| Search Hijacking | 171 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
 | Palant Jun 2023 affiliate fraud cluster | 103 |
@@ -152,16 +152,16 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,274 (54.9%) |
+| csv_import+ThreatType_Classified | 3,274 (54.8%) |
 | Google_Search | 945 (15.8%) |
-| Delta_Import | 923 (15.5%) |
-| Delta_Import+Store_Enrichment | 600 (10.1%) |
+| Delta_Import | 923 (15.4%) |
+| Delta_Import+Store_Enrichment | 600 (10.0%) |
 | PDF_Import | 107 (1.8%) |
 | AI_Enrichment | 40 (0.7%) |
 | csv_import+ThreatType_Fallback | 24 (0.4%) |
+| csv_import | 21 (0.4%) |
 | Initial_Commit | 19 (0.3%) |
 | Manual | 10 (0.2%) |
-| csv_import | 8 (0.1%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 2 (0.0%) |
