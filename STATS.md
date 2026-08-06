@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-06 08:04 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-06 15:48 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -11,8 +11,8 @@
 | Total malicious extensions | **6,044** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **740** |
-| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **412** |
+| Stubs — pending (ID confirmed, still searchable) | **720** |
+| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **431** |
 | Earliest discovery | **2017-08-17** |
 | Most recent discovery | **2026-08-06** |
 
@@ -154,8 +154,8 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 |--------|-----------|
 | csv_import+ThreatType_Classified | 3,321 (54.9%) |
 | Google_Search | 945 (15.6%) |
-| Delta_Import | 923 (15.3%) |
-| Delta_Import+Store_Enrichment | 600 (9.9%) |
+| Delta_Import | 922 (15.3%) |
+| Delta_Import+Store_Enrichment | 601 (9.9%) |
 | PDF_Import | 107 (1.8%) |
 | csv_import+ThreatType_Fallback | 64 (1.1%) |
 | AI_Enrichment | 40 (0.7%) |
