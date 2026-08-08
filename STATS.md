@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-08 15:59 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-08 16:20 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -11,8 +11,8 @@
 | Total malicious extensions | **6,104** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **826** |
-| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **159** |
+| Stubs — pending (ID confirmed, still searchable) | **806** |
+| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **179** |
 | Earliest discovery | **2017-08-17** |
 | Most recent discovery | **2026-08-08** |
 
@@ -32,15 +32,15 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,396 (39.3%) |
-| unknown | 1,907 (31.2%) |
+| adware | 2,398 (39.3%) |
+| unknown | 1,878 (30.8%) |
 | spyware | 1,354 (22.2%) |
-| data-theft | 1,199 (19.6%) |
-| click-fraud | 338 (5.5%) |
+| data-theft | 1,201 (19.7%) |
+| click-fraud | 339 (5.6%) |
 | browser-hijack | 321 (5.3%) |
-| credential-theft | 276 (4.5%) |
+| credential-theft | 277 (4.5%) |
 | session-hijack | 156 (2.6%) |
-| malware | 101 (1.7%) |
+| malware | 127 (2.1%) |
 | ownership-transfer | 29 (0.5%) |
 | fake-extension | 29 (0.5%) |
 | phishing | 27 (0.4%) |
@@ -152,14 +152,13 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,321 (54.4%) |
+| csv_import+ThreatType_Classified | 3,324 (54.5%) |
 | Google_Search | 945 (15.5%) |
 | Delta_Import+Store_Enrichment | 768 (12.6%) |
 | Delta_Import | 756 (12.4%) |
+| csv_import+ThreatType_Fallback | 121 (2.0%) |
 | PDF_Import | 107 (1.8%) |
-| csv_import+ThreatType_Fallback | 95 (1.6%) |
 | AI_Enrichment | 40 (0.7%) |
-| csv_import | 29 (0.5%) |
 | Initial_Commit | 19 (0.3%) |
 | Manual | 10 (0.2%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
