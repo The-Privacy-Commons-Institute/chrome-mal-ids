@@ -344,7 +344,7 @@ This dataset is licensed under **[CC BY 4.0](LICENSE.md)**.
 You are free to use, share, and adapt this data for any purpose including commercially,
 provided you give appropriate credit:
 
-> Extension IOC data sourced from **chrome-mal-ids** by Mallory Bowes Brown
+> Extension IOC data sourced from **chrome-mal-ids** by The Privacy Commons Institute 
 > https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
 
 See [LICENSE.md](LICENSE.md) for full terms.
