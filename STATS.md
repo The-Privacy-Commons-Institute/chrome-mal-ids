@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-09 18:49 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-10 17:50 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,13 +8,13 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **6,119** |
+| Total malicious extensions | **6,131** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **786** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **199** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-08-09** |
+| Most recent discovery | **2026-08-10** |
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 5,977 (97.7%) |
+| Chrome | 5,989 (97.7%) |
 | Edge | 129 (2.1%) |
 | Both | 13 (0.2%) |
 
@@ -32,9 +32,9 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,428 (39.7%) |
-| unknown | 1,837 (30.0%) |
-| spyware | 1,369 (22.4%) |
+| adware | 2,428 (39.6%) |
+| unknown | 1,849 (30.2%) |
+| spyware | 1,369 (22.3%) |
 | data-theft | 1,225 (20.0%) |
 | click-fraud | 372 (6.1%) |
 | browser-hijack | 321 (5.2%) |
@@ -57,12 +57,12 @@ A total of **53** distinct campaigns are tracked.
 |----------|-----------|
 | Adware | 1,552 |
 | Stub entry imported from malicious_extension_sentry | 1,145 |
-| Policy Violation | 552 |
+| Policy Violation | 557 |
 | Spyware | 524 |
-| Malware | 368 |
+| Malware | 371 |
 | Unknown | 361 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
-| Bundling Unwanted Software | 226 |
+| Bundling Unwanted Software | 230 |
 | Search Hijacking | 171 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
@@ -152,15 +152,16 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,338 (54.6%) |
-| Google_Search | 941 (15.4%) |
-| Delta_Import | 756 (12.4%) |
+| csv_import+ThreatType_Classified | 3,338 (54.4%) |
+| Google_Search | 941 (15.3%) |
+| Delta_Import | 756 (12.3%) |
 | Delta_Import+Store_Enrichment | 731 (11.9%) |
 | csv_import+ThreatType_Fallback | 122 (2.0%) |
 | PDF_Import | 107 (1.7%) |
 | AI_Enrichment | 40 (0.7%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 39 (0.6%) |
 | Initial_Commit | 19 (0.3%) |
+| csv_import | 12 (0.2%) |
 | Manual | 10 (0.2%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
