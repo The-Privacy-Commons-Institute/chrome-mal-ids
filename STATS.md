@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-10 17:50 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-10 19:55 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,7 +8,7 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **6,131** |
+| Total malicious extensions | **6,141** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **786** |
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 5,989 (97.7%) |
+| Chrome | 5,999 (97.7%) |
 | Edge | 129 (2.1%) |
 | Both | 13 (0.2%) |
 
@@ -32,10 +32,10 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,428 (39.6%) |
-| unknown | 1,849 (30.2%) |
+| adware | 2,428 (39.5%) |
+| unknown | 1,859 (30.3%) |
 | spyware | 1,369 (22.3%) |
-| data-theft | 1,225 (20.0%) |
+| data-theft | 1,225 (19.9%) |
 | click-fraud | 372 (6.1%) |
 | browser-hijack | 321 (5.2%) |
 | credential-theft | 281 (4.6%) |
@@ -57,13 +57,13 @@ A total of **53** distinct campaigns are tracked.
 |----------|-----------|
 | Adware | 1,552 |
 | Stub entry imported from malicious_extension_sentry | 1,145 |
-| Policy Violation | 557 |
+| Policy Violation | 562 |
 | Spyware | 524 |
 | Malware | 371 |
 | Unknown | 361 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
 | Bundling Unwanted Software | 230 |
-| Search Hijacking | 171 |
+| Search Hijacking | 176 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
 | Palant Jun 2023 affiliate fraud cluster | 103 |
@@ -160,8 +160,8 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 | PDF_Import | 107 (1.7%) |
 | AI_Enrichment | 40 (0.7%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 39 (0.6%) |
+| csv_import | 22 (0.4%) |
 | Initial_Commit | 19 (0.3%) |
-| csv_import | 12 (0.2%) |
 | Manual | 10 (0.2%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
