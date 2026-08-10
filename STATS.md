@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-10 19:55 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-10 20:51 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -11,8 +11,8 @@
 | Total malicious extensions | **6,141** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **786** |
-| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **199** |
+| Stubs — pending (ID confirmed, still searchable) | **766** |
+| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **219** |
 | Earliest discovery | **2017-08-17** |
 | Most recent discovery | **2026-08-10** |
 
@@ -32,15 +32,15 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,428 (39.5%) |
-| unknown | 1,859 (30.3%) |
-| spyware | 1,369 (22.3%) |
-| data-theft | 1,225 (19.9%) |
+| adware | 2,432 (39.6%) |
+| unknown | 1,837 (29.9%) |
+| spyware | 1,374 (22.4%) |
+| data-theft | 1,235 (20.1%) |
 | click-fraud | 372 (6.1%) |
-| browser-hijack | 321 (5.2%) |
-| credential-theft | 281 (4.6%) |
-| session-hijack | 157 (2.6%) |
-| malware | 128 (2.1%) |
+| browser-hijack | 326 (5.3%) |
+| credential-theft | 288 (4.7%) |
+| session-hijack | 159 (2.6%) |
+| malware | 129 (2.1%) |
 | ownership-transfer | 29 (0.5%) |
 | fake-extension | 29 (0.5%) |
 | phishing | 27 (0.4%) |
@@ -152,15 +152,14 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,338 (54.4%) |
+| csv_import+ThreatType_Classified | 3,359 (54.7%) |
 | Google_Search | 941 (15.3%) |
 | Delta_Import | 756 (12.3%) |
 | Delta_Import+Store_Enrichment | 731 (11.9%) |
-| csv_import+ThreatType_Fallback | 122 (2.0%) |
+| csv_import+ThreatType_Fallback | 123 (2.0%) |
 | PDF_Import | 107 (1.7%) |
 | AI_Enrichment | 40 (0.7%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 39 (0.6%) |
-| csv_import | 22 (0.4%) |
 | Initial_Commit | 19 (0.3%) |
 | Manual | 10 (0.2%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
