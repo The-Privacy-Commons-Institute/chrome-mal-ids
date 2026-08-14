@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-13 09:14 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-14 04:31 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,13 +8,13 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **6,197** |
+| Total malicious extensions | **6,422** |
 | Unique campaigns | **53** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **746** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **239** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-08-12** |
+| Most recent discovery | **2026-08-13** |
 
 ---
 
@@ -22,8 +22,8 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 6,055 (97.7%) |
-| Edge | 129 (2.1%) |
+| Chrome | 6,280 (97.8%) |
+| Edge | 129 (2.0%) |
 | Both | 13 (0.2%) |
 
 ---
@@ -32,15 +32,15 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,432 (39.2%) |
-| unknown | 1,892 (30.5%) |
-| spyware | 1,375 (22.2%) |
-| data-theft | 1,236 (19.9%) |
-| click-fraud | 372 (6.0%) |
-| browser-hijack | 326 (5.3%) |
-| credential-theft | 288 (4.6%) |
-| session-hijack | 159 (2.6%) |
-| malware | 129 (2.1%) |
+| adware | 2,432 (37.9%) |
+| unknown | 2,117 (33.0%) |
+| spyware | 1,375 (21.4%) |
+| data-theft | 1,236 (19.2%) |
+| click-fraud | 372 (5.8%) |
+| browser-hijack | 326 (5.1%) |
+| credential-theft | 288 (4.5%) |
+| session-hijack | 159 (2.5%) |
+| malware | 129 (2.0%) |
 | ownership-transfer | 29 (0.5%) |
 | fake-extension | 29 (0.5%) |
 | phishing | 27 (0.4%) |
@@ -57,11 +57,11 @@ A total of **53** distinct campaigns are tracked.
 |----------|-----------|
 | Adware | 1,552 |
 | Stub entry imported from malicious_extension_sentry | 1,145 |
-| Policy Violation | 610 |
+| Policy Violation | 632 |
+| Malware | 576 |
 | Spyware | 524 |
-| Malware | 374 |
 | Unknown | 361 |
-| Bundling Unwanted Software | 235 |
+| Bundling Unwanted Software | 236 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
 | Search Hijacking | 176 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
@@ -152,13 +152,13 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,359 (54.2%) |
-| Google_Search | 940 (15.2%) |
-| Delta_Import | 756 (12.2%) |
-| Delta_Import+Store_Enrichment | 731 (11.8%) |
-| csv_import+ThreatType_Fallback | 123 (2.0%) |
+| csv_import+ThreatType_Classified | 3,359 (52.3%) |
+| Google_Search | 940 (14.6%) |
+| Delta_Import | 756 (11.8%) |
+| Delta_Import+Store_Enrichment | 731 (11.4%) |
+| csv_import | 281 (4.4%) |
+| csv_import+ThreatType_Fallback | 123 (1.9%) |
 | PDF_Import | 107 (1.7%) |
-| csv_import | 56 (0.9%) |
 | AI_Enrichment | 40 (0.6%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 39 (0.6%) |
 | Initial_Commit | 19 (0.3%) |
