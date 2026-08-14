@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-14 04:38 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-14 06:27 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -9,7 +9,7 @@
 | Metric | Count |
 |--------|-------|
 | Total malicious extensions | **6,422** |
-| Unique campaigns | **53** |
+| Unique campaigns | **54** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **730** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **255** |
@@ -37,7 +37,7 @@
 | spyware | 1,376 (21.4%) |
 | data-theft | 1,237 (19.3%) |
 | click-fraud | 372 (5.8%) |
-| browser-hijack | 326 (5.1%) |
+| browser-hijack | 350 (5.5%) |
 | credential-theft | 288 (4.5%) |
 | session-hijack | 159 (2.5%) |
 | malware | 129 (2.0%) |
@@ -51,14 +51,14 @@
 
 ## Campaigns
 
-A total of **53** distinct campaigns are tracked.
+A total of **54** distinct campaigns are tracked.
 
 | Campaign | Extensions |
 |----------|-----------|
 | Adware | 1,552 |
 | Stub entry imported from malicious_extension_sentry | 1,145 |
-| Policy Violation | 632 |
-| Malware | 576 |
+| Policy Violation | 619 |
+| Malware | 564 |
 | Spyware | 524 |
 | Unknown | 361 |
 | Bundling Unwanted Software | 236 |
@@ -76,6 +76,7 @@ A total of **53** distinct campaigns are tracked.
 | Palant serasearchtop | 34 |
 | Part of Dec 2024 Cyberhaven supply chain campaign | 31 |
 | TabPlugins cursor farm | 26 |
+| Socket Aug 2026 Myxa VPN campaign | 25 |
 | “These extensions have not all been confirmed to be maliciou | 22 |
 | ShadyPanda Phase 1/2 affiliate fraud + search hijacking | 22 |
 | Two overlapping malicious extension clusters: Phoenix Invict | 20 |
@@ -104,8 +105,7 @@ A total of **53** distinct campaigns are tracked.
 | AITOPIA impersonator campaign | 2 |
 | SearchBlox Roblox backdoor | 2 |
 | Critical Vulnerability | 2 |
-| “The extension was ‘Offered by:  Extensions’ in the Chrome W | 1 |
-| *(+ 3 more)* | |
+| *(+ 4 more)* | |
 
 ---
 
