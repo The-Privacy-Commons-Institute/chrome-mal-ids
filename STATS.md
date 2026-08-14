@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-14 08:05 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-14 08:09 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -9,7 +9,7 @@
 | Metric | Count |
 |--------|-------|
 | Total malicious extensions | **6,439** |
-| Unique campaigns | **55** |
+| Unique campaigns | **54** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **1** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **266** |
@@ -51,13 +51,13 @@
 
 ## Campaigns
 
-A total of **55** distinct campaigns are tracked.
+A total of **54** distinct campaigns are tracked.
 
 | Campaign | Extensions |
 |----------|-----------|
 | Adware | 1,552 |
 | Stub entry imported from malicious_extension_sentry | 1,145 |
-| Socket Aug 2026 Myxa VPN campaign | 720 |
+| Socket Aug 2026 Myxa VPN campaign | 737 |
 | Policy Violation | 619 |
 | Malware | 391 |
 | Unknown | 361 |
@@ -80,7 +80,6 @@ A total of **55** distinct campaigns are tracked.
 | ShadyPanda Phase 1/2 affiliate fraud + search hijacking | 22 |
 | Two overlapping malicious extension clusters: Phoenix Invict | 20 |
 | Chrome Wallpaper Adware Network | 20 |
-| Socket Aug 2026 Myxa VPN campaign: 737 free VPN/proxy extens | 17 |
 | GitLab TamperedChef campaign | 16 |
 | Krebs/Nguyen fake brand extension network | 16 |
 | Stub entry imported from gnyman/chromium-mal-ids | 16 |
@@ -105,7 +104,8 @@ A total of **55** distinct campaigns are tracked.
 | AITOPIA impersonator campaign | 2 |
 | SearchBlox Roblox backdoor | 2 |
 | Critical Vulnerability | 2 |
-| *(+ 5 more)* | |
+| Spyware | 2 |
+| *(+ 4 more)* | |
 
 ---
 
