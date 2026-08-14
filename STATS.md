@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-14 06:43 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-14 07:06 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -11,8 +11,8 @@
 | Total malicious extensions | **6,439** |
 | Unique campaigns | **55** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **747** |
-| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **255** |
+| Stubs — pending (ID confirmed, still searchable) | **548** |
+| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **256** |
 | Earliest discovery | **2017-08-17** |
 | Most recent discovery | **2026-08-13** |
 
@@ -33,13 +33,13 @@
 | Threat Type | Extensions |
 |-------------|-----------|
 | adware | 2,432 (37.8%) |
-| unknown | 1,962 (30.5%) |
-| data-theft | 1,902 (29.5%) |
-| spyware | 1,376 (21.4%) |
+| data-theft | 1,940 (30.1%) |
+| unknown | 1,923 (29.9%) |
+| spyware | 1,408 (21.9%) |
 | browser-hijack | 1,060 (16.5%) |
-| click-fraud | 372 (5.8%) |
-| credential-theft | 288 (4.5%) |
-| session-hijack | 159 (2.5%) |
+| click-fraud | 373 (5.8%) |
+| credential-theft | 291 (4.5%) |
+| session-hijack | 162 (2.5%) |
 | malware | 129 (2.0%) |
 | ownership-transfer | 29 (0.5%) |
 | fake-extension | 29 (0.5%) |
@@ -152,11 +152,11 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,360 (52.2%) |
+| csv_import+ThreatType_Classified | 3,399 (52.8%) |
 | Google_Search | 940 (14.6%) |
-| Delta_Import | 756 (11.7%) |
-| Delta_Import+Store_Enrichment | 731 (11.4%) |
-| csv_import | 280 (4.3%) |
+| Delta_Import+Store_Enrichment | 929 (14.4%) |
+| Delta_Import | 558 (8.7%) |
+| csv_import | 241 (3.7%) |
 | csv_import+ThreatType_Fallback | 123 (1.9%) |
 | PDF_Import | 107 (1.7%) |
 | AI_Enrichment | 40 (0.6%) |
