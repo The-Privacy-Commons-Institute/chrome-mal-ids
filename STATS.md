@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-14 21:52 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-14 21:53 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -56,7 +56,7 @@ A total of **54** distinct campaigns are tracked.
 | Campaign | Extensions |
 |----------|-----------|
 | Adware | 1,552 |
-| Stub entry imported from malicious_extension_sentry | 1,145 |
+| Stub entry imported from malicious_extension_sentry | 1,139 |
 | Socket Aug 2026 Myxa VPN campaign | 737 |
 | Policy Violation | 628 |
 | Malware | 391 |
@@ -67,7 +67,7 @@ A total of **54** distinct campaigns are tracked.
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
 | Palant Jun 2023 affiliate fraud cluster | 103 |
-| Stage 5A static analysis confirmed malicious behavior | 65 |
+| Stage 5A static analysis confirmed malicious behavior | 71 |
 | Socket April 2026 MaaS campaign | 62 |
 | Potentially Unwanted Software | 51 |
 | Source: https://github | 46 |
