@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-14 06:29 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-14 06:43 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,10 +8,10 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **6,422** |
-| Unique campaigns | **54** |
+| Total malicious extensions | **6,439** |
+| Unique campaigns | **55** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **730** |
+| Stubs — pending (ID confirmed, still searchable) | **747** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **255** |
 | Earliest discovery | **2017-08-17** |
 | Most recent discovery | **2026-08-13** |
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 6,280 (97.8%) |
+| Chrome | 6,297 (97.8%) |
 | Edge | 129 (2.0%) |
 | Both | 13 (0.2%) |
 
@@ -32,11 +32,11 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,432 (37.9%) |
-| unknown | 1,962 (30.6%) |
-| data-theft | 1,885 (29.4%) |
+| adware | 2,432 (37.8%) |
+| unknown | 1,962 (30.5%) |
+| data-theft | 1,902 (29.5%) |
 | spyware | 1,376 (21.4%) |
-| browser-hijack | 1,043 (16.2%) |
+| browser-hijack | 1,060 (16.5%) |
 | click-fraud | 372 (5.8%) |
 | credential-theft | 288 (4.5%) |
 | session-hijack | 159 (2.5%) |
@@ -51,7 +51,7 @@
 
 ## Campaigns
 
-A total of **54** distinct campaigns are tracked.
+A total of **55** distinct campaigns are tracked.
 
 | Campaign | Extensions |
 |----------|-----------|
@@ -80,6 +80,7 @@ A total of **54** distinct campaigns are tracked.
 | ShadyPanda Phase 1/2 affiliate fraud + search hijacking | 22 |
 | Two overlapping malicious extension clusters: Phoenix Invict | 20 |
 | Chrome Wallpaper Adware Network | 20 |
+| Socket Aug 2026 Myxa VPN campaign: 737 free VPN/proxy extens | 17 |
 | GitLab TamperedChef campaign | 16 |
 | Krebs/Nguyen fake brand extension network | 16 |
 | Stub entry imported from gnyman/chromium-mal-ids | 16 |
@@ -104,8 +105,7 @@ A total of **54** distinct campaigns are tracked.
 | AITOPIA impersonator campaign | 2 |
 | SearchBlox Roblox backdoor | 2 |
 | Critical Vulnerability | 2 |
-| Spyware | 2 |
-| *(+ 4 more)* | |
+| *(+ 5 more)* | |
 
 ---
 
@@ -152,17 +152,17 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,360 (52.3%) |
+| csv_import+ThreatType_Classified | 3,360 (52.2%) |
 | Google_Search | 940 (14.6%) |
-| Delta_Import | 756 (11.8%) |
+| Delta_Import | 756 (11.7%) |
 | Delta_Import+Store_Enrichment | 731 (11.4%) |
-| csv_import | 280 (4.4%) |
+| csv_import | 280 (4.3%) |
 | csv_import+ThreatType_Fallback | 123 (1.9%) |
 | PDF_Import | 107 (1.7%) |
 | AI_Enrichment | 40 (0.6%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 39 (0.6%) |
+| Manual | 27 (0.4%) |
 | Initial_Commit | 19 (0.3%) |
-| Manual | 10 (0.2%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
 | Google_Search+ThreatType_Classified | 5 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
