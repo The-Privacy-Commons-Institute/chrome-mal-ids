@@ -116,9 +116,6 @@ grep "Delta_Import" data/current-list-meta.csv | grep -v "Store_Enrichment"
   legitimate extensions compromised by supply chain attacks. The developers have
   patched the malicious code. These IDs are retained for historical accuracy but
   should not be treated as currently malicious.
-- **Contributor handles** - `malsware` refers to Mallory Bowes Brown (Principal 
-  Researcher, TPCI) — a legacy handle predating the Institute's formation. 
-  New records use `mbb`. Contact: research@tpc.institute
 
 ---
 
