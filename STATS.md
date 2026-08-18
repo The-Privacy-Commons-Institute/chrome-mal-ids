@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-17 19:44 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-18 07:39 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,13 +8,13 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **6,460** |
+| Total malicious extensions | **6,494** |
 | Unique campaigns | **54** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **1** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **266** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-08-15** |
+| Most recent discovery | **2026-08-18** |
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 6,318 (97.8%) |
+| Chrome | 6,352 (97.8%) |
 | Edge | 129 (2.0%) |
 | Both | 13 (0.2%) |
 
@@ -32,12 +32,12 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,432 (37.6%) |
-| data-theft | 1,946 (30.1%) |
-| unknown | 1,938 (30.0%) |
-| spyware | 1,412 (21.9%) |
-| browser-hijack | 1,060 (16.4%) |
-| click-fraud | 373 (5.8%) |
+| adware | 2,432 (37.4%) |
+| unknown | 1,972 (30.4%) |
+| data-theft | 1,946 (30.0%) |
+| spyware | 1,412 (21.7%) |
+| browser-hijack | 1,060 (16.3%) |
+| click-fraud | 373 (5.7%) |
 | credential-theft | 293 (4.5%) |
 | session-hijack | 164 (2.5%) |
 | malware | 129 (2.0%) |
@@ -58,10 +58,10 @@ A total of **54** distinct campaigns are tracked.
 | Adware | 1,552 |
 | Stub entry imported from malicious_extension_sentry | 1,139 |
 | Socket Aug 2026 Myxa VPN campaign | 737 |
-| Policy Violation | 636 |
-| Malware | 392 |
+| Policy Violation | 653 |
+| Malware | 396 |
 | Unknown | 361 |
-| Bundling Unwanted Software | 239 |
+| Bundling Unwanted Software | 252 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
 | Search Hijacking | 176 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
@@ -152,12 +152,12 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,405 (52.7%) |
-| Delta_Import+Store_Enrichment | 1,466 (22.7%) |
-| Google_Search | 940 (14.6%) |
-| csv_import | 256 (4.0%) |
+| csv_import+ThreatType_Classified | 3,405 (52.4%) |
+| Delta_Import+Store_Enrichment | 1,466 (22.6%) |
+| Google_Search | 940 (14.5%) |
+| csv_import | 290 (4.5%) |
 | csv_import+ThreatType_Fallback | 123 (1.9%) |
-| PDF_Import | 107 (1.7%) |
+| PDF_Import | 107 (1.6%) |
 | AI_Enrichment | 40 (0.6%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 39 (0.6%) |
 | Delta_Import | 37 (0.6%) |
