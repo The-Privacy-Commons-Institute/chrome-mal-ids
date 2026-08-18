@@ -77,16 +77,73 @@ def load_csv(path: Path, verified_only: bool = False) -> list[dict]:
     return rows
 
 
-def extract_campaign(notes: str) -> str:
+# NOTES values that are a CLASSIFICATION or a status remark, not a campaign.
+#
+# Delta-feed entries often carry a bare category as their entire NOTES —
+# "Adware", "Policy Violation", "Search Hijacking". extract_campaign() takes
+# the leading fragment of NOTES, so each of those became its own "campaign",
+# putting 1,552 extensions under a campaign called "Adware" and inflating the
+# "Unique campaigns" headline by roughly a dozen phantom entries.
+#
+# The classification itself is not lost — these entries already carry the
+# equivalent value in THREAT-TYPE (1,552 "Adware" notes against 1,709 adware
+# threat types). Only the campaigns table was wrong.
+#
+# Matched case-insensitively against the WHOLE trimmed note, so a real
+# campaign whose description happens to begin with one of these words is
+# unaffected.
+NON_CAMPAIGN_NOTES = {
+    "adware", "malware", "spyware",
+    "policy violation",
+    "search hijacking", "search-hijacker",
+    "bundling unwanted software",
+    "potentially unwanted software",
+    "critical vulnerability",
+    "in store but not whitelisted",
+    "in store but suspicious",
+    "unknown",
+}
+
+# Prefixes marking a note as pipeline boilerplate rather than research.
+# Same list the enrichment pipeline uses to decide a note carries no
+# classifiable content.
+NON_CAMPAIGN_PREFIXES = (
+    "stub entry imported from",
+    "stage 5a static analysis",
+    "the reporter did not correlate",
+)
+
+
+def extract_campaign(notes: str) -> str | None:
+    """
+    Return the campaign label for an entry, or None when the note carries no
+    campaign attribution.
+
+    None is distinct from "Unknown": it means this entry was never attributed
+    to a campaign, rather than belonging to one we cannot name. Callers should
+    count them separately rather than folding them into the campaign list.
+    """
     import re
-    if not notes or notes.upper() == "UNKNOWN":
-        return "Unknown"
-    m = re.match(r'^([A-Z][^.(]{3,60}?)(?:\s*[\.(])', notes)
+    n = (notes or "").strip()
+    if not n:
+        return None
+    low = n.lower()
+    if low in NON_CAMPAIGN_NOTES:
+        return None
+    if any(low.startswith(p) for p in NON_CAMPAIGN_PREFIXES):
+        return None
+
+    m = re.match(r'^([A-Z][^.(]{3,60}?)(?:\s*[\.(])', n)
     if m:
         c = m.group(1).strip()
         if len(c.split()) <= 8:
-            return c
-    return notes.split(".")[0].strip()[:60] or "Unknown"
+            # The leading fragment can itself be a bare classification, e.g.
+            # "Adware. Injects ads into search results."
+            return None if c.lower() in NON_CAMPAIGN_NOTES else c
+    head = n.split(".")[0].strip()[:60]
+    if not head or head.lower() in NON_CAMPAIGN_NOTES:
+        return None
+    return head
 
 
 def main():
@@ -102,6 +159,7 @@ def main():
     browsers        = defaultdict(int)
     threat_types    = defaultdict(int)
     campaigns       = defaultdict(int)
+    no_campaign     = 0   # entries whose NOTES carry no campaign attribution
     still_active    = 0
     ownership_xfer  = 0
     stubs_pending   = 0  # UNKNOWN name, still searchable (empty/searched ENRICH-STATUS)
@@ -121,8 +179,12 @@ def main():
         else:
             threat_types["unknown"] += 1
 
-        # Campaign
-        campaigns[extract_campaign(row.get("NOTES", ""))] += 1
+        # Campaign — None means no campaign attribution, counted separately
+        camp = extract_campaign(row.get("NOTES", ""))
+        if camp is None:
+            no_campaign += 1
+        else:
+            campaigns[camp] += 1
 
         # Flags
         if row.get("STILL-ACTIVE", "0").strip() == "1":
@@ -165,6 +227,7 @@ def main():
         f"|--------|-------|",
         f"| Total malicious extensions | **{total:,}** |",
         f"| Unique campaigns | **{len(campaigns):,}** |",
+        f"| Entries without campaign attribution | **{no_campaign:,}** |",
         # NOTE: "Still active in store" count suppressed — under embargo until June 30 2026.
         # Paper 1 ("Still There") is under 30-day coordinated disclosure with Google.
         # Restore after publication:  f"| Still active in store | **{still_active:,}** |",
@@ -204,7 +267,14 @@ def main():
         "",
         "## Campaigns",
         "",
-        f"A total of **{len(campaigns):,}** distinct campaigns are tracked.",
+        f"A total of **{len(campaigns):,}** distinct campaigns are tracked, "
+        f"covering **{total - no_campaign:,}** of {total:,} entries.",
+        "",
+        f"The remaining **{no_campaign:,}** entries carry a threat classification "
+        "but no campaign attribution — typically bulk IOC-feed imports where the "
+        "source recorded a category (adware, policy violation, search hijacking) "
+        "rather than naming an operation. Their classification is preserved in "
+        "`THREAT-TYPE`; they are excluded here because a category is not a campaign.",
         "",
         "| Campaign | Extensions |",
         "|----------|-----------|",
@@ -371,7 +441,7 @@ def main():
         "",
         "---",
         "",
-        f"*Generated by [generate_stats.py]({PROJECT_URL}/blob/master/tools/generate_stats.py)*",
+        f"*Generated by [generate_stats.py]({PROJECT_URL}/blob/master/generate_stats.py)*",
         "",
     ]
 
@@ -380,7 +450,8 @@ def main():
     # message with no path shown) is why the 2-month stale-file bug went
     # unnoticed: even a manual run's own console output gave no way to
     # confirm where it landed without a separate `ls` check.
-    print(f"✓ STATS.md written → {args.out} ({total:,} extensions, {len(campaigns):,} campaigns)")
+    print(f"✓ STATS.md written → {args.out} ({total:,} extensions, "
+          f"{len(campaigns):,} campaigns, {no_campaign:,} unattributed)")
     print(f"  (CSV source: {args.csv})")
 
 
