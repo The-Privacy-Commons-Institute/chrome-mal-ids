@@ -616,27 +616,27 @@
       <div class="filter-label">TPCI-V Level <span class="filter-label-btns"><button class="filter-label-btn" onclick="checkAll('filter-tpciv')">all</button><button class="filter-label-btn" onclick="clearAll('filter-tpciv')">none</button></span></div>
       <label class="filter-option">
         <input type="checkbox" class="filter-tpciv" value="5" checked>
-        <span style="color:var(--teal)">TPCI-V 5A</span> — Static analysis
+        <span style="color:var(--teal)">TPCI-V 5</span> — Stage 5A · behavioral
         <span class="filter-count" id="cnt-tpciv-5">—</span>
       </label>
       <label class="filter-option">
         <input type="checkbox" class="filter-tpciv" value="4" checked>
-        <span style="color:var(--amber)">TPCI-V 4</span> — Remediated
+        <span style="color:var(--amber)">TPCI-V 4</span> — Stage 4 · identity
         <span class="filter-count" id="cnt-tpciv-4">—</span>
       </label>
       <label class="filter-option">
         <input type="checkbox" class="filter-tpciv" value="3" checked>
-        <span style="color:var(--rose)">TPCI-V 3</span> — Playwright confirmed
+        <span style="color:var(--rose)">TPCI-V 3</span> — Stage 3 · store listing
         <span class="filter-count" id="cnt-tpciv-3">—</span>
       </label>
       <label class="filter-option">
         <input type="checkbox" class="filter-tpciv" value="2" checked>
-        <span style="color:var(--text3)">TPCI-V 2</span> — Confirmed removed
+        <span style="color:var(--text3)">TPCI-V 2</span> — Stage 2 · CRX API
         <span class="filter-count" id="cnt-tpciv-2">—</span>
       </label>
       <label class="filter-option">
         <input type="checkbox" class="filter-tpciv" value="1" checked>
-        <span style="color:var(--rose2)">TPCI-V 1</span> — CRX active
+        <span style="color:var(--rose2)">TPCI-V 1</span> — Stage 2 · legacy
         <span class="filter-count" id="cnt-tpciv-1">—</span>
       </label>
     </div>
@@ -978,7 +978,7 @@ function renderResults(query = '') {
     const storeUrl = browser === 'edge' ? EDGE_URL(id) : STORE_URL(id);
 
     const tpcivLabel = {
-      '5': 'TPCI-V 5A', '4': 'TPCI-V 4', '3': 'TPCI-V 3',
+      '5': 'TPCI-V 5',  '4': 'TPCI-V 4', '3': 'TPCI-V 3',
       '2': 'TPCI-V 2',  '1': 'TPCI-V 1'
     };
     const tpcivClass = {
@@ -1016,7 +1016,7 @@ function renderResults(query = '') {
           <span class="detail-key">Still Active</span>
           <span class="detail-val">${row._active ? '⚡ Yes — still in store' : 'No'}</span>
           <span class="detail-key">TPCI-V</span>
-          <span class="detail-val">${{'1':'Stage 1 — CRX active','2':'Stage 2/3 — Confirmed removed','3':'Stage 3 — Playwright confirmed','4':'Stage 4 — Remediated','5':'Stage 5A — Static analysis confirmed'}[row._tpciv] || '—'}</span>
+          <span class="detail-val">${{'1':'Stage 2 — CRX API (legacy)','2':'Stage 2 — CRX API verified','3':'Stage 3 — Store listing verified','4':'Stage 4 — Identity verified','5':'Stage 5A — Behavioral analysis'}[row._tpciv] || '—'}</span>
           <span class="detail-key">Enrich status</span>
           <span class="detail-val">${row['ENRICH-STATUS'] || '—'}${row['ENRICH-DATE'] ? ' · ' + row['ENRICH-DATE'] : ''}</span>
           <span class="detail-key">Ownership ⟳</span>

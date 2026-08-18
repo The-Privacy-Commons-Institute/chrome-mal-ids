@@ -58,27 +58,39 @@ of any researcher reporting.
 
 ## TPCI-VERIFY Values
 
-The `TPCI-VERIFY` field records the highest verification stage completed by
-The Privacy Commons Institute (TPCI) using the TPCI-V protocol.
+**`TPCI-VERIFY` records the highest verification stage an entry has
+reached — not the outcome of that verification.** The liveness result is
+recorded separately in `STILL-ACTIVE`. The two fields are independent: any
+`TPCI-VERIFY` value can appear alongside any `STILL-ACTIVE` value.
 
 | Value | Stage | Meaning |
 |-------|-------|---------|
 | `0` | — | Not yet verified by TPCI |
-| `1` | Stage 2 | TPCI verified: CRX API confirms active — Chrome serving update packages |
-| `2` | Stage 2+3 | TPCI verified: confirmed removed from store (CRX malware-flagged, hard-purged, or Playwright confirmed removed) |
-| `3` | Stage 3 | TPCI verified: indeterminate by CRX API, confirmed **active** by Playwright headless browser |
-| `4` | Stage 4 | TPCI verified: formerly malicious, **developer-confirmed remediated** (supply chain victim) |
-| `5` | Stage 5A | TPCI verified: full static behavioral analysis completed |
+| `1` | Stage 2 | *Legacy.* Early Stage 2 verification, superseded by `2`. Two entries remain, both dated 2026-05-20. |
+| `2` | Stage 2 | CRX infrastructure verification completed. Outcome in `STILL-ACTIVE`. |
+| `3` | Stage 3 | Store listing verified by headless browser, after Stage 2 returned indeterminate. Outcome in `STILL-ACTIVE`. |
+| `4` | Stage 4 | Identity continuity verified. Result in `TPCI-IDENTITY`. |
+| `5` | Stage 5A | Static behavioral analysis completed. Result in `TPCI-BEHAVIORAL`. |
+
+An earlier revision of this document described these values as outcome
+codes (`1`=active, `2`=removed, `3`=Playwright-confirmed-active). That was
+never how the pipeline populated the field, and it does not match the
+published data or the analysis in "Still There" (Table 1), which reports
+`TPCI-V 2` for both CRX-active and CRX-removed entries and `TPCI-V 3` for
+both Playwright-active and Playwright-removed entries. Corrected 2026-08-17.
 
 `TPCI-VERIFY-DATE` records the ISO date (YYYY-MM-DD) when verification was
 last performed. Store status changes over time — always check the date.
 
 **On the CRX API liveness problem:** 99.6% of extensions returning an indeterminate
 CRX API response (`status="noupdate"` without `_malware="true"`) are confirmed
-removed when verified by headless browser (Stage 3). TPCI-VERIFY=2 covers both
-CRX-confirmed and Playwright-confirmed removals. TPCI-VERIFY=3 is specifically
-reserved for the small number of extensions that were indeterminate by CRX API
-but confirmed active by Playwright.
+removed when verified by headless browser (Stage 3). Entries reaching Stage 3
+therefore skew heavily toward `STILL-ACTIVE=0`, but the stage value itself
+records only that Stage 3 ran — read `STILL-ACTIVE` for the result.
+
+Google also returns a fifth CRX state, `_policy_violation="true"`, for
+extensions pulled for policy rather than malware reasons. It is a definitive
+removal signal and is handled as one.
 
 ---
 
@@ -208,10 +220,13 @@ with open('current-list-meta.csv') as f:
 | `0` | Confirmed removed from store |
 | `unknown` | Status not yet verified |
 
-**Note:** `STILL-ACTIVE` is synchronized with `TPCI-VERIFY` — entries with
-`TPCI-VERIFY=1` or `TPCI-VERIFY=3` have `STILL-ACTIVE=1`; entries with
-`TPCI-VERIFY=2` have `STILL-ACTIVE=0`. Always check `TPCI-VERIFY-DATE` for
-the currency of this status — extensions can be re-listed after removal.
+**Note:** `STILL-ACTIVE` and `TPCI-VERIFY` are independent. `TPCI-VERIFY`
+records how far through the verification protocol an entry has been taken;
+`STILL-ACTIVE` records what that verification found. Do not infer one from
+the other — an entry with `TPCI-VERIFY=2` may be live, removed, or unknown.
+
+Always check `TPCI-VERIFY-DATE` for the currency of this status — extensions
+can be re-listed after removal.
 
 ---
 
@@ -268,8 +283,10 @@ with open('current-list-meta.csv') as f:
 | `ENRICH-DATE` | Date enrichment was last attempted |
 
 Also in v4:
-- `TPCI-VERIFY=3` redefined as Playwright-confirmed **active** (previously documented as indeterminate)
-- `STILL-ACTIVE` now synchronized with `TPCI-VERIFY` automatically
+- `TPCI-VERIFY=3` documented as Playwright-confirmed **active** — superseded; see the
+  TPCI-VERIFY section. The field has always recorded verification stage, not outcome.
+- `STILL-ACTIVE` described as synchronized with `TPCI-VERIFY` — superseded; the two
+  fields are independent.
 - `BROWSER` now includes `both` for cross-browser extensions
 
 ### May 2026 — v3 additions (TPCI-V protocol)
