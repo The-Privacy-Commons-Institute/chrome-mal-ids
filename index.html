@@ -840,7 +840,10 @@ async function loadData() {
 
     // Enrich with derived fields
     allRows.forEach(r => {
-      r._campaign    = extractCampaign(r.NOTES);
+      // Unattributed entries get a sentinel rather than null so they
+      // appear in the campaign facet as a selectable value. Using null
+      // forced a special case in the filter that made them unfilterable.
+      r._campaign    = extractCampaign(r.NOTES) || '(no campaign)';
       r._threats     = (r['THREAT-TYPE'] || '').split(',').map(t => t.trim()).filter(Boolean);
       r._active      = r['STILL-ACTIVE'] === '1';
       r._xfer        = r['OWNERSHIP-TRANSFER'] === '1';
@@ -894,7 +897,7 @@ function buildFilters() {
 
   // Campaign filters
   const campCounts = {};
-  allRows.forEach(r => { if (r._campaign) campCounts[r._campaign] = (campCounts[r._campaign]||0)+1; });
+  allRows.forEach(r => campCounts[r._campaign] = (campCounts[r._campaign]||0)+1);
   const campEl = document.getElementById('campaign-filters');
   campEl.innerHTML = Object.entries(campCounts)
     .sort((a,b) => b[1]-a[1])
@@ -966,7 +969,7 @@ function applyFilters() {
     if (dateTo   && r._date && r._date > dateTo)   return false;
 
     // Campaign filter — skip if stubs-only or active search query
-    if (!stubsOnly && !query && r._campaign && !campaigns.has(r._campaign)) return false;
+    if (!stubsOnly && !query && !campaigns.has(r._campaign)) return false;
 
     // Threat filter — skip if stubs-only or active search query
     if (!stubsOnly && !query && r._threats.length > 0) {
@@ -1065,7 +1068,7 @@ function renderResults(query = '') {
           <span class="detail-key">Name</span>
           <span class="detail-val">${esc(name)}</span>
           <span class="detail-key">Campaign</span>
-          <span class="detail-val">${row._campaign ? esc(row._campaign) : '—'}</span>
+          <span class="detail-val">${row._campaign && row._campaign !== '(no campaign)' ? esc(row._campaign) : '—'}</span>
           <span class="detail-key">Threat Type</span>
           <span class="detail-val">${esc(row['THREAT-TYPE'] || '—')}</span>
           <span class="detail-key">Browser</span>
@@ -1127,7 +1130,8 @@ function updateStats() {
   const total    = allRows.length;
   const active   = allRows.filter(r => r._active).length;
   const xfer     = allRows.filter(r => r._xfer).length;
-  const campaigns = new Set(allRows.map(r => r._campaign).filter(Boolean)).size;
+  const campaigns = new Set(allRows.map(r => r._campaign)
+    .filter(c => c && c !== '(no campaign)')).size;
 
   document.getElementById('stat-total').textContent     = total.toLocaleString();
   document.getElementById('stat-active').textContent    = active.toLocaleString();
@@ -1139,7 +1143,8 @@ function updateStats() {
 function updateHeader() {
   const total      = allRows.length;
   const active     = allRows.filter(r => r._active).length;
-  const campaigns  = new Set(allRows.map(r => r._campaign).filter(Boolean)).size;
+  const campaigns  = new Set(allRows.map(r => r._campaign)
+    .filter(c => c && c !== '(no campaign)')).size;
   const discovered = allRows.map(r => r._date)
                        .filter(d => d && d.toUpperCase() !== 'UNKNOWN').sort().pop() || '—';
   const added      = allRows.map(r => r['DATE-ADD'] || '')
