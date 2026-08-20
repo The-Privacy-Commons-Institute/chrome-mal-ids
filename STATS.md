@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-20 04:24 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-20 04:37 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -9,8 +9,8 @@
 | Metric | Count |
 |--------|-------|
 | Total malicious extensions | **6,494** |
-| Unique campaigns | **38** |
-| Entries without campaign attribution | **4,691** |
+| Unique campaigns | **34** |
+| Entries without campaign attribution | **4,990** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **1** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **266** |
@@ -52,27 +52,24 @@
 
 ## Campaigns
 
-A total of **38** distinct campaigns are tracked, covering **1,803** of 6,494 entries.
+A total of **34** distinct campaigns are tracked, covering **1,504** of 6,494 entries.
 
-The remaining **4,691** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
+The remaining **4,990** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
 
 | Campaign | Extensions |
 |----------|-----------|
 | Socket Aug 2026 Myxa VPN campaign | 737 |
-| “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
-| StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
+| StegoAd campaign, microsoft research; THREAT-TYPE set at… | 107 |
 | Palant Jun 2023 affiliate fraud cluster | 103 |
 | Socket April 2026 MaaS campaign | 62 |
-| Source: https://github | 46 |
 | YowGames cursor farm | 43 |
 | DarkSpectre | 36 |
 | Palant serasearchtop | 34 |
 | Part of Dec 2024 Cyberhaven supply chain campaign | 31 |
 | TabPlugins cursor farm | 26 |
-| “These extensions have not all been confirmed to be maliciou | 22 |
 | ShadyPanda Phase 1/2 affiliate fraud + search hijacking | 22 |
-| Two overlapping malicious extension clusters: Phoenix Invict | 20 |
+| Two overlapping malicious extension clusters: Phoenix… | 20 |
 | Chrome Wallpaper Adware Network | 20 |
 | GitLab TamperedChef campaign | 16 |
 | Krebs/Nguyen fake brand extension network | 16 |
@@ -85,7 +82,7 @@ The remaining **4,691** entries carry a threat classification but no campaign at
 | ShadyPanda Phase 3 RCE backdoor | 5 |
 | McAfee affiliate fraud campaign | 4 |
 | PCVARK malicious ad blocker cluster | 4 |
-| Palant cluster C000003 — distinct subcluster within Jun 2023 | 4 |
+| Palant cluster C000003 — distinct subcluster within Jun… | 4 |
 | ReasonLabs cashback killer campaign | 3 |
 | Cyberhaven Dec 2024 OAuth phishing supply chain attack | 3 |
 | Secure Annex unknow | 3 |
@@ -93,7 +90,6 @@ The remaining **4,691** entries carry a threat classification but no campaign at
 | BiScience/Urban Cybersecurity AI chat harvesting | 2 |
 | AITOPIA impersonator campaign | 2 |
 | SearchBlox Roblox backdoor | 2 |
-| “The extension was ‘Offered by:  Extensions’ in the Chrome W | 1 |
 | Dormant Colors campaign | 1 |
 | VK Styles campaign | 1 |
 
