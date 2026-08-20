@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-18 15:24 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-20 04:24 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -9,7 +9,8 @@
 | Metric | Count |
 |--------|-------|
 | Total malicious extensions | **6,494** |
-| Unique campaigns | **54** |
+| Unique campaigns | **38** |
+| Entries without campaign attribution | **4,691** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **1** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **266** |
@@ -51,25 +52,18 @@
 
 ## Campaigns
 
-A total of **54** distinct campaigns are tracked.
+A total of **38** distinct campaigns are tracked, covering **1,803** of 6,494 entries.
+
+The remaining **4,691** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
 
 | Campaign | Extensions |
 |----------|-----------|
-| Adware | 1,552 |
-| Stub entry imported from malicious_extension_sentry | 1,139 |
 | Socket Aug 2026 Myxa VPN campaign | 737 |
-| Policy Violation | 653 |
-| Malware | 396 |
-| Unknown | 361 |
-| Bundling Unwanted Software | 252 |
 | “The reporter did not correlate the EXTID → EXTID-NAME | 230 |
-| Search Hijacking | 176 |
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 125 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at cam | 107 |
 | Palant Jun 2023 affiliate fraud cluster | 103 |
-| Stage 5A static analysis confirmed malicious behavior | 71 |
 | Socket April 2026 MaaS campaign | 62 |
-| Potentially Unwanted Software | 51 |
 | Source: https://github | 46 |
 | YowGames cursor farm | 43 |
 | DarkSpectre | 36 |
@@ -82,16 +76,13 @@ A total of **54** distinct campaigns are tracked.
 | Chrome Wallpaper Adware Network | 20 |
 | GitLab TamperedChef campaign | 16 |
 | Krebs/Nguyen fake brand extension network | 16 |
-| Stub entry imported from gnyman/chromium-mal-ids | 16 |
 | ShadyPanda Phase 4 Edge spyware | 14 |
 | RedDirection campaign | 13 |
 | Browser game extensions abusing broad host permissions | 13 |
 | Krebs/Nguyen May 2021 fake brand extension network | 11 |
-| Search-Hijacker | 11 |
 | adindex ad fraud campaign (Palant Feb 2025) | 10 |
 | RedDirection / Koi Security Jul 2025 campaign | 8 |
 | ShadyPanda Phase 3 RCE backdoor | 5 |
-| Stub entry imported from toborrm9/malicious_extension_sentry | 5 |
 | McAfee affiliate fraud campaign | 4 |
 | PCVARK malicious ad blocker cluster | 4 |
 | Palant cluster C000003 — distinct subcluster within Jun 2023 | 4 |
@@ -99,13 +90,12 @@ A total of **54** distinct campaigns are tracked.
 | Cyberhaven Dec 2024 OAuth phishing supply chain attack | 3 |
 | Secure Annex unknow | 3 |
 | Pixatab new tab hijacking cluster | 3 |
-| In store but not whitelisted | 3 |
 | BiScience/Urban Cybersecurity AI chat harvesting | 2 |
 | AITOPIA impersonator campaign | 2 |
 | SearchBlox Roblox backdoor | 2 |
-| Critical Vulnerability | 2 |
-| Spyware | 2 |
-| *(+ 4 more)* | |
+| “The extension was ‘Offered by:  Extensions’ in the Chrome W | 1 |
+| Dormant Colors campaign | 1 |
+| VK Styles campaign | 1 |
 
 ---
 
