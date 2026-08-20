@@ -762,13 +762,72 @@ function parseCSV(text) {
 }
 
 // ── Campaign extraction ────────────────────────────────────────────────────────
+// NOTES values that are a CLASSIFICATION or status remark, not a campaign.
+// Delta-feed entries often carry a bare category as their entire NOTES
+// ("Adware", "Policy Violation"), which would otherwise each become a
+// campaign — putting ~1,550 extensions under a campaign called "Adware".
+// The classification is not lost; it is already in THREAT-TYPE.
+//
+// KEEP IN SYNC with NON_CAMPAIGN_NOTES in generate_stats.py until the
+// CAMPAIGN column lands and both read a field instead of deriving one.
+const NON_CAMPAIGN_NOTES = new Set([
+  'adware', 'malware', 'spyware',
+  'policy violation',
+  'search hijacking', 'search-hijacker',
+  'bundling unwanted software',
+  'potentially unwanted software',
+  'critical vulnerability',
+  'in store but not whitelisted',
+  'in store but suspicious',
+  'unknown'
+]);
+
+const NON_CAMPAIGN_PREFIXES = [
+  'stub entry imported from',
+  'stage 5a static analysis',
+  'the reporter did not correlate',
+  'these extensions have not all been confirmed',
+  'the extension was',
+  'source:'
+];
+
+// Leading quote characters must be stripped before prefix matching. A note
+// beginning with a typographic quote does not match a startsWith() test
+// against the bare phrase.
+const LEADING_PUNCT = /^[\u201c\u201d\u2018\u2019"'\s]+/;
+
 function extractCampaign(notes) {
-  if (!notes || notes.toUpperCase() === 'UNKNOWN') return 'Unknown';
-  const m2 = notes.match(/(?:campaign|cluster|group)s?:\s*([A-Z][^,.(]{3,50}?)(?:\s*(?:extensions?|and\s|,|\.))/i);
-  if (m2) return m2[1].trim();
-  const m1 = notes.match(/^([A-Z][^.(]{3,60}?)(?:\s*[\.(])/);
-  if (m1 && m1[1].split(' ').length <= 8) return m1[1].trim();
-  return (notes.split('.')[0] || 'Unknown').trim().slice(0, 60);
+  let n = (notes || '').trim().replace(LEADING_PUNCT, '');
+  if (!n) return null;
+  const low = n.toLowerCase();
+  if (NON_CAMPAIGN_NOTES.has(low)) return null;
+  if (NON_CAMPAIGN_PREFIXES.some(p => low.startsWith(p))) return null;
+
+  // Named-campaign pattern: "...clusters: Phoenix Invicta and ...".
+  // A name introduced after a keyword beats the leading description.
+  const mNamed = n.match(/(?:campaign|cluster|group)s?:\s*([A-Z][^,.(]{3,50}?)(?:\s*(?:extensions?|and\s|,|\.))/i);
+  if (mNamed) {
+    const c = mNamed[1].trim();
+    if (!NON_CAMPAIGN_NOTES.has(c.toLowerCase())) return c;
+  }
+
+  // A period only ends the label when followed by whitespace or end of
+  // string — otherwise a domain's dot truncates the name, turning
+  // "Secure Annex unknow.com spyware campaign" into "Secure Annex unknow".
+  const m1 = n.match(/^([A-Z][^(]{3,60}?)(?:\s*\((?!\s)|\.(?=\s|$)|\s*$)/);
+  if (m1 && m1[1].trim().split(/\s+/).length <= 8) {
+    const c = m1[1].trim().replace(/\.$/, '');
+    return NON_CAMPAIGN_NOTES.has(c.toLowerCase()) ? null : c;
+  }
+
+  let head = (n.split('.')[0] || '').trim();
+  if (head.length > 60) {
+    // Trim at a word boundary, not mid-word.
+    const cut = head.slice(0, 60).replace(/\s+\S*$/, '').replace(/[\s,;:\u2014-]+$/, '');
+    head = (cut || head.slice(0, 60)) + '\u2026';
+  }
+  if (!head || NON_CAMPAIGN_NOTES.has(head.toLowerCase().replace(/\u2026$/, ''))) return null;
+  return head;
 }
 
 // ── Load data ─────────────────────────────────────────────────────────────────
@@ -835,7 +894,7 @@ function buildFilters() {
 
   // Campaign filters
   const campCounts = {};
-  allRows.forEach(r => campCounts[r._campaign] = (campCounts[r._campaign]||0)+1);
+  allRows.forEach(r => { if (r._campaign) campCounts[r._campaign] = (campCounts[r._campaign]||0)+1; });
   const campEl = document.getElementById('campaign-filters');
   campEl.innerHTML = Object.entries(campCounts)
     .sort((a,b) => b[1]-a[1])
@@ -907,7 +966,7 @@ function applyFilters() {
     if (dateTo   && r._date && r._date > dateTo)   return false;
 
     // Campaign filter — skip if stubs-only or active search query
-    if (!stubsOnly && !query && !campaigns.has(r._campaign)) return false;
+    if (!stubsOnly && !query && r._campaign && !campaigns.has(r._campaign)) return false;
 
     // Threat filter — skip if stubs-only or active search query
     if (!stubsOnly && !query && r._threats.length > 0) {
@@ -1006,7 +1065,7 @@ function renderResults(query = '') {
           <span class="detail-key">Name</span>
           <span class="detail-val">${esc(name)}</span>
           <span class="detail-key">Campaign</span>
-          <span class="detail-val">${esc(row._campaign)}</span>
+          <span class="detail-val">${row._campaign ? esc(row._campaign) : '—'}</span>
           <span class="detail-key">Threat Type</span>
           <span class="detail-val">${esc(row['THREAT-TYPE'] || '—')}</span>
           <span class="detail-key">Browser</span>
@@ -1068,7 +1127,7 @@ function updateStats() {
   const total    = allRows.length;
   const active   = allRows.filter(r => r._active).length;
   const xfer     = allRows.filter(r => r._xfer).length;
-  const campaigns = new Set(allRows.map(r => r._campaign)).size;
+  const campaigns = new Set(allRows.map(r => r._campaign).filter(Boolean)).size;
 
   document.getElementById('stat-total').textContent     = total.toLocaleString();
   document.getElementById('stat-active').textContent    = active.toLocaleString();
@@ -1080,7 +1139,7 @@ function updateStats() {
 function updateHeader() {
   const total      = allRows.length;
   const active     = allRows.filter(r => r._active).length;
-  const campaigns  = new Set(allRows.map(r => r._campaign)).size;
+  const campaigns  = new Set(allRows.map(r => r._campaign).filter(Boolean)).size;
   const discovered = allRows.map(r => r._date)
                        .filter(d => d && d.toUpperCase() !== 'UNKNOWN').sort().pop() || '—';
   const added      = allRows.map(r => r['DATE-ADD'] || '')

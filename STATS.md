@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-20 04:42 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-20 04:57 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -69,7 +69,7 @@ The remaining **4,990** entries carry a threat classification but no campaign at
 | Part of Dec 2024 Cyberhaven supply chain campaign | 31 |
 | TabPlugins cursor farm | 26 |
 | ShadyPanda Phase 1/2 affiliate fraud + search hijacking | 22 |
-| Two overlapping malicious extension clusters: Phoenix… | 20 |
+| Phoenix Invicta | 20 |
 | Chrome Wallpaper Adware Network | 20 |
 | GitLab TamperedChef campaign | 16 |
 | Krebs/Nguyen fake brand extension network | 16 |
