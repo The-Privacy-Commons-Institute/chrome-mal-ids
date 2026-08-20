@@ -7,6 +7,39 @@ and reasoning for significant data decisions.
 
 ---
 
+## 2026-07-17 — Metadata backfill: staged in a separate file, not NOTES
+
+### Summary
+Began backfilling supplementary metadata — developer/author name, canonical
+listing URL, version history count, and Chrome Web Store "Featured" status 
+for both the UNKNOWN-name stub backlog and the much
+larger population of already-named entries. None of these fields have a
+dedicated column in the current schema yet.
+
+### Design decision: separate staging file, not embedded in NOTES
+Considered embedding this new metadata as a parseable tag inside `NOTES`
+ahead of a schema migration. Rejected: `NOTES` flows directly into STIX
+indicator descriptions, MISP attribute comments, and `current-list.json` —
+all three reach automated consumers (MISP feed subscribers, OpenCTI
+scheduled pulls) with no opt-in and no README to read first. GitHub clone
+statistics show the derived `current-list.*` formats are pulled *more*
+often than the meta CSV itself, so this wasn't a narrow edge case.
+
+### Related correction: `ENRICH-STATUS=exhausted` definition
+While building the corrected retry logic above, traced `exhausted`'s
+actual origin: it was set by a single manual commit ("Mark 230 extensions
+as exhausted based on enrichment runs," 2026-05-27), reclassifying entries
+that had been mislabeled `verified` despite having no real name resolved.
+Per `SCHEMA.md`: `exhausted` means the *original source material* never
+included names and archive lookups returned nothing — a statement about
+the source, not a retry count. 
+
+### Not yet done
+- Schema migration to promote these staged fields into real columns —
+  planned, not yet scheduled
+
+---
+
 ## 2026-05-22 — Stage 5A backfill: campaign attribution + TPCI verification
 
 ### Summary
