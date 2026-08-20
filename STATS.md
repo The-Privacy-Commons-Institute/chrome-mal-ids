@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-20 04:37 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-20 04:42 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -65,7 +65,7 @@ The remaining **4,990** entries carry a threat classification but no campaign at
 | Socket April 2026 MaaS campaign | 62 |
 | YowGames cursor farm | 43 |
 | DarkSpectre | 36 |
-| Palant serasearchtop | 34 |
+| Palant serasearchtop.com campaign | 34 |
 | Part of Dec 2024 Cyberhaven supply chain campaign | 31 |
 | TabPlugins cursor farm | 26 |
 | ShadyPanda Phase 1/2 affiliate fraud + search hijacking | 22 |
@@ -85,7 +85,7 @@ The remaining **4,990** entries carry a threat classification but no campaign at
 | Palant cluster C000003 — distinct subcluster within Jun… | 4 |
 | ReasonLabs cashback killer campaign | 3 |
 | Cyberhaven Dec 2024 OAuth phishing supply chain attack | 3 |
-| Secure Annex unknow | 3 |
+| Secure Annex unknow.com spyware campaign | 3 |
 | Pixatab new tab hijacking cluster | 3 |
 | BiScience/Urban Cybersecurity AI chat harvesting | 2 |
 | AITOPIA impersonator campaign | 2 |
