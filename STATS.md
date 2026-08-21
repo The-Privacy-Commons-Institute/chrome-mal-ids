@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-08-20 19:06 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-08-21 05:03 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -33,14 +33,14 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| adware | 2,432 (37.2%) |
-| unknown | 2,020 (30.9%) |
-| data-theft | 1,946 (29.7%) |
-| spyware | 1,412 (21.6%) |
-| browser-hijack | 1,060 (16.2%) |
-| click-fraud | 373 (5.7%) |
-| credential-theft | 293 (4.5%) |
-| session-hijack | 164 (2.5%) |
+| adware | 2,445 (37.4%) |
+| data-theft | 1,994 (30.5%) |
+| unknown | 1,946 (29.7%) |
+| spyware | 1,448 (22.1%) |
+| browser-hijack | 1,067 (16.3%) |
+| click-fraud | 386 (5.9%) |
+| credential-theft | 302 (4.6%) |
+| session-hijack | 170 (2.6%) |
 | malware | 129 (2.0%) |
 | ownership-transfer | 29 (0.4%) |
 | fake-extension | 29 (0.4%) |
@@ -139,13 +139,13 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 | Method | Extensions |
 |--------|-----------|
 | csv_import+ThreatType_Classified | 3,405 (52.0%) |
-| Delta_Import+Store_Enrichment | 1,466 (22.4%) |
+| Delta_Import+Store_Enrichment | 1,392 (21.3%) |
 | Google_Search | 940 (14.4%) |
 | csv_import | 338 (5.2%) |
 | csv_import+ThreatType_Fallback | 123 (1.9%) |
+| Delta_Import+Store_Enrichment+ThreatType_Classified | 113 (1.7%) |
 | PDF_Import | 107 (1.6%) |
 | AI_Enrichment | 40 (0.6%) |
-| Delta_Import+Store_Enrichment+ThreatType_Classified | 39 (0.6%) |
 | Delta_Import | 37 (0.6%) |
 | Initial_Commit | 19 (0.3%) |
 | Manual | 11 (0.2%) |
