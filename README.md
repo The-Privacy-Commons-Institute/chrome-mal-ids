@@ -26,7 +26,7 @@ hijackers to supply chain compromises and ad fraud rings. **Current totals chang
 ingestion continues — see [STATS.md](STATS.md) for the live count, campaign breakdown, and
 contribution-method breakdown, auto-generated on every update rather than restated here.**
 
-The database is maintained by [The Privacy Commons Institute](https://tpc.institute) (TPCI)
+The database is maintained by [The Privacy Commons Institute](https://tpc.institute/pages/project-chrome-mal-ids) (TPCI)
 and is an active research platform. TPCI conducts original research on browser extension
 threats including persistence measurement, removal rate analysis, IOC feed quality assessment,
 and behavioral verification. Entries are updated as research progresses. All changes are
