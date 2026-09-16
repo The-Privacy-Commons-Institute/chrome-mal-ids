@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-09-16 01:00 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-09-16 01:01 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -34,13 +34,13 @@
 | Threat Type | Extensions |
 |-------------|-----------|
 | adware | 2,472 (33.7%) |
-| unknown | 2,453 (33.4%) |
+| unknown | 2,452 (33.4%) |
 | data-theft | 2,228 (30.3%) |
 | spyware | 1,645 (22.4%) |
 | browser-hijack | 1,102 (15.0%) |
 | click-fraud | 388 (5.3%) |
-| credential-theft | 306 (4.2%) |
-| session-hijack | 194 (2.6%) |
+| credential-theft | 307 (4.2%) |
+| session-hijack | 195 (2.7%) |
 | malware | 140 (1.9%) |
 | ownership-transfer | 29 (0.4%) |
 | fake-extension | 29 (0.4%) |
@@ -148,11 +148,12 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 | AI_Enrichment | 40 (0.5%) |
 | Delta_Import | 37 (0.5%) |
 | Initial_Commit | 19 (0.3%) |
-| Manual | 12 (0.2%) |
+| Manual | 11 (0.1%) |
 | Delta_Import+AI_Enrichment | 6 (0.1%) |
 | Google_Search+ThreatType_Classified | 5 (0.1%) |
 | Delta_Import+Store_Enrichment+ThreatType_Fallback | 5 (0.1%) |
 | Delta_Import+Google_Search | 1 (0.0%) |
+| Manual+ThreatType_Classified | 1 (0.0%) |
 
 ### Component Glossary
 
