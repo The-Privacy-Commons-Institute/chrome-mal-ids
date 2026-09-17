@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-09-17 06:17 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-09-17 23:20 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -12,8 +12,8 @@
 | Unique campaigns | **34** |
 | Entries without campaign attribution | **5,889** |
 | Ownership transfer cases | **34** |
-| Stubs — pending (ID confirmed, still searchable) | **1** |
-| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **267** |
+| Stubs — pending (ID confirmed, still searchable) | **0** |
+| Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **268** |
 | Earliest discovery | **2017-08-17** |
 | Most recent discovery | **2026-09-16** |
 
