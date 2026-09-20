@@ -9,7 +9,7 @@
 
 > **⚠ Schema updated May 2026** — Six new TPCI-V verification fields added (`TPCI-VERIFY`, `TPCI-VERIFY-DATE`, `TPCI-STORE-NAME`, `TPCI-STORE-DEV`, `TPCI-STORE-DATE`, `TPCI-IDENTITY`) plus four earlier additions (`ADD-SOURCES`, `CONTRIB-METHOD`, `CONTRIB-TYPE`, `CONTRIB-HANDLE`). Scripts using positional column indexing will need updating. Scripts using named headers (`csv.DictReader` or equivalent) require no changes. See [SCHEMA.md](SCHEMA.md) for full details and migration guidance.
 
-> **⚠ Delta import verification status** — A meaningful share of entries sourced from third-party sources (`CONTRIB-METHOD=Delta_Import` or `csv_import`) have undergone Stage 5A static behavioral analysis and shown confirmed malicious or elevated-risk patterns at a high rate. Third-party sources include a one-time bulk delta import plus ongoing ingestion from toborrm9/malicious_extension_sentry and PDF report intake. For current entry counts and the exact confirmation rate, see the **By Contribution Method** table in [STATS.md](STATS.md) — those numbers move as ingestion continues, so they're tracked there rather than restated here.
+> **⚠ Third-party source verification status** — Coverage of independent behavioral analysis differs by source. The one-time bulk delta import (`CONTRIB-METHOD=Delta_Import`) has been through Stage 5A static behavioral analysis, which confirmed malicious or elevated-risk patterns at a high rate. Ongoing ingestion labelled `csv_import` has not been through Stage 5A: those entries carry the contributing source's own classification plus store existence/liveness verification. Stage 5A coverage of these entries began 2026-09-20 and is ongoing. For current entry counts per method, see the **By Contribution Method** table in [STATS.md](STATS.md) — those numbers move as ingestion continues, so they're tracked there rather than restated here.
 
 ---
 
@@ -37,7 +37,9 @@ you can [support it here](https://tpc.institute/support) — or put that same va
 toward a cause you'd rather back instead.
 
 All entries sourced from original research are human-reviewed before publication.
-Distribution outputs (STIX, MISP, Sigma, blocklist) contain only TPCI-verified entries.
+Distribution outputs (STIX, MISP, Sigma, blocklist) exclude unverified bulk delta
+imports. See [Data quality](#data-quality) for the verification coverage each source
+carries.
 
 ---
 
@@ -67,7 +69,7 @@ Each entry in `current-list-meta.csv` contains:
 | `DATE-DIS` | Date the malicious behavior was first reported |
 | `THREAT-TYPE` | Type of threat (spyware, data-theft, browser-hijack, etc.) |
 | `BROWSER` | `chrome` or `edge` |
-| `STILL-ACTIVE` | `1` if still live in the browser store at time of reporting |
+| `STILL-ACTIVE` | `1` live in the store at last verification check, `0` removed, `unknown` if the check was inconclusive |
 | `OWNERSHIP-TRANSFER` | `1` if a legitimate extension was acquired and turned malicious |
 | `SOURCE` | Primary research source |
 | `ARTICLE` | News/blog article covering the campaign |
@@ -89,18 +91,36 @@ commit, with source citations and campaign attribution. These are confirmed mali
 extensions backed by original research.
 
 **Third-party source entries** (`CONTRIB-METHOD=Delta_Import`, `csv_import`, `PDF_Import`, etc.)
-These entries have not necessarily been individually human-reviewed on ingest but have
-undergone Stage 5A static behavioral analysis. Check the `TPCI-VERIFY` and `TPCI-IDENTITY`
-fields for current verification status. Entries with `TPCI-VERIFY=Stage 5A` are behaviorally
-confirmed; entries marked `TPCI-VERIFY=stub` are pending individual analysis.
+These entries have not necessarily been individually human-reviewed on ingest, and
+behavioral-analysis coverage differs by source: `Delta_Import` entries have been through
+Stage 5A static analysis, `csv_import` entries have not.
+
+Check `TPCI-BEHAVIORAL` for whether an entry carries a behavioral finding at all, and
+`TPCI-VERIFY` for the highest verification stage reached. Note that `TPCI-VERIFY` records
+a *stage*, not a confidence score: stages 1–3 establish that an extension exists, renders,
+or is reachable in the store. They are not findings about what it does. Only stage 5
+reflects behavioral analysis.
+
+**Independent analysis may disagree with the source.** Third-party entries carry the
+contributing source's classification in `NOTES`; where TPCI Stage 5A analysis has run,
+its own finding is recorded alongside it. The two may differ. A `suspicious` or `clean`
+Stage 5A result is not a retraction of the source's classification — static analysis can
+be evaded, and an absence of detected indicators is not evidence of benign behavior. Both
+signals are recorded so consumers can prioritize according to their own risk tolerance.
 
 **Filtering by confidence level:**
 ```bash
 # High confidence — independently verified entries only
 grep -v "Delta_Import\|csv_import" data/current-list-meta.csv
 
-# Check verification status
-awk -F',' '$19 != ""' data/current-list-meta.csv   # TPCI verified entries
+# Entries carrying a Stage 5A behavioral finding
+python3 -c "import csv; [print(r['EXTID']) for r in \
+  csv.DictReader(open('data/current-list-meta.csv')) if r['TPCI-BEHAVIORAL'].strip()]"
+
+# NOTE: parse this file with a CSV-aware reader. NOTES and extension names
+# contain commas and quoted fields, so awk -F',' and cut -d',' will split
+# rows incorrectly. Column positions also change as the schema grows —
+# address fields by header name, not index.
 
 # Unverified delta imports
 grep "Delta_Import" data/current-list-meta.csv | grep -v "Store_Enrichment"
@@ -110,8 +130,10 @@ grep "Delta_Import" data/current-list-meta.csv | grep -v "Store_Enrichment"
 - **UNKNOWN stubs** — entries with confirmed malicious IDs but incomplete metadata.
   Committed immediately (an ID is better than nothing) and enriched over time.
   Find them with: `grep ",UNKNOWN," data/current-list-meta.csv`
-- **Still-active flag** — reflects status at time of reporting, not necessarily today.
-  Use `TPCI-VERIFY` and `TPCI-VERIFY-DATE` for current verified status.
+- **Still-active flag** — maintained by the verification pipeline, not frozen at time
+  of reporting. `1` means the extension was live at the last check, `0` that it was
+  removed or delisted, `unknown` that the check was inconclusive. `TPCI-VERIFY-DATE`
+  records when that check last ran.
 - **Supply chain victims** — some entries marked `TPCI-IDENTITY=remediated` were
   legitimate extensions compromised by supply chain attacks. The developers have
   patched the malicious code. These IDs are retained for historical accuracy but

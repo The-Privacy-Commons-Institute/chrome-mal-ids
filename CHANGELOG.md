@@ -7,6 +7,24 @@ and reasoning for significant data decisions.
 
 ---
 
+## 2026-09-20 — Pipeline breakage: Stage 5A target selection
+
+### Summary
+Stage 5A static behavioral analysis stopped selecting new candidates. The
+target loader matched only `CONTRIB-METHOD=Delta_Import`, so entries from
+ongoing third-party ingestion (`csv_import`) were never eligible — 4,744
+entries affected. Fixed; those entries are working through the review queue.
+
+### Consequence for consumers
+Entries from ongoing third-party ingestion carry the source's own
+classification and store-liveness verification, but no independent behavioral
+analysis. The README previously implied otherwise and has been corrected.
+
+Source attribution is unchanged and unaffected: every such entry carries
+`CONTRIB` and `CONTRIB-HANDLE` identifying where the ID came from.
+
+---
+
 ## 2026-07-17 — Metadata backfill: staged in a separate file, not NOTES
 
 ### Summary
