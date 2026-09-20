@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-09-18 18:43 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-09-20 04:34 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -8,14 +8,14 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **7,409** |
+| Total malicious extensions | **7,422** |
 | Unique campaigns | **34** |
-| Entries without campaign attribution | **5,905** |
+| Entries without campaign attribution | **5,918** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **0** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **268** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-09-18** |
+| Most recent discovery | **2026-09-19** |
 
 ---
 
@@ -23,7 +23,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 7,267 (98.1%) |
+| Chrome | 7,280 (98.1%) |
 | Edge | 129 (1.7%) |
 | Both | 13 (0.2%) |
 
@@ -33,9 +33,9 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 2,504 (33.8%) |
-| adware | 2,472 (33.4%) |
-| data-theft | 2,229 (30.1%) |
+| unknown | 2,517 (33.9%) |
+| adware | 2,472 (33.3%) |
+| data-theft | 2,229 (30.0%) |
 | spyware | 1,645 (22.2%) |
 | browser-hijack | 1,115 (15.0%) |
 | click-fraud | 388 (5.2%) |
@@ -52,9 +52,9 @@
 
 ## Campaigns
 
-A total of **34** distinct campaigns are tracked, covering **1,504** of 7,409 entries.
+A total of **34** distinct campaigns are tracked, covering **1,504** of 7,422 entries.
 
-The remaining **5,905** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
+The remaining **5,918** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
 
 | Campaign | Extensions |
 |----------|-----------|
@@ -138,10 +138,10 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,701 (50.0%) |
+| csv_import+ThreatType_Classified | 3,701 (49.9%) |
 | Delta_Import+Store_Enrichment | 1,392 (18.8%) |
 | Google_Search | 940 (12.7%) |
-| csv_import | 896 (12.1%) |
+| csv_import | 909 (12.2%) |
 | csv_import+ThreatType_Fallback | 134 (1.8%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 114 (1.5%) |
 | PDF_Import | 107 (1.4%) |
