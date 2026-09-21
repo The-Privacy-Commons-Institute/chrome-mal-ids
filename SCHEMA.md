@@ -33,7 +33,7 @@ Full field documentation for `current-list-meta.csv`.
 | `TPCI-STORE-DATE` | date | Date store name and developer were recorded (YYYY-MM-DD) |
 | `TPCI-IDENTITY` | string | Identity continuity result (see below) |
 | `TPCI-CRX-HASH` | string | SHA-256 hash of the CRX package analyzed during Stage 5A |
-| `TPCI-BEHAVIORAL` | string | Stage 5A risk level: `malicious`, `suspicious`, `elevated`, `clean`, or `unknown` |
+| `TPCI-BEHAVIORAL` | string | Stage 5A risk level: `malicious`, `suspicious`, `elevated`, `below-threshold`, or `unknown` |
 | `TPCI-BEHAVIORAL-DATE` | date | Date Stage 5A static analysis was performed (YYYY-MM-DD) |
 | `ENRICH-STATUS` | string | Enrichment pipeline status for stub entries (see below) |
 | `ENRICH-DATE` | date | Date enrichment was last attempted (YYYY-MM-DD) |
@@ -72,12 +72,7 @@ recorded separately in `STILL-ACTIVE`. The two fields are independent: any
 | `4` | Stage 4 | Identity continuity verified. Result in `TPCI-IDENTITY`. |
 | `5` | Stage 5A | Static behavioral analysis completed. Result in `TPCI-BEHAVIORAL`. |
 
-An earlier revision of this document described these values as outcome
-codes (`1`=active, `2`=removed, `3`=Playwright-confirmed-active). That was
-never how the pipeline populated the field, and it does not match the
-published data or the analysis in "Still There" (Table 1), which reports
-`TPCI-V 2` for both CRX-active and CRX-removed entries and `TPCI-V 3` for
-both Playwright-active and Playwright-removed entries. Corrected 2026-08-17.
+This value was named clean until 2026-09-21. The term was retired because it was read as a safety claim: extensions have scored below threshold while confirmed malicious by other means. The 34 existing clean values were migrated to below-threshold on that date. Consumers who pinned on the literal string clean should update.
 
 `TPCI-VERIFY-DATE` records the ISO date (YYYY-MM-DD) when verification was
 last performed. Store status changes over time — always check the date.
@@ -98,14 +93,19 @@ removal signal and is handled as one.
 
 The `TPCI-BEHAVIORAL` field records the risk level assigned by Stage 5A static
 analysis of the extension's CRX package. Only populated for entries that have
-undergone Stage 5A analysis (`TPCI-VERIFY=5`).
+undergone Stage 5A analysis.
+
+Note that `TPCI-VERIFY` may read lower than `5` on such entries. Verification
+stage is never downgraded, but Stage 5A does not always raise it — an entry
+already at stage 2 or 3 keeps that value while gaining a behavioral result.
+**Filter on `TPCI-BEHAVIORAL` being non-empty, not on `TPCI-VERIFY=5`.**
 
 | Value | Meaning |
 |-------|---------|
 | `malicious` | Confirmed malicious patterns — risk score ≥100 or any critical finding |
 | `suspicious` | Multiple high-risk indicators — risk score ≥40 |
 | `elevated` | Concerning permissions or patterns — risk score ≥10 |
-| `clean` | No significant risk indicators — risk score <10 |
+| `below-threshold` | No findings above the scoring threshold — risk score <10. **Not a safety verification** — see note below |
 | `unknown` | CRX package could not be downloaded for analysis |
 
 **Risk scoring:** Critical=100pts (known malicious C2 domain), High=30pts
@@ -113,6 +113,19 @@ undergone Stage 5A analysis (`TPCI-VERIFY=5`).
 patterns, form harvesting, cookie access), Low=2pts. Thresholds are additive;
 any single critical finding (known malicious domain) results in `malicious`
 classification regardless of total score.
+
+**On `below-threshold`:** This value records the absence of findings under
+Stage 5A's scoring logic *at the time of analysis*. It is not an independent
+safety verification, and it is not a retraction of a contributing source's
+malicious classification. Static analysis can be evaded, scoring thresholds
+change, and extensions are updated after they are analyzed — an extension can
+score below threshold and still be malicious.
+
+This value was named `clean` until 2026-09-21. The term was retired because it
+was read as a safety claim; "Still There" (Paper 1) documents the change and
+notes cases of extensions that scored clean while confirmed malicious by other
+means. The 34 existing `clean` values were migrated to `below-threshold` on
+that date. Consumers who pinned on the literal string `clean` should update.
 
 `TPCI-CRX-HASH` contains the SHA-256 hash of the specific CRX package version
 analyzed. `TPCI-BEHAVIORAL-DATE` records when the analysis was performed.
@@ -179,13 +192,27 @@ with open('current-list-meta.csv') as f:
 
 ## CONTRIB-METHOD Values
 
-| Value | Meaning |
-|-------|---------|
-| `Manual` | Manually researched and entered |
-| `AI_Enrichment` | Metadata extracted by Claude from a research article |
-| `Delta_Import` | Bulk imported from another IOC source (with attribution) |
-| `Delta_Import+AI_Enrichment` | Delta imported then enriched by Claude |
-| `Delta_Import+Store_Enrichment` | Delta imported then enriched via CRX API / archives |
+Values are **compound**: more than one process may touch an entry, and the
+components are joined with `+` (e.g. `Delta_Import+Store_Enrichment+ThreatType_Classified`).
+Match with a substring test on the component, not equality on the whole string.
+[STATS.md](STATS.md) carries live per-method counts and a generated glossary.
+
+| Component | Meaning |
+|-----------|---------|
+| `Manual` | Hand-entered by a human researcher outside the automated pipeline |
+| `AI_Enrichment` | Metadata or classification added via AI-assisted research |
+| `Delta_Import` | One-time bulk import from an external IOC feed (with attribution) |
+| `csv_import` | Ongoing ingestion from an externally-provided CSV feed |
+| `PDF_Import` | Extracted from a PDF-format threat research report |
+| `Google_Search` | Independently discovered and verified through manual web research |
+| `Initial_Commit` | Part of the batch entered when the project restarted in May 2026 — often carrying original discovery dates from years earlier |
+| `Store_Enrichment` | Name and metadata resolved from the Chrome/Edge Web Store listing |
+| `ThreatType_Classified` | Threat category assigned via AI-based classification |
+| `ThreatType_Fallback` | AI classification attempted but no confident category assigned |
+
+**On third-party sourced entries:** `Delta_Import` and `csv_import` both denote
+IDs contributed by an external source rather than discovered by TPCI. They differ
+in verification coverage — see the third-party note in [README.md](README.md).
 
 ---
 
@@ -233,7 +260,7 @@ can be re-listed after removal.
 ## CRX API Removal States
 
 The Chrome CRX update API (`clients2.google.com/service/update2/crx`) returns
-three distinct states for removed extensions, distinguished only at the API
+four distinct states for removed extensions, distinguished only at the API
 level — the public Chrome Web Store shows identical "Item not available" pages
 for all removal states.
 
@@ -241,8 +268,15 @@ for all removal states.
 |-----------------|-------|--------------|
 | `codebase=` URL present | Active — Chrome serving updates | `1` |
 | `_malware="true"` + `noupdate` | Malware-flagged — record retained | `0` |
+| `_policy_violation="true"` + `noupdate` | Policy-violation — delisted for policy rather than malware reasons | `0` |
 | `error-unknownApplication` | Hard-purged — completely removed | `0` |
-| `noupdate`, no malware flag | Indeterminate — requires Stage 3 | see TPCI-VERIFY |
+| `noupdate`, no malware or policy flag | Indeterminate — requires Stage 3 | see TPCI-VERIFY |
+
+**On policy-violation entries:** the storefront serves a generic Chrome Web Store
+page rather than a listing for these, so name and description cannot be recovered
+from the store, and the CRX package cannot be downloaded for Stage 5A analysis.
+Both enrichment routes are closed; such entries commonly retain
+`THREAT-TYPE=UNKNOWN` permanently.
 
 **Key finding:** 99.6% of indeterminate CRX API responses correspond to
 hard-removed extensions when verified by headless browser (Stage 3).

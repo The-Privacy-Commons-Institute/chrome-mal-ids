@@ -7,6 +7,90 @@ and reasoning for significant data decisions.
 
 ---
 
+## 2026-09-21 — Stage 5A terminology, disputed-classification flag, MISP feed grouping
+
+### Summary
+Three consumer-visible changes to the distribution outputs, plus a correction
+to the 2026-05-22 entry below.
+
+### `TPCI-BEHAVIORAL=clean` renamed to `below-threshold`
+
+"Clean" was being read as a safety verification. It never meant that: it means
+the Stage 5A scanner found nothing above its lowest scoring threshold, under
+the scoring logic in force at the time of analysis. Static analysis can be
+evaded, thresholds change, and extensions are updated after they are analyzed.
+
+34 existing rows were migrated. `SCHEMA.md` documents the value and what it
+does not mean. **Consumers filtering on the literal string `clean` must update.**
+
+### New: classification-disputed flag
+
+An entry is flagged when TPCI's own Stage 5A analysis found nothing above
+threshold while the contributing source classified the extension as malicious.
+This is a recorded disagreement between two methods — not a judgment that the
+extension is safe, and not a retraction of the source's classification.
+
+**These entries are published, not removed.** The source's research stands and
+carries its own attribution in `CONTRIB` / `CONTRIB-HANDLE`; the disagreement
+is recorded so consumers can weight or filter it themselves. Where the flag
+appears:
+
+| Output | Form |
+|---|---|
+| `current-list.json` | `"classification_disputed": true`, plus a new `"behavioral"` field carrying the raw Stage 5A level |
+| `current-list.txt` | inline `[disputed]` marker; exclude with `grep -v '\[disputed\]'` |
+| `current-list-sigma.yml` | separate rule `chrome-mal-ids-sigma-disputed` at `level: low` |
+| MISP | attribute tag `tpci:classification-disputed` and a comment on the attribute |
+| `current-list-meta.csv` | derived from `TPCI-BEHAVIORAL=below-threshold` — no new column |
+
+Sigma is the only format with nowhere to put per-ID metadata, which is why it
+gets a second rule rather than an inline marker. Consumers wanting the previous
+behavior enable both rules.
+
+### Sigma: main rule ID count changed
+
+Disputed IDs moved out of `chrome-mal-ids-sigma` into the new
+`chrome-mal-ids-sigma-disputed`. The main rule's ID count and description text
+both change as a result. The main rule keeps its existing `id:` so an existing
+import updates rather than duplicating.
+
+### MISP feed: campaign grouping corrected
+
+Delta-feed entries often carry a bare classification as their entire `NOTES`
+("Adware", "Policy Violation"). The feed's campaign extractor read that leading
+fragment as a campaign name, so **82 of 188 published events were named after a
+threat category rather than a campaign** — "Adware — 50 malicious extension(s)
+(part 17 of 32)".
+
+The extractor now matches `generate_stats.py`'s, which has excluded these since
+August. Entries with no campaign attribution group under `Unattributed: <threat
+types>` instead, giving a MISP consumer something selectable. Threat-type
+components are sorted, so `spyware,data-theft` and `data-theft,spyware` are one
+bucket rather than two.
+
+Two related fixes in the same pass:
+
+- **Stale event files are now removed.** The campaign label feeds the event
+  UUID, so relabelling an entry orphans its old event file. Orphans stayed in
+  the repo, served from the raw feed URL while absent from `manifest.json`.
+- **MISP tag names are sanitized.** The previous form passed commas, colons and
+  periods straight through (`palant-serasearchtop.com-campaign`).
+
+### Correction to the 2026-05-22 entry below
+
+That entry's "Clean extensions (excluded from distribution outputs)" section
+states those entries were excluded from downstream formats. **They were not.**
+The distribution filter drops `Delta_Import` rows that lack a `TPCI-VERIFY`
+value — and reaching Stage 5A is what sets `TPCI-VERIFY`, so scoring below
+threshold qualified them to ship. All 34 have been present in every
+distribution output since.
+
+They remain published, now flagged as disputed per the above. The named
+examples in that entry — Amazon seller tools, Ground News, Grok — are among
+them.
+
+---
+
 ## 2026-09-20 — Pipeline breakage: Stage 5A target selection
 
 ### Summary
@@ -126,6 +210,14 @@ and will appear in STIX, MISP, Sigma, and plain text blocklist outputs.
 Previously these were excluded as unverified delta imports.
 
 ### Clean extensions (excluded from distribution outputs)
+
+> **Correction (2026-09-21):** these entries were **not** excluded from the
+> distribution outputs — the filter drops `Delta_Import` rows lacking a
+> `TPCI-VERIFY` value, and reaching Stage 5A sets it. They have shipped in
+> every output since. They remain published and are now flagged as
+> classification-disputed; see the 2026-09-21 entry. The `clean` risk level
+> referenced below has since been renamed `below-threshold`.
+
 32 delta import stub entries passed Stage 5A static analysis with no significant
 findings. These are retained in the CSV for historical completeness but excluded
 from downstream distribution formats. Notable false positives include Amazon

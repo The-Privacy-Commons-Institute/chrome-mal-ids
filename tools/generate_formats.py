@@ -7,8 +7,12 @@ Produces:
   - current-list.json       JSON array of objects (developer-friendly)
   - current-list-sigma.yml  Sigma rule for SIEM detection
 
+Entries whose TPCI Stage 5A analysis disagreed with the contributing source's
+classification are marked rather than removed — see is_disputed(). They appear
+in every format, flagged, so consumers can weight or filter them themselves.
+
 Run automatically as part of the commit pipeline, or manually:
-    python3 generate_formats.py [--csv PATH] [--out-dir PATH]
+    python3 generate_formats.py [--csv PATH] [--out-dir PATH] [--dry-run]
 """
 
 import argparse
@@ -31,6 +35,22 @@ DEFAULT_CSV  = _repo_csv
 DEFAULT_OUT  = _repo_csv.parent if _repo_csv.exists() else SCRIPT_DIR
 PROJECT_URL  = "https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids"
 PROJECT_NAME = "Malicious Chrome Extension IOC Database"
+
+
+def is_disputed(row: dict) -> bool:
+    """
+    True when TPCI's own Stage 5A analysis found nothing above the scoring
+    threshold while the contributing source classified the extension as
+    malicious.
+
+    This records a disagreement between two methods. It is NOT a finding that
+    the extension is safe: a below-threshold score means the scanner found
+    nothing under the scoring logic in force at the time, static analysis can
+    be evaded, and extensions change after they are analyzed. The entry stays
+    in every output with the source's classification intact — the flag exists
+    so consumers can make their own call.
+    """
+    return (row.get("TPCI-BEHAVIORAL") or "").strip() == "below-threshold"
 
 
 def load_csv(path: Path, verified_only: bool = True) -> list[dict]:
@@ -96,6 +116,11 @@ def generate_txt(rows: list[dict], out_path: Path, dry_run: bool = False):
         "#   grep -f current-list.txt <your-extension-ids.txt>",
         "#   curl -s https://raw.githubusercontent.com/The-Privacy-Commons-Institute/chrome-mal-ids/master/current-list.txt | grep YOUR_EXT_ID",
         "#",
+        "# Entries marked [disputed] are ones where TPCI Stage 5A analysis found",
+        "# no indicators above threshold while the contributing source classified",
+        "# them malicious. They are included, not removed. A below-threshold score",
+        "# is not a safety verification. Exclude them with: grep -v '\\[disputed\\]'",
+        "#",
     ]
 
     for row in sorted(rows, key=lambda r: r.get("EXTID", "").lower()):
@@ -103,19 +128,22 @@ def generate_txt(rows: list[dict], out_path: Path, dry_run: bool = False):
         name   = row.get("EXTID-NAME", "UNKNOWN").strip()
         threat = row.get("THREAT-TYPE", "").strip()
         # Inline comment for non-stub entries
+        bits = []
         if name and name.upper() != "UNKNOWN":
-            comment = f"  # {name}"
+            bits.append(name)
             if threat and threat.upper() != "UNKNOWN":
-                comment += f" [{threat.split(',')[0]}]"
-            lines.append(f"{ext_id}{comment}")
-        else:
-            lines.append(ext_id)
+                bits.append(f"[{threat.split(',')[0]}]")
+        if is_disputed(row):
+            bits.append("[disputed]")
+        lines.append(f"{ext_id}  # {' '.join(bits)}" if bits else ext_id)
 
+    disputed_n = sum(1 for r in rows if is_disputed(r))
     if dry_run:
         print(f"[DRY RUN] current-list.txt would be written → {len(rows)} IDs")
     else:
         out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-        print(f"✓ current-list.txt → {len(rows)} IDs")
+        print(f"✓ current-list.txt → {len(rows)} IDs"
+              + (f" ({disputed_n} marked [disputed])" if disputed_n else ""))
 
 
 # ── JSON ───────────────────────────────────────────────────────────────────────
@@ -154,6 +182,14 @@ def generate_json(rows: list[dict], out_path: Path, dry_run: bool = False):
             "source":             clean(row.get("SOURCE", "")),
             "article":            clean(row.get("ARTICLE", "")),
             "notes":              clean(row.get("NOTES", "")),
+            # Stage 5A risk level, when analysis has run. "below-threshold"
+            # means no findings above the scoring threshold at time of
+            # analysis — not a safety verification.
+            "behavioral":         clean(row.get("TPCI-BEHAVIORAL", "")),
+            # Present and true only when disputed; absent otherwise, so a
+            # consumer checking `obj.get("classification_disputed")` gets a
+            # falsy value for every other entry.
+            "classification_disputed": True if is_disputed(row) else None,
             "store_url":          f"https://chromewebstore.google.com/detail/{ext_id}"
                                   if (row.get("BROWSER") or "chrome").lower() != "edge"
                                   else f"https://microsoftedge.microsoft.com/addons/detail/{ext_id}",
@@ -180,7 +216,9 @@ def generate_json(rows: list[dict], out_path: Path, dry_run: bool = False):
             json.dumps(output, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8"
         )
-        print(f"✓ current-list.json → {len(extensions)} entries")
+        disputed_n = sum(1 for e in extensions if e.get("classification_disputed"))
+        print(f"✓ current-list.json → {len(extensions)} entries"
+              + (f" ({disputed_n} classification_disputed)" if disputed_n else ""))
 
 
 # ── Sigma rule ─────────────────────────────────────────────────────────────────
@@ -191,33 +229,42 @@ def generate_sigma(rows: list[dict], out_path: Path, dry_run: bool = False):
     in browser extension logs, registry, or filesystem paths.
     Compatible with Splunk, Elastic/OpenSearch, Microsoft Sentinel, and any
     Sigma-compatible SIEM.
+
+    Disputed entries are emitted as SEPARATE rules at a lower severity.
+
+    Sigma is the one distribution format with nowhere to put per-ID metadata —
+    a rule is a flat list of values under one selection — so a disputed entry
+    mixed into the main rule would fire at level: high with no signal that TPCI
+    analysis disagreed with the source. Splitting the rule is the only way to
+    make the flag actionable here. Nothing is dropped: a consumer who wants the
+    full list enables both rules.
     """
-    generated  = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    ext_ids    = sorted(set(r["EXTID"].strip().lower() for r in rows))
-    total      = len(ext_ids)
+    generated = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    # Sigma has a practical limit on condition list length (~500 items)
-    # Split into chunks if needed — for now emit all with a note
+    disputed_ids = sorted({r["EXTID"].strip().lower()
+                           for r in rows if is_disputed(r)})
+    main_ids     = sorted({r["EXTID"].strip().lower() for r in rows}
+                          - set(disputed_ids))
+
     chunk_size = 500
-    chunks     = [ext_ids[i:i+chunk_size] for i in range(0, len(ext_ids), chunk_size)]
 
-    rules = []
-    for idx, chunk in enumerate(chunks, 1):
-        suffix    = f"_part{idx}" if len(chunks) > 1 else ""
-        part_note = f" (part {idx}/{len(chunks)})" if len(chunks) > 1 else ""
-
-        # Build the selection block
-        id_list = "\n        - ".join(chunk)
-
-        rule = f"""title: Malicious Chrome/Edge Extension Detected{part_note}
-id: chrome-mal-ids-sigma{suffix}
-status: experimental
+    def build_rules(ext_ids: list[str], *, rule_id: str, title: str,
+                    level: str, status: str, description: str) -> list[str]:
+        if not ext_ids:
+            return []
+        total  = len(ext_ids)
+        chunks = [ext_ids[i:i + chunk_size]
+                  for i in range(0, total, chunk_size)]
+        built  = []
+        for idx, chunk in enumerate(chunks, 1):
+            suffix    = f"_part{idx}" if len(chunks) > 1 else ""
+            part_note = f" (part {idx}/{len(chunks)})" if len(chunks) > 1 else ""
+            id_list   = "\n        - ".join(chunk)
+            built.append(f"""title: {title}{part_note}
+id: {rule_id}{suffix}
+status: {status}
 description: >
-    Detects the presence or activity of a known malicious Chrome or Edge browser
-    extension based on the Malicious Chrome Extension IOC Database
-    ({PROJECT_URL}). Covers {total} confirmed malicious extension IDs across
-    30+ campaigns including credential theft, data exfiltration, browser hijacking,
-    click fraud, and supply chain attacks via ownership transfer.
+    {description}
 references:
     - {PROJECT_URL}
     - {PROJECT_URL}/blob/master/STATS.md
@@ -240,7 +287,7 @@ detection:
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
     - Test environments with intentionally installed malicious extensions
-level: high
+level: {level}
 logsources:
     # Uncomment and adjust for your environment:
     # Windows registry (Chrome/Edge extension installation):
@@ -256,14 +303,53 @@ fields:
     - RegistryKey
     - FilePath
     - NetworkURL
-"""
-        rules.append(rule)
+""")
+        return built
+
+    rules = build_rules(
+        main_ids,
+        rule_id="chrome-mal-ids-sigma",
+        title="Malicious Chrome/Edge Extension Detected",
+        level="high",
+        status="experimental",
+        description=(
+            f"Detects the presence or activity of a known malicious Chrome or Edge\n"
+            f"    browser extension based on the Malicious Chrome Extension IOC Database\n"
+            f"    ({PROJECT_URL}). Covers {len(main_ids)} confirmed malicious extension IDs\n"
+            f"    across campaigns including credential theft, data exfiltration, browser\n"
+            f"    hijacking, click fraud, and supply chain attacks via ownership transfer."
+        ),
+    )
+
+    rules += build_rules(
+        disputed_ids,
+        rule_id="chrome-mal-ids-sigma-disputed",
+        title="Chrome/Edge Extension Reported Malicious — Classification Disputed",
+        level="low",
+        status="experimental",
+        description=(
+            f"Extension IDs reported malicious by a contributing source where TPCI\n"
+            f"    Stage 5A static analysis found no indicators above its scoring threshold.\n"
+            f"    The source classification is retained and these IDs remain published; the\n"
+            f"    disagreement is recorded so it can be weighted separately. A\n"
+            f"    below-threshold result is NOT a safety verification — static analysis can\n"
+            f"    be evaded and extensions change after analysis. Raise the level or merge\n"
+            f"    into the main rule if your environment prefers the stricter posture.\n"
+            f"    Covers {len(disputed_ids)} extension IDs. Source: {PROJECT_URL}"
+        ),
+    )
 
     if dry_run:
-        print(f"[DRY RUN] current-list-sigma.yml would be written → {total} IDs across {len(chunks)} rule(s)")
-    else:
-        out_path.write_text("\n---\n".join(rules), encoding="utf-8")
-        print(f"✓ current-list-sigma.yml → {total} IDs across {len(chunks)} rule(s)")
+        print(f"[DRY RUN] current-list-sigma.yml would be written → "
+              f"{len(main_ids)} IDs + {len(disputed_ids)} disputed "
+              f"across {len(rules)} rule(s)")
+        return
+
+    out_path.write_text("\n---\n".join(rules), encoding="utf-8")
+    print(f"✓ current-list-sigma.yml → {len(main_ids)} IDs across "
+          f"{len(rules)} rule(s)"
+          + (f"; {len(disputed_ids)} disputed in a separate level:low rule"
+             if disputed_ids else ""))
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────

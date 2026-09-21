@@ -9,6 +9,11 @@ Produces a STIX 2.1 bundle containing:
   - Relationship objects linking each Indicator to its Malware object
   - One Report object wrapping the full bundle
 
+Indicators whose TPCI Stage 5A analysis disagreed with the contributing
+source's classification carry the label `tpci:classification-disputed` and
+say so in their description. They are published, not withheld — see
+is_disputed().
+
 Output: chrome-mal-ids-stix.json (in the repo root by default)
 
 Compatible with:
@@ -18,7 +23,7 @@ Compatible with:
   - Threat intelligence platforms supporting STIX 2.1
 
 Usage:
-    python3 generate_stix.py [--csv PATH] [--out PATH] [--pretty]
+    python3 generate_stix.py [--csv PATH] [--out PATH] [--pretty] [--dry-run]
 
 Requirements:
     pip install stix2 --break-system-packages
@@ -28,6 +33,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -59,6 +65,8 @@ PROJECT_URL  = "https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids"
 STORE_URL    = "https://chromewebstore.google.com/detail/{ext_id}"
 EDGE_URL     = "https://microsoftedge.microsoft.com/addons/detail/{ext_id}"
 
+DISPUTED_LABEL = "tpci:classification-disputed"
+
 # Map our threat types to STIX malware-types vocabulary
 THREAT_TYPE_MAP = {
     "spyware":            "spyware",
@@ -74,6 +82,46 @@ THREAT_TYPE_MAP = {
     "trojan":             "trojan",
     "rootkit":            "rootkit",
 }
+
+# ── Campaign extraction ────────────────────────────────────────────────────────
+#
+# NOTES values that are a CLASSIFICATION or a status remark, not a campaign.
+#
+# Delta-feed entries often carry a bare category as their entire NOTES —
+# "Adware", "Policy Violation", "Search Hijacking". The previous extractor read
+# that leading fragment as a campaign name, so the bundle gained Malware objects
+# named after threat categories rather than campaigns.
+#
+# Kept byte-identical to generate_stats.py's implementation. Four copies of this
+# logic exist (here, generate_stats.py, generate_misp.py, index.html); they
+# disagreed for months. If you change one, change all four.
+NON_CAMPAIGN_NOTES = {
+    "adware", "malware", "spyware",
+    "policy violation",
+    "search hijacking", "search-hijacker",
+    "bundling unwanted software",
+    "potentially unwanted software",
+    "critical vulnerability",
+    "in store but not whitelisted",
+    "in store but suspicious",
+    "unknown",
+}
+
+NON_CAMPAIGN_PREFIXES = (
+    "stub entry imported from",
+    "stage 5a static analysis",
+    "the reporter did not correlate",
+    "these extensions have not all been confirmed",
+    "the extension was",
+    "source:",
+)
+
+# Leading quote characters must be stripped before prefix matching — a note
+# opening with a typographic quote does not match a bare startswith() test.
+LEADING_PUNCT = "“”‘’\"' \t"
+
+UNATTRIBUTED = "Unattributed"
+
 
 def parse_date(date_str: str) -> datetime | None:
     """Parse YYYY-MM-DD to timezone-aware datetime, return None if invalid."""
@@ -100,20 +148,79 @@ def threat_types_to_stix(threat_str: str) -> list[str]:
     return types or ["malware"]
 
 
-def extract_campaign(notes: str, ext_name: str) -> str:
-    """Best-effort campaign name extraction from notes field."""
-    if not notes or notes.upper() == "UNKNOWN":
-        return "Unknown Campaign"
-    # Look for "Campaign Name (date):" or "Campaign Name:" pattern
-    import re
-    m = re.match(r'^([A-Z][^.(]{3,60}?)(?:\s*[\.(])', notes)
+def extract_campaign(notes: str) -> str | None:
+    """
+    Return the campaign label for an entry, or None when the note carries no
+    campaign attribution.
+
+    None is distinct from "Unknown": it means the entry was never attributed
+    to a campaign, rather than belonging to one we cannot name.
+    """
+    n = (notes or "").strip().lstrip(LEADING_PUNCT)
+    if not n:
+        return None
+    low = n.lower()
+    if low in NON_CAMPAIGN_NOTES:
+        return None
+    if any(low.startswith(p) for p in NON_CAMPAIGN_PREFIXES):
+        return None
+
+    # Named-campaign pattern: "...clusters: Phoenix Invicta and ...".
+    m_named = re.search(
+        r'(?:campaign|cluster|group)s?:\s*([A-Z][^,.(]{3,50}?)'
+        r'(?:\s*(?:extensions?|and\s|,|\.))', n, re.I)
+    if m_named:
+        c = m_named.group(1).strip()
+        if c.lower() not in NON_CAMPAIGN_NOTES:
+            return c
+
+    # A period only ends the label when followed by whitespace or end of
+    # string — otherwise the dot in a domain truncates campaigns named after
+    # their C2 infrastructure ("Palant serasearchtop.com campaign").
+    m = re.match(r'^([A-Z][^(]{3,60}?)(?:\s*\((?!\s)|\.(?=\s|$)|\s*$)', n)
     if m:
-        candidate = m.group(1).strip()
-        if len(candidate.split()) <= 8:
-            return candidate
-    # Fall back to first sentence
-    first = notes.split(".")[0].strip()
-    return first[:80] if first else ext_name
+        c = m.group(1).strip().rstrip(".")
+        if len(c.split()) <= 8:
+            return None if c.lower() in NON_CAMPAIGN_NOTES else c
+    head = n.split(".")[0].strip()
+    if len(head) > 60:
+        cut = head[:60].rsplit(" ", 1)[0].rstrip(" ,;:—-")
+        head = (cut or head[:60]) + "…"
+    if not head or head.lower().rstrip("…") in NON_CAMPAIGN_NOTES:
+        return None
+    return head
+
+
+def unattributed_label(row: dict) -> str:
+    """
+    Malware-object label for an entry with no campaign attribution.
+
+    Sub-grouped by threat type so the bundle carries something meaningful
+    rather than one undifferentiated "Unattributed" object. Components are
+    sorted, which also collapses the ordering variants the classifier emits —
+    "spyware,data-theft" and "data-theft,spyware" are one group, not two.
+    """
+    raw   = (row.get("THREAT-TYPE") or "").strip()
+    parts = sorted({t.strip().lower() for t in raw.split(",") if t.strip()})
+    parts = [p for p in parts if p and p != "unknown"]
+    if not parts:
+        return f"{UNATTRIBUTED}: unclassified"
+    return f"{UNATTRIBUTED}: " + ", ".join(parts)
+
+
+def is_disputed(row: dict) -> bool:
+    """
+    True when TPCI's own Stage 5A analysis found nothing above the scoring
+    threshold while the contributing source classified the extension as
+    malicious.
+
+    A recorded disagreement between two methods — NOT a finding that the
+    extension is safe. A below-threshold score means the scanner found nothing
+    under the scoring logic in force at the time; static analysis can be
+    evaded, and extensions change after they are analyzed. The indicator is
+    published either way, with the source's classification intact.
+    """
+    return (row.get("TPCI-BEHAVIORAL") or "").strip() == "below-threshold"
 
 
 def load_csv(csv_path: Path, verified_only: bool = True) -> list[dict]:
@@ -189,6 +296,7 @@ def build_indicator(row: dict, identity_id: str,
     article  = row.get("ARTICLE", "").strip()
     date_dis = parse_date(row.get("DATE-DIS", ""))
     still_active = row.get("STILL-ACTIVE", "0").strip()
+    disputed = is_disputed(row)
 
     # STIX pattern — match the extension ID as a URL in the appropriate store
     if browser == "edge":
@@ -206,6 +314,13 @@ def build_indicator(row: dict, identity_id: str,
         desc_parts.append(notes[:500])
     if still_active == "1":
         desc_parts.append("⚠ Still active in browser store at time of reporting.")
+    if disputed:
+        desc_parts.append(
+            "⚠ Classification disputed: TPCI Stage 5A static analysis found no "
+            "indicators above its scoring threshold. The contributing source's "
+            "classification is retained and this indicator is published; a "
+            "below-threshold result is not a safety verification."
+        )
     description = " ".join(desc_parts)
 
     # External references
@@ -227,6 +342,10 @@ def build_indicator(row: dict, identity_id: str,
             url=article,
         ))
 
+    labels = [f"ext-id:{ext_id}", f"browser:{browser}"]
+    if disputed:
+        labels.append(DISPUTED_LABEL)
+
     kwargs = dict(
         name=f"Malicious Extension: {ext_name}",
         indicator_types=["malicious-activity"],
@@ -237,7 +356,7 @@ def build_indicator(row: dict, identity_id: str,
         description=description,
         created_by_ref=identity_id,
         external_references=ext_refs,
-        labels=[f"ext-id:{ext_id}", f"browser:{browser}"],
+        labels=labels,
     )
 
     # Add kill chain phase
@@ -285,11 +404,11 @@ def main():
     all_objects = [identity]
 
     # Group rows by campaign for Malware objects
-    # Use (source URL, threat-type) as a proxy for campaign grouping
     campaign_map: dict[str, stix2.Malware] = {}
     indicators  = []
     relationships = []
     skipped     = 0
+    disputed_n  = 0
 
     for i, row in enumerate(rows, 1):
         if i % 100 == 0 or i == len(rows):
@@ -302,7 +421,9 @@ def main():
         date_dis    = parse_date(row.get("DATE-DIS", ""))
         ext_name    = row.get("EXTID-NAME", "Unknown").strip()
 
-        campaign_name  = extract_campaign(notes, ext_name)
+        # Entries with no campaign attribution group by threat type rather
+        # than by the leading fragment of their NOTES field.
+        campaign_name  = extract_campaign(notes) or unattributed_label(row)
         threat_types   = threat_types_to_stix(threat_str)
 
         # Deduplicate campaigns by name
@@ -324,6 +445,8 @@ def main():
             rel       = build_relationship(indicator, malware_obj, identity.id)
             indicators.append(indicator)
             relationships.append(rel)
+            if is_disputed(row):
+                disputed_n += 1
         except Exception as e:
             print(f"  [warn] Skipping {ext_id}: {e}", file=sys.stderr)
             skipped += 1
@@ -360,26 +483,31 @@ def main():
         print(f"  {len(campaign_map)} malware/campaign objects")
         print(f"  {len(relationships)} relationships")
         print(f"  {len(all_objects)} total STIX objects")
+        if disputed_n:
+            print(f"  {disputed_n} indicator(s) labelled {DISPUTED_LABEL}")
         if skipped:
             print(f"  {skipped} entries skipped (see warnings above)")
-    else:
-        # Write output
-        args.out.parent.mkdir(parents=True, exist_ok=True)
-        with open(args.out, "w", encoding="utf-8") as f:
-            if args.pretty:
-                f.write(bundle.serialize(pretty=True))
-            else:
-                f.write(bundle.serialize())
+        return
 
-        print(f"\n✓ STIX 2.1 bundle written to {args.out}")
-        print(f"  {len(indicators)} indicators")
-        print(f"  {len(campaign_map)} malware/campaign objects")
-        print(f"  {len(relationships)} relationships")
-        print(f"  {len(all_objects)} total STIX objects")
-        if skipped:
-            print(f"  {skipped} entries skipped (see warnings above)")
-        print(f"\nImport into MISP: Events → Import → STIX 2.1 → select {args.out.name}")
-        print(f"Import into OpenCTI: Data → Import → {args.out.name}")
+    # Write output
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    with open(args.out, "w", encoding="utf-8") as f:
+        if args.pretty:
+            f.write(bundle.serialize(pretty=True))
+        else:
+            f.write(bundle.serialize())
+
+    print(f"\n✓ STIX 2.1 bundle written to {args.out}")
+    print(f"  {len(indicators)} indicators")
+    print(f"  {len(campaign_map)} malware/campaign objects")
+    print(f"  {len(relationships)} relationships")
+    print(f"  {len(all_objects)} total STIX objects")
+    if disputed_n:
+        print(f"  {disputed_n} indicator(s) labelled {DISPUTED_LABEL}")
+    if skipped:
+        print(f"  {skipped} entries skipped (see warnings above)")
+    print(f"\nImport into MISP: Events → Import → STIX 2.1 → select {args.out.name}")
+    print(f"Import into OpenCTI: Data → Import → {args.out.name}")
 
 
 if __name__ == "__main__":

@@ -111,7 +111,17 @@ NON_CAMPAIGN_PREFIXES = (
     "stub entry imported from",
     "stage 5a static analysis",
     "the reporter did not correlate",
+    "these extensions have not all been confirmed",
+    "the extension was",
+    "source:",
 )
+
+# Leading quote characters must be stripped before prefix matching.
+# A note beginning with a typographic quote — "The reporter did not
+# correlate..." — does not match a startswith() test against the bare
+# phrase, which is why 230 such entries survived the first pass and
+# appeared in the campaigns table as a campaign named after the caveat.
+LEADING_PUNCT = "“”‘’\"' \t"
 
 
 def extract_campaign(notes: str) -> str | None:
@@ -124,7 +134,7 @@ def extract_campaign(notes: str) -> str | None:
     count them separately rather than folding them into the campaign list.
     """
     import re
-    n = (notes or "").strip()
+    n = (notes or "").strip().lstrip(LEADING_PUNCT)
     if not n:
         return None
     low = n.lower()
@@ -133,15 +143,46 @@ def extract_campaign(notes: str) -> str | None:
     if any(low.startswith(p) for p in NON_CAMPAIGN_PREFIXES):
         return None
 
-    m = re.match(r'^([A-Z][^.(]{3,60}?)(?:\s*[\.(])', n)
+    # Named-campaign pattern: "...clusters: Phoenix Invicta and ...".
+    # When a note introduces the campaign by name after a keyword, that name
+    # is a better label than the leading description. Without this,
+    # "Two overlapping malicious extension clusters: Phoenix Invicta..."
+    # becomes "Two overlapping malicious extension clusters:", a description
+    # rather than a campaign. 20 entries currently match.
+    #
+    # Ported from the search UI's extractCampaign(), which had this rule
+    # while this function did not — the two implementations disagreed on
+    # those 20 for as long as both have existed.
+    m_named = re.search(
+        r'(?:campaign|cluster|group)s?:\s*([A-Z][^,.(]{3,50}?)'
+        r'(?:\s*(?:extensions?|and\s|,|\.))', n, re.I)
+    if m_named:
+        c = m_named.group(1).strip()
+        if c.lower() not in NON_CAMPAIGN_NOTES:
+            return c
+
+    # A period only ends the label when followed by whitespace or the end of
+    # the string. Without that condition the dot in a domain terminates the
+    # match, so "Secure Annex unknow.com spyware campaign (Apr 2025)" became
+    # "Secure Annex unknow" and "Palant serasearchtop.com campaign" became
+    # "Palant serasearchtop" — campaigns named after their C2 infrastructure,
+    # which is common in this data, were being cut at the TLD.
+    m = re.match(r'^([A-Z][^(]{3,60}?)(?:\s*\((?!\s)|\.(?=\s|$)|\s*$)', n)
     if m:
-        c = m.group(1).strip()
+        c = m.group(1).strip().rstrip(".")
         if len(c.split()) <= 8:
             # The leading fragment can itself be a bare classification, e.g.
             # "Adware. Injects ads into search results."
             return None if c.lower() in NON_CAMPAIGN_NOTES else c
-    head = n.split(".")[0].strip()[:60]
-    if not head or head.lower() in NON_CAMPAIGN_NOTES:
+    head = n.split(".")[0].strip()
+    if len(head) > 60:
+        # Trim at a word boundary, not mid-word. The hard [:60] slice
+        # produced labels like "StegoAd campaign, microsoft research;
+        # THREAT-TYPE set at cam" and "Secure Annex unknow", which read as
+        # corrupted data rather than truncated text.
+        cut = head[:60].rsplit(" ", 1)[0].rstrip(" ,;:—-")
+        head = (cut or head[:60]) + "…"
+    if not head or head.lower().rstrip("…") in NON_CAMPAIGN_NOTES:
         return None
     return head
 

@@ -74,6 +74,7 @@ Each entry in `current-list-meta.csv` contains:
 | `SOURCE` | Primary research source |
 | `ARTICLE` | News/blog article covering the campaign |
 | `NOTES` | Plain-English summary of the malicious behavior |
+| `TPCI-BEHAVIORAL` | Stage 5A static analysis result, when it has run — `malicious`, `suspicious`, `elevated`, `below-threshold` or `unknown` |
 
 Full schema: [SCHEMA.md](SCHEMA.md)
 
@@ -103,10 +104,26 @@ reflects behavioral analysis.
 
 **Independent analysis may disagree with the source.** Third-party entries carry the
 contributing source's classification in `NOTES`; where TPCI Stage 5A analysis has run,
-its own finding is recorded alongside it. The two may differ. A `suspicious` or `clean`
-Stage 5A result is not a retraction of the source's classification — static analysis can
-be evaded, and an absence of detected indicators is not evidence of benign behavior. Both
-signals are recorded so consumers can prioritize according to their own risk tolerance.
+its own finding is recorded alongside it. The two may differ. A `suspicious` or
+`below-threshold` Stage 5A result is not a retraction of the source's classification —
+static analysis can be evaded, and an absence of detected indicators is not evidence of
+benign behavior. Both signals are recorded so consumers can prioritize according to their
+own risk tolerance.
+
+**Disputed classifications are flagged, not removed.** Where our Stage 5A analysis found
+nothing above its scoring threshold (`TPCI-BEHAVIORAL=below-threshold`) but the
+contributing source classified the extension as malicious, the entry is marked in every
+distribution format:
+
+| Output | Form |
+|---|---|
+| `current-list.json` | `"classification_disputed": true`, alongside `"behavioral"` |
+| `current-list.txt` | inline `[disputed]` marker |
+| `current-list-sigma.yml` | separate rule `chrome-mal-ids-sigma-disputed` at `level: low` |
+| MISP | attribute tag `tpci:classification-disputed` |
+
+We publish the source's determination with its attribution intact rather than
+substituting our own judgment for it. The flag exists so you can apply yours.
 
 **Filtering by confidence level:**
 ```bash
@@ -124,6 +141,9 @@ python3 -c "import csv; [print(r['EXTID']) for r in \
 
 # Unverified delta imports
 grep "Delta_Import" data/current-list-meta.csv | grep -v "Store_Enrichment"
+
+# Exclude disputed classifications from the plain-text blocklist
+grep -v '\[disputed\]' data/current-list.txt
 ```
 
 **Additional quality notes:**
@@ -194,6 +214,12 @@ Sigma rule covering all known malicious IDs — compatible with Splunk, Elastic,
 https://raw.githubusercontent.com/The-Privacy-Commons-Institute/chrome-mal-ids/master/data/current-list-sigma.yml
 ```
 
+The file contains two rules. `chrome-mal-ids-sigma` (`level: high`) covers the main
+population. `chrome-mal-ids-sigma-disputed` (`level: low`) covers entries where our own
+Stage 5A analysis disagreed with the contributing source — see [Data quality](#data-quality).
+Sigma has nowhere to put per-ID metadata, so the split is the only way to express that
+distinction; enable both rules for the full list.
+
 Convert to your SIEM's native format with [sigma-cli](https://github.com/SigmaHQ/sigma-cli):
 
 ```bash
@@ -245,6 +271,8 @@ MISP → Feeds → Add Feed:
 ```
 
 The feed creates one MISP event per campaign, with full attribute metadata, TLP:WHITE tags, and source references (see [STATS.md](STATS.md) for the current campaign count). Updates automatically with every new database commit.
+
+Entries with no campaign attribution are grouped as `Unattributed: <threat types>` — e.g. `Unattributed: data-theft, spyware` — so they remain selectable rather than landing in one undifferentiated bucket. Attributes whose classification is disputed carry the tag `tpci:classification-disputed`; filter on it in MISP to include or exclude them.
 
 ### 🧩 STIX 2.1 / OpenCTI
 
