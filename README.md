@@ -102,7 +102,7 @@ a *stage*, not a confidence score: stages 1–3 establish that an extension exis
 or is reachable in the store. They are not findings about what it does. Only stage 5
 reflects behavioral analysis.
 
-**Independent analysis may disagree with the source.** Third-party entries carry the
+**Independent analysis may differ from the source.** Third-party entries carry the
 contributing source's classification in `NOTES`; where TPCI Stage 5A analysis has run,
 its own finding is recorded alongside it. The two may differ. A `suspicious` or
 `below-threshold` Stage 5A result is not a retraction of the source's classification —
@@ -110,20 +110,28 @@ static analysis can be evaded, and an absence of detected indicators is not evid
 benign behavior. Both signals are recorded so consumers can prioritize according to their
 own risk tolerance.
 
-**Disputed classifications are flagged, not removed.** Where our Stage 5A analysis found
-nothing above its scoring threshold (`TPCI-BEHAVIORAL=below-threshold`) but the
-contributing source classified the extension as malicious, the entry is marked in every
-distribution format:
+**Divergent classifications are flagged, not removed.** Where TPCI Stage 5A analysis
+found nothing above its scoring threshold (`TPCI-BEHAVIORAL=below-threshold`) but the
+contributing source classified the extension as malicious, the two methods did not
+agree and the entry is marked in every distribution format:
 
 | Output | Form |
 |---|---|
-| `current-list.json` | `"classification_disputed": true`, alongside `"behavioral"` |
-| `current-list.txt` | inline `[disputed]` marker |
-| `current-list-sigma.yml` | separate rule `chrome-mal-ids-sigma-disputed` at `level: low` |
-| MISP | attribute tag `tpci:classification-disputed` |
+| `current-list.json` | `"classification_divergent": true`, alongside `"behavioral"` |
+| `current-list.txt` | inline `[divergent]` marker |
+| `current-list-sigma.yml` | separate rule `chrome-mal-ids-sigma-divergent` at `level: low` |
+| MISP | attribute tag `tpci:classification-divergent` |
 
-We publish the source's determination with its attribution intact rather than
-substituting our own judgment for it. The flag exists so you can apply yours.
+The flag records a divergence between two methods. It does not say which one is
+right: neither result overrides the other, and a below-threshold score is not a
+safety verification. We publish the source's determination with its attribution
+intact rather than substituting our own judgment for it. The flag exists so you
+can apply yours.
+
+*This flag was named `disputed` when introduced on 2026-09-21 and renamed on
+2026-09-22 — "disputed" implied we were contesting the source's finding, which
+we are not. Consumers who pinned the earlier strings should update; see
+[CHANGELOG.md](CHANGELOG.md).*
 
 **Filtering by confidence level:**
 ```bash
@@ -142,8 +150,8 @@ python3 -c "import csv; [print(r['EXTID']) for r in \
 # Unverified delta imports
 grep "Delta_Import" data/current-list-meta.csv | grep -v "Store_Enrichment"
 
-# Exclude disputed classifications from the plain-text blocklist
-grep -v '\[disputed\]' data/current-list.txt
+# Exclude divergent classifications from the plain-text blocklist
+grep -v '\[divergent\]' data/current-list.txt
 ```
 
 **Additional quality notes:**
@@ -215,8 +223,9 @@ https://raw.githubusercontent.com/The-Privacy-Commons-Institute/chrome-mal-ids/m
 ```
 
 The file contains two rules. `chrome-mal-ids-sigma` (`level: high`) covers the main
-population. `chrome-mal-ids-sigma-disputed` (`level: low`) covers entries where our own
-Stage 5A analysis disagreed with the contributing source — see [Data quality](#data-quality).
+population. `chrome-mal-ids-sigma-divergent` (`level: low`) covers entries where TPCI
+Stage 5A analysis and the contributing source did not agree — see
+[Data quality](#data-quality).
 Sigma has nowhere to put per-ID metadata, so the split is the only way to express that
 distinction; enable both rules for the full list.
 
@@ -272,7 +281,7 @@ MISP → Feeds → Add Feed:
 
 The feed creates one MISP event per campaign, with full attribute metadata, TLP:WHITE tags, and source references (see [STATS.md](STATS.md) for the current campaign count). Updates automatically with every new database commit.
 
-Entries with no campaign attribution are grouped as `Unattributed: <threat types>` — e.g. `Unattributed: data-theft, spyware` — so they remain selectable rather than landing in one undifferentiated bucket. Attributes whose classification is disputed carry the tag `tpci:classification-disputed`; filter on it in MISP to include or exclude them.
+Entries with no campaign attribution are grouped as `Unattributed: <threat types>` — e.g. `Unattributed: data-theft, spyware` — so they remain selectable rather than landing in one undifferentiated bucket. Attributes whose classification diverged carry the tag `tpci:classification-divergent`; filter on it in MISP to include or exclude them.
 
 ### 🧩 STIX 2.1 / OpenCTI
 

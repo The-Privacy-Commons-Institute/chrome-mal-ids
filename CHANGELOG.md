@@ -7,6 +7,62 @@ and reasoning for significant data decisions.
 
 ---
 
+## 2026-09-22 — `disputed` renamed to `divergent`
+
+### Summary
+The classification flag introduced yesterday is renamed. Every published form of
+it changes. This is a breaking change for anyone who pinned the previous strings,
+one day after they first appeared.
+
+### Reasoning
+"Disputed" asserts a position we do not hold. We are not contesting the
+contributing source's finding — we ran a different method over the currently
+published package and did not reproduce it. Those are different claims, and the
+stronger one is the one we cannot support: we do not know how a given source
+derives its classifications, we analyse a build that is often not the one that
+was reported, and static analysis can be evaded. "Divergent" says what actually
+happened — two systems did not agree — without implying either is wrong.
+
+### What changed
+
+| Output | Was | Now |
+|---|---|---|
+| `current-list.json` | `"classification_disputed"` | `"classification_divergent"` |
+| `current-list.txt` | `[disputed]` | `[divergent]` |
+| `current-list-sigma.yml` | rule id `chrome-mal-ids-sigma-disputed` | `chrome-mal-ids-sigma-divergent` |
+| MISP | tag `tpci:classification-disputed` | `tpci:classification-divergent` |
+| STIX | label `tpci:classification-disputed` | `tpci:classification-divergent` |
+
+The Sigma rule id change means an existing import sees the old rule disappear
+rather than update. `grep -v '\[disputed\]'` becomes `grep -v '\[divergent\]'`.
+
+Descriptions carried the same implication and were rewritten with the rename:
+the STIX indicator description and the Sigma rule description now state that the
+two methods do not agree, that neither result overrides the other, and that Stage
+5A analysed the *currently published* package. No data changed — the flag is still
+derived from `TPCI-BEHAVIORAL=below-threshold` and no CSV column was added.
+
+### Stage 5A: search-provider override detection
+
+Separately, Stage 5A gained detection for `chrome_settings_overrides` and
+`chrome_url_overrides` declared in the manifest. It previously scored only
+permissions, content-script scope, known C2 domains and JS patterns, so a search
+hijacker whose entire payload is a declared search-provider override scored at or
+near zero — including extensions shipping no JavaScript at all, which were
+structurally invisible to it. Search-hijacking entries were therefore
+systematically over-represented in the below-threshold population, and so in the
+divergence flag.
+
+Validation on six known search-hijacking extensions: all six produced the
+finding and all six moved off below-threshold. A control sample of eleven
+non-hijacking extensions produced no search-provider finding.
+
+**The cohort has not yet been re-analysed.** Entries flagged divergent today
+include ones that were flagged only because the detector did not exist when they
+were scored. Expect the divergent population to shrink when the re-run completes.
+
+---
+
 ## 2026-09-21 — Stage 5A terminology, disputed-classification flag, MISP feed grouping
 
 ### Summary
@@ -24,6 +80,11 @@ evaded, thresholds change, and extensions are updated after they are analyzed.
 does not mean. **Consumers filtering on the literal string `clean` must update.**
 
 ### New: classification-disputed flag
+
+> **Renamed (2026-09-22):** this flag and every published form of it were renamed
+> from `disputed` to `divergent` the following day — see the entry above. The
+> names below are the ones that shipped on 2026-09-21 and are recorded here as
+> published; they are no longer current.
 
 An entry is flagged when TPCI's own Stage 5A analysis found nothing above
 threshold while the contributing source classified the extension as malicious.
@@ -215,8 +276,9 @@ Previously these were excluded as unverified delta imports.
 > distribution outputs — the filter drops `Delta_Import` rows lacking a
 > `TPCI-VERIFY` value, and reaching Stage 5A sets it. They have shipped in
 > every output since. They remain published and are now flagged as
-> classification-disputed; see the 2026-09-21 entry. The `clean` risk level
-> referenced below has since been renamed `below-threshold`.
+> classification-divergent (introduced 2026-09-21 as `disputed`, renamed
+> 2026-09-22); see those entries. The `clean` risk level referenced below has
+> since been renamed `below-threshold`.
 
 32 delta import stub entries passed Stage 5A static analysis with no significant
 findings. These are retained in the CSV for historical completeness but excluded

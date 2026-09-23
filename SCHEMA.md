@@ -72,8 +72,6 @@ recorded separately in `STILL-ACTIVE`. The two fields are independent: any
 | `4` | Stage 4 | Identity continuity verified. Result in `TPCI-IDENTITY`. |
 | `5` | Stage 5A | Static behavioral analysis completed. Result in `TPCI-BEHAVIORAL`. |
 
-This value was named clean until 2026-09-21. The term was retired because it was read as a safety claim: extensions have scored below threshold while confirmed malicious by other means. The 34 existing clean values were migrated to below-threshold on that date. Consumers who pinned on the literal string clean should update.
-
 `TPCI-VERIFY-DATE` records the ISO date (YYYY-MM-DD) when verification was
 last performed. Store status changes over time — always check the date.
 
@@ -126,6 +124,16 @@ was read as a safety claim; "Still There" (Paper 1) documents the change and
 notes cases of extensions that scored clean while confirmed malicious by other
 means. The 34 existing `clean` values were migrated to `below-threshold` on
 that date. Consumers who pinned on the literal string `clean` should update.
+
+**Divergence flag (derived, not a column):** where `TPCI-BEHAVIORAL` is
+`below-threshold` and the contributing source classified the extension as
+malicious, the distribution outputs mark the entry — `classification_divergent`
+in `current-list.json`, an inline `[divergent]` marker in `current-list.txt`, a
+separate `level: low` rule in the Sigma output, and the `tpci:classification-divergent`
+tag in MISP and STIX. It is computed from `TPCI-BEHAVIORAL` at generation time;
+there is no corresponding column in this CSV. The flag records that two methods
+did not agree, and says nothing about which one is right. It was named
+`disputed` when introduced on 2026-09-21 and renamed on 2026-09-22.
 
 `TPCI-CRX-HASH` contains the SHA-256 hash of the specific CRX package version
 analyzed. `TPCI-BEHAVIORAL-DATE` records when the analysis was performed.
