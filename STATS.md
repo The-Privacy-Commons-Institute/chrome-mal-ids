@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-09-29 06:04 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-09-29 06:05 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -33,15 +33,14 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
+| unknown | 2,659 (35.2%) |
 | adware | 2,546 (33.7%) |
-| unknown | 2,519 (33.3%) |
 | data-theft | 2,286 (30.2%) |
 | spyware | 1,694 (22.4%) |
 | browser-hijack | 1,159 (15.3%) |
 | click-fraud | 397 (5.2%) |
 | credential-theft | 324 (4.3%) |
 | session-hijack | 202 (2.7%) |
-| malware | 140 (1.9%) |
 | ownership-transfer | 29 (0.4%) |
 | fake-extension | 29 (0.4%) |
 | phishing | 27 (0.4%) |
