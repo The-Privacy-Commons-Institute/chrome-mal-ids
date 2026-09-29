@@ -7,6 +7,77 @@ and reasoning for significant data decisions.
 
 ---
 
+## 2026-09-28 — Threat-type corrections; Stage 5A evidence retention
+
+### Summary
+Three data corrections and one pipeline bug, the last of which affects
+whether any published `TPCI-BEHAVIORAL` value can be independently
+reproduced.
+
+### `THREAT-TYPE=malware` retired — 140 rows
+
+`malware` was never in the taxonomy, published (SCHEMA.md, 16 values) or
+internal (7 values). It is not a threat type: it asserts that something is
+bad, which `CONFIRM-MAL` and `REPORTED-MAL` already record, rather than
+describing what it does.
+
+It came from an internal script's source-reason fallback, which wrote the
+contributing source's bare label straight through when the classifier
+returned nothing. Two labels reached it — `malware`, and `policy violation`,
+which silently upgraded a store-policy determination (metadata, keyword
+spam, a missing privacy policy) into a malware assertion.
+
+All 140 affected rows reached every distribution format. They now read
+`UNKNOWN`. The fallback is restricted to taxonomy values, and `search
+hijacking` / `search-hijacker` were added as mappings to `browser-hijack`.
+
+`CONTRIB-METHOD` is unchanged on these rows: SCHEMA defines
+`ThreatType_Fallback` as "classification attempted but no confident category
+assigned," which describes them accurately now.
+
+### `THREAT-TYPE` component order normalized — 677 rows
+
+`THREAT-TYPE` is a comma-separated list, and until 2026-09-22 components
+were emitted in whatever order the classifier returned. The same category
+existed under several spellings — `credential-theft,data-theft,session-hijack`
+appeared four different ways across 41 rows. Any consumer grouping on the
+field saw them as distinct.
+
+Components are now lowercased, deduplicated and sorted alphabetically.
+Distinct values dropped from 60 to 44. **No classification was added or
+removed** — order and spelling only.
+
+### UNKNOWN is higher, deliberately
+
+These corrections raise `THREAT-TYPE=UNKNOWN` by roughly 140. That is the
+correct direction: those rows previously carried a value we had no evidence
+for. Roughly 74% of the UNKNOWN population is extensions removed from the
+store before behavioral analysis was possible — the CRX is unreachable, so
+no classification is recoverable by us or anyone else.
+
+### Stage 5A findings file was being overwritten
+
+Another internal pipeline script loaded its existing findings only under `--resume`,
+but wrote unconditionally at the end of every run. Any run without that flag
+replaced the entire evidence file with just its own results.
+
+**Consequence:** `TPCI-BEHAVIORAL` values in the published CSV are valid —
+each was produced by a real analysis — but for entries analysed before the
+most recent run, the underlying findings no longer exist on disk. They
+cannot currently be reproduced or audited. This includes `below-threshold`
+values, which are what the `classification_divergent` flag is derived from.
+
+Fixed: findings are merged rather than replaced, writes are atomic, each run
+also writes an immutable timestamped copy, and the script now refuses to run
+if the findings file exists but cannot be parsed, rather than starting from
+empty.
+
+Recovery is limited.  Findings for entries whose CRX is no longer downloadable
+are not recoverable, and that limitation will be stated in PROVENANCE.md rather
+than worked around.
+
+---
+
 ## 2026-09-22 — `disputed` renamed to `divergent`
 
 ### Summary
