@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-10-15 19:22 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-10-16 18:15 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -10,7 +10,7 @@
 |--------|-------|
 | Total malicious extensions | **8,016** |
 | Unique campaigns | **34** |
-| Entries without campaign attribution | **6,445** |
+| Entries without campaign attribution | **6,423** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **0** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **268** |
@@ -33,14 +33,14 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 3,113 (38.8%) |
-| adware | 2,555 (31.9%) |
-| data-theft | 2,288 (28.5%) |
-| spyware | 1,714 (21.4%) |
+| unknown | 3,107 (38.8%) |
+| adware | 2,567 (32.0%) |
+| data-theft | 2,295 (28.6%) |
+| spyware | 1,719 (21.4%) |
 | browser-hijack | 1,159 (14.5%) |
 | click-fraud | 397 (5.0%) |
-| credential-theft | 324 (4.0%) |
-| session-hijack | 202 (2.5%) |
+| credential-theft | 334 (4.2%) |
+| session-hijack | 212 (2.6%) |
 | ownership-transfer | 29 (0.4%) |
 | fake-extension | 29 (0.4%) |
 | phishing | 27 (0.3%) |
@@ -51,18 +51,18 @@
 
 ## Campaigns
 
-A total of **34** distinct campaigns are tracked, covering **1,571** of 8,016 entries.
+A total of **34** distinct campaigns are tracked, covering **1,593** of 8,016 entries.
 
-The remaining **6,445** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
+The remaining **6,423** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
 
 | Campaign | Extensions |
 |----------|-----------|
 | Socket Aug 2026 Myxa VPN campaign | 737 |
-| DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 170 |
+| DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 182 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at… | 107 |
 | Palant Jun 2023 affiliate fraud cluster | 103 |
+| Socket April 2026 MaaS campaign | 72 |
 | YowGames cursor farm | 65 |
-| Socket April 2026 MaaS campaign | 62 |
 | DarkSpectre | 36 |
 | Palant serasearchtop.com campaign | 34 |
 | Part of Dec 2024 Cyberhaven supply chain campaign | 31 |

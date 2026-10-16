@@ -2,7 +2,7 @@
   "meta": {
     "name": "Malicious Chrome Extension IOC Database",
     "url": "https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids",
-    "generated": "2026-10-15T19:22:48.767059+00:00",
+    "generated": "2026-10-16T18:15:20.947676+00:00",
     "total": 8005,
     "license": "CC BY 4.0",
     "attribution": "Data sourced from Malicious Chrome Extension IOC Database — https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids"
@@ -225,13 +225,19 @@
       "ext_id": "aahhemfjdkjamblajnjcddcffpcpmlia",
       "name": "Best Snake",
       "browser": "chrome",
+      "threat_types": [
+        "credential-theft",
+        "data-theft",
+        "session-hijack"
+      ],
       "date_discovered": "2026-08-24",
       "date_added": "2026-08-24",
       "still_active": true,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/aahhemfjdkjamblajnjcddcffpcpmlia"
     },
     {
@@ -282,6 +288,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -303,6 +310,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/aajbepboefmlklnahoafabgojcokghmo"
     },
     {
@@ -354,6 +362,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Search Hijacking",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/aajmeahnoefldipnjgodkobfdcpmapno"
     },
     {
@@ -931,6 +940,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -3977,6 +3987,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/ahmncegcglibiloidhipkpmhfmmjiehc"
     },
     {
@@ -4617,6 +4628,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/ajbimmblchdinnlcimmapiekmfmcppin"
     },
     {
@@ -5786,8 +5798,10 @@
       "name": "MoraesCRM",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
-        "session-hijack"
+        "session-hijack",
+        "spyware"
       ],
       "date_discovered": "2026-08-23",
       "date_added": "2026-08-24",
@@ -5795,7 +5809,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/aldlfocdncmkocaeifmeihkddpanoioc"
     },
     {
@@ -6674,7 +6689,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/amkjgolajakcmcbfehdgifahpnncnldb"
     },
     {
@@ -7323,7 +7339,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/annkmbjplpkcmlgdcmlafodkcfhnggfo"
     },
     {
@@ -8592,7 +8609,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/bagcdfmmpkeajdkjepfebgobnkebdmep"
     },
     {
@@ -9454,6 +9472,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/bbgjdpjbganjdaojmpimombagifmgpha"
     },
     {
@@ -10706,6 +10725,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/bediijfgephcioldkpemhpeefinafdmd"
     },
     {
@@ -12447,7 +12467,9 @@
       "name": "Extract Leads",
       "browser": "chrome",
       "threat_types": [
-        "data-theft"
+        "adware",
+        "data-theft",
+        "spyware"
       ],
       "date_discovered": "2026-08-23",
       "date_added": "2026-08-24",
@@ -12455,7 +12477,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/bhkibpbnfknollmiebgefgadfkjhnaph"
     },
     {
@@ -13535,6 +13558,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/bkamampijjdihlelbmepgfhgdbemnolg"
     },
     {
@@ -14003,6 +14027,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Socket Aug 2026 Myxa VPN campaign (737 extensions, 40+ developer accounts, 75,486 installs). Forces all browser traffic through a SOCKS5 relay on port 1082 via chrome.proxy.settings with a loopback-only bypass list. Operator: Myxa VPN / Муха VPN, myxavpn[.]pro. | Original note: Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/blcnhjlbnldiopfekjpcmpcieipiokdl"
     },
     {
@@ -14773,6 +14798,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/bmoojnjfiggdpbajbknhmoldfbaoogem"
     },
     {
@@ -15094,7 +15120,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/bnhpnlfigdbfgohmihdljbggimddocga"
     },
     {
@@ -15166,6 +15193,8 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "below-threshold",
+      "classification_divergent": true,
       "store_url": "https://chromewebstore.google.com/detail/bnkeghcjecgagbajoiophjkpaaecncfn"
     },
     {
@@ -16722,7 +16751,10 @@
       "browser": "chrome",
       "threat_types": [
         "adware",
-        "click-fraud"
+        "click-fraud",
+        "credential-theft",
+        "data-theft",
+        "session-hijack"
       ],
       "date_discovered": "2026-08-24",
       "date_added": "2026-08-24",
@@ -16730,7 +16762,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/caiefmpbohoambhdmbgkejacmipnkomb"
     },
     {
@@ -17652,7 +17685,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/cccjliinaicnnekojhijooohoadnlafa"
     },
     {
@@ -18248,6 +18282,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -18492,6 +18527,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -19891,6 +19927,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Search Hijacking",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/cgdelbjbpigakkmnampgkeigekpacodn"
     },
     {
@@ -20390,6 +20427,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/chhbknablgnpbjokiakabbaekeohooec"
     },
     {
@@ -22199,6 +22237,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -23020,6 +23059,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/cnbobchecopaifnmeklajjcpofdhabno"
     },
     {
@@ -25989,7 +26029,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/dcmoiapnniffbbfhdkmnkbfcmkehncai"
     },
     {
@@ -26608,7 +26649,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/dedjgblojekhdhcoilnidmjedicmojao"
     },
     {
@@ -27217,6 +27259,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-07",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -27419,7 +27462,9 @@
       "name": "Gold Miner",
       "browser": "chrome",
       "threat_types": [
+        "credential-theft",
         "data-theft",
+        "session-hijack",
         "spyware"
       ],
       "date_discovered": "2026-08-24",
@@ -27428,7 +27473,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/dfolmkiioopcjhlgplmgghaafoobkfon"
     },
     {
@@ -27515,6 +27561,7 @@
       "name": "Luma Conecta",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
         "spyware"
       ],
@@ -27524,7 +27571,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/dgcmienmgppcgifalmokjfgkmlopdbcc"
     },
     {
@@ -27746,6 +27794,8 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "below-threshold",
+      "classification_divergent": true,
       "store_url": "https://chromewebstore.google.com/detail/dgnnljdjmneoeojogfomogcgfbffjjhh"
     },
     {
@@ -28114,6 +28164,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/dhogjjpkggldkfonmdilkdhjpgokhkdn"
     },
     {
@@ -30524,6 +30575,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -30575,13 +30627,19 @@
       "ext_id": "dmnopdmknoocmplpjbgjpncgajiclbhj",
       "name": "EspoCRM chat for company",
       "browser": "chrome",
+      "threat_types": [
+        "credential-theft",
+        "data-theft",
+        "session-hijack"
+      ],
       "date_discovered": "2026-08-24",
       "date_added": "2026-08-24",
       "still_active": true,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/dmnopdmknoocmplpjbgjpncgajiclbhj"
     },
     {
@@ -30814,7 +30872,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/dndghkdbfjemnphakkneamfgdogapome"
     },
     {
@@ -31092,6 +31151,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/doajnjgnapnobhdoodembkdhgoegokin"
     },
     {
@@ -34285,7 +34345,9 @@
       "name": "Traffic Escape Game",
       "browser": "chrome",
       "threat_types": [
+        "credential-theft",
         "data-theft",
+        "session-hijack",
         "spyware"
       ],
       "date_discovered": "2026-08-24",
@@ -34294,7 +34356,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/eejjlbledknodmhedabibmagbofnonal"
     },
     {
@@ -34949,6 +35012,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -35368,7 +35432,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Search Hijacking",
+      "notes": "Stage 5A static analysis found elevated-risk indicators but did not confirm malicious behavior (risk_level=suspicious). Awaiting campaign attribution. | Original note: Search Hijacking",
+      "behavioral": "suspicious",
       "store_url": "https://chromewebstore.google.com/detail/eheokfekdhicohflnahpfmifnlnbkfoj"
     },
     {
@@ -35668,6 +35733,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-12",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -36514,7 +36580,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/ejneoebfkhbnoojphdpbijbpaabplmhj"
     },
     {
@@ -38359,7 +38426,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/encjmpakgahilbjfjopbcihjdepnaain"
     },
     {
@@ -39970,6 +40038,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -40837,6 +40906,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -42150,7 +42220,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found elevated-risk indicators but did not confirm malicious behavior (risk_level=suspicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "suspicious",
       "store_url": "https://chromewebstore.google.com/detail/fejalehlkcncbmmaeljpnjdffjjkildd"
     },
     {
@@ -42355,6 +42426,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/ffcnibmoakanfhpapogndgcjdnflcelm"
     },
     {
@@ -44874,6 +44946,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/fkjkkgfkadibilpiackaneifhogpojfe"
     },
     {
@@ -45136,6 +45209,7 @@
       "name": "Crm Telera",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
         "spyware"
       ],
@@ -45145,7 +45219,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/flajofocffjkodopeacjapoldohhoehd"
     },
     {
@@ -45743,8 +45818,10 @@
       "name": "ZappMaster CRM",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
-        "session-hijack"
+        "session-hijack",
+        "spyware"
       ],
       "date_discovered": "2026-08-23",
       "date_added": "2026-08-24",
@@ -45752,7 +45829,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/fmdkcjleingneojldbkfifminfmjiblf"
     },
     {
@@ -45854,6 +45932,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -46505,7 +46584,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/fnepmeaeejjjdbldkdmkcgjiibdjkpll"
     },
     {
@@ -48657,7 +48737,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/gbfehnilmikecbbenafhoceeckfpoojh"
     },
     {
@@ -52423,6 +52504,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/gjggagebmdbamiifkcjlmmilkbmdejhf"
     },
     {
@@ -52691,7 +52773,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/gjnkcmipmfefifmlabnljnpcikmngooo"
     },
     {
@@ -54186,6 +54269,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -55193,7 +55277,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/gonmakbkkncdgejaigbfmghibjfodlbl"
     },
     {
@@ -55639,6 +55724,8 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "below-threshold",
+      "classification_divergent": true,
       "store_url": "https://chromewebstore.google.com/detail/gpncanplicpnbgdeokhbegllddoefnlo"
     },
     {
@@ -56784,6 +56871,7 @@
       "name": "Uai Leads",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
         "spyware"
       ],
@@ -56793,7 +56881,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/hcbmhiibnoenkpgmihciloccgpmjaieb"
     },
     {
@@ -58210,6 +58299,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -58455,6 +58545,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/hfengcfjpdlpkeokijnanjagbhgehgmg"
     },
     {
@@ -58677,6 +58768,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/hfmepibmajpakfjadbmdapiphbeheafd"
     },
     {
@@ -59392,6 +59484,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/hhjheeljkpfgppjegakbgfgijocddjde"
     },
     {
@@ -60607,7 +60700,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found elevated-risk indicators but did not confirm malicious behavior (risk_level=suspicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "suspicious",
       "store_url": "https://chromewebstore.google.com/detail/hkedgndilpkicenklokipnpbfjcheddo"
     },
     {
@@ -63467,9 +63561,11 @@
       "name": "Agência Do Vale",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "credential-theft",
         "data-theft",
-        "session-hijack"
+        "session-hijack",
+        "spyware"
       ],
       "date_discovered": "2026-08-13",
       "date_added": "2026-08-14",
@@ -63477,7 +63573,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/hpfmfjmhhkfpcedjikogphkfacokfagh"
     },
     {
@@ -63916,6 +64013,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Search Hijacking",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/iajhefbpknacpdbpdamgeigojdnepebk"
     },
     {
@@ -63965,13 +64063,19 @@
       "ext_id": "ialiakkbglbihgmbgeaoelcinpbhlilh",
       "name": "Game Kittygram Pro",
       "browser": "chrome",
+      "threat_types": [
+        "credential-theft",
+        "data-theft",
+        "session-hijack"
+      ],
       "date_discovered": "2026-08-24",
       "date_added": "2026-08-24",
       "still_active": true,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/ialiakkbglbihgmbgeaoelcinpbhlilh"
     },
     {
@@ -66326,6 +66430,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/ifiaoagjidkedahdcgpjipkhmnkkhcid"
     },
     {
@@ -67384,6 +67489,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -68982,6 +69088,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -70282,6 +70389,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Search Hijacking",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/inpoelmimmiplkcldmdljiboidfkcfbh"
     },
     {
@@ -70751,7 +70859,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/ipbgdicbhbblkaabpgkhkhebjjfdcbah"
     },
     {
@@ -71440,6 +71549,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -72761,7 +72871,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/jdihogecojffhidcdpcnpgbbegaeofnj"
     },
     {
@@ -73092,6 +73203,7 @@
       "name": "MDU Voice",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
         "spyware"
       ],
@@ -73101,7 +73213,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/jeejphgepchmchdfihkceoleejbohmaj"
     },
     {
@@ -74022,6 +74135,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -74152,6 +74266,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Search Hijacking",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/jgkjicglapnoiojomfhcgchmckpgfmag"
     },
     {
@@ -78861,7 +78976,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/kagfhgkohdbolahilhojelmfnlmkaoml"
     },
     {
@@ -79474,13 +79590,19 @@
       "ext_id": "kbjgcbphgpmocnifmiabfcnglomheonp",
       "name": "Draw on Web",
       "browser": "chrome",
+      "threat_types": [
+        "credential-theft",
+        "data-theft",
+        "session-hijack"
+      ],
       "date_discovered": "2026-08-24",
       "date_added": "2026-08-24",
       "still_active": true,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/kbjgcbphgpmocnifmiabfcnglomheonp"
     },
     {
@@ -79840,7 +79962,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found elevated-risk indicators but did not confirm malicious behavior (risk_level=suspicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "suspicious",
       "store_url": "https://chromewebstore.google.com/detail/kcenbgdhbonmleimiamngcdfflinldpf"
     },
     {
@@ -81590,7 +81713,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/kgeoaboengoploflchdggbnccnihbgdl"
     },
     {
@@ -82316,6 +82440,8 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "below-threshold",
+      "classification_divergent": true,
       "store_url": "https://chromewebstore.google.com/detail/khodoekbhiiebhnjcgbjjekacjlnmjeg"
     },
     {
@@ -83531,7 +83657,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/kkhbcdgijplfpiblhdpapoianmiakinf"
     },
     {
@@ -84003,6 +84130,7 @@
       "name": "Botzaper Premium",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "credential-theft",
         "data-theft",
         "spyware"
@@ -84013,7 +84141,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/klhdlmakggjklhafembcfpopdoideecl"
     },
     {
@@ -84030,7 +84159,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/klieoamgkjdifblmnpeoeadgldlhglap"
     },
     {
@@ -84618,6 +84748,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/knamdoehgbapikbpadplghakheaainfn"
     },
     {
@@ -86505,6 +86636,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/lanlgpbaimolmaddlhkdikbekkhgchnb"
     },
     {
@@ -87822,6 +87954,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -89335,7 +89468,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/lgpapkgacdhaanjgeejfknognambcajb"
     },
     {
@@ -89370,6 +89504,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/lhacnmanojilhchljbehpnliojcngnfe"
     },
     {
@@ -89799,6 +89934,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/lifiimkbiflpaccpnhnimmkfbclpcnji"
     },
     {
@@ -92749,7 +92885,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/lonkdibaepflfbfdkfeejjjekonnpfeb"
     },
     {
@@ -94355,7 +94492,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/mdeaegfppbmpljfffjnjnjeommoblmgo"
     },
     {
@@ -94821,6 +94959,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -94907,6 +95046,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/meghgkmdmcncggfiamanleadfliacbgk"
     },
     {
@@ -95099,13 +95239,19 @@
       "ext_id": "menihhcicpgkoakckmlcjnclmpmlijmi",
       "name": "Foosball",
       "browser": "chrome",
+      "threat_types": [
+        "credential-theft",
+        "data-theft",
+        "session-hijack"
+      ],
       "date_discovered": "2026-08-24",
       "date_added": "2026-08-24",
       "still_active": true,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/menihhcicpgkoakckmlcjnclmpmlijmi"
     },
     {
@@ -96332,6 +96478,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/mifpahpbidhjkmgjfdpgkgpjfjdfpakn"
     },
     {
@@ -96648,6 +96795,7 @@
       "name": "Zaply Seller",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
         "spyware"
       ],
@@ -96657,7 +96805,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/mipfmofneacpfhohdhnhckeicnckiocp"
     },
     {
@@ -98045,6 +98194,8 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "below-threshold",
+      "classification_divergent": true,
       "store_url": "https://chromewebstore.google.com/detail/mmajiiadnkaciggbbniecpfdchdapikb"
     },
     {
@@ -99385,6 +99536,7 @@
       "name": "GmCrm",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "data-theft",
         "spyware"
       ],
@@ -99394,7 +99546,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/mpbjfchndgabpbglafphfphelhffelkg"
     },
     {
@@ -101722,6 +101875,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -102679,6 +102833,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/ngifmjfbjmccpgimmacbffmgfiinhnhd"
     },
     {
@@ -104069,9 +104224,11 @@
       "name": "Wazio",
       "browser": "chrome",
       "threat_types": [
+        "adware",
         "credential-theft",
         "data-theft",
-        "session-hijack"
+        "session-hijack",
+        "spyware"
       ],
       "date_discovered": "2026-08-13",
       "date_added": "2026-08-14",
@@ -104079,7 +104236,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "DBX Tecnologia / Grupo OPT WhatsApp automation campaign (Socket, October 2025). 131-extension franchise-model spamware operation targeting WhatsApp Web users. Brazilian company DBX Tecnologia licensed white-label builds to resellers under suporte@grupoopt.com.br and kaio.feitosa@grupoopt.com.br. Stage 5A static analysis by TPCI (May 2026) additionally identified midia.wascript.com.br data harvesting C2 infrastructure and confirmed form harvesting, cookie access, and credential theft behavior beyond the bulk messaging activity documented by Socket. Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/njmdodlbgdmkbohhamcpjfkmkognedbb"
     },
     {
@@ -104783,6 +104941,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/nlcohflbiiafbmndjmiginjjldfhhgni"
     },
     {
@@ -105229,7 +105388,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/nmeanacecjaeehhnllemepiamnnjjnai"
     },
     {
@@ -106029,6 +106189,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-09",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -106061,7 +106222,9 @@
       "name": "Rodeo Gaming",
       "browser": "chrome",
       "threat_types": [
+        "credential-theft",
         "data-theft",
+        "session-hijack",
         "spyware"
       ],
       "date_discovered": "2026-08-24",
@@ -106070,7 +106233,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/nojanoccemhagmebpkhheceeciakbnjj"
     },
     {
@@ -106231,7 +106395,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/nomnnfchhlokbbdgbejhbnflmmajnlbf"
     },
     {
@@ -108417,6 +108582,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/odhadpdionnnghcdgnfnaebbchninonm"
     },
     {
@@ -108658,6 +108824,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Policy Violation",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/oecgdjcjbecfponcgnmjjglefnddibpa"
     },
     {
@@ -109472,7 +109639,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/ofpfpnpgkibkonfjoghmnficjkjbejld"
     },
     {
@@ -109645,7 +109813,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/ogckebjiloagfejjlfbengnojollodok"
     },
     {
@@ -110219,7 +110388,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/ohibhgeifebcakbamnjejmiacfpdcfcj"
     },
     {
@@ -112371,13 +112541,19 @@
       "ext_id": "olpfgimlmpcpofnabplhbanbpkcpopkh",
       "name": "ColorMaster",
       "browser": "chrome",
+      "threat_types": [
+        "credential-theft",
+        "data-theft",
+        "session-hijack"
+      ],
       "date_discovered": "2026-08-24",
       "date_added": "2026-08-24",
       "still_active": true,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Socket April 2026 MaaS campaign. C2 infrastructure at cloudapi[.]stream. Steals Google OAuth identity and session data. Part of 108-extension coordinated campaign identified by Socket Threat Research Team (socket.dev, Apr 2026). Stage 5A confirmed. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/olpfgimlmpcpofnabplhbanbpkcpopkh"
     },
     {
@@ -112618,6 +112794,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": true,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
@@ -114432,6 +114609,7 @@
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "notes": "Malware",
+      "behavioral": "elevated",
       "store_url": "https://chromewebstore.google.com/detail/paifkghgecedjhpiffccboiopabfkilj"
     },
     {
@@ -114972,7 +115150,8 @@
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
-      "notes": "Malware",
+      "notes": "Stage 5A static analysis found malicious indicators (risk_level=malicious). Awaiting campaign attribution. | Original note: Malware",
+      "behavioral": "malicious",
       "store_url": "https://chromewebstore.google.com/detail/pbmamapophlbilpebhgnoehifkjpdbla"
     },
     {
@@ -118710,6 +118889,7 @@
       "browser": "chrome",
       "date_discovered": "2026-10-15",
       "date_added": "2026-10-15",
+      "still_active": false,
       "ownership_transfer": false,
       "source": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
       "article": "https://raw.githubusercontent.com/toborrm9/malicious_extension_sentry/main/malicious_extensions_detailed.csv",
