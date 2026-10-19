@@ -1,6 +1,6 @@
 # Malicious Chrome Extension IOC Database — Statistics
 
-> Auto-generated 2026-10-17 19:54 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
+> Auto-generated 2026-10-19 08:51 UTC · [Full list](https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids)
 
 ---
 
@@ -10,7 +10,7 @@
 |--------|-------|
 | Total malicious extensions | **8,433** |
 | Unique campaigns | **34** |
-| Entries without campaign attribution | **6,840** |
+| Entries without campaign attribution | **6,832** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **0** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **268** |
@@ -36,7 +36,7 @@
 | unknown | 3,524 (41.8%) |
 | adware | 2,567 (30.4%) |
 | data-theft | 2,295 (27.2%) |
-| spyware | 1,719 (20.4%) |
+| spyware | 1,727 (20.5%) |
 | browser-hijack | 1,159 (13.7%) |
 | click-fraud | 397 (4.7%) |
 | credential-theft | 334 (4.0%) |
@@ -51,9 +51,9 @@
 
 ## Campaigns
 
-A total of **34** distinct campaigns are tracked, covering **1,593** of 8,433 entries.
+A total of **34** distinct campaigns are tracked, covering **1,601** of 8,433 entries.
 
-The remaining **6,840** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
+The remaining **6,832** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
 
 | Campaign | Extensions |
 |----------|-----------|
@@ -61,8 +61,8 @@ The remaining **6,840** entries carry a threat classification but no campaign at
 | DBX Tecnologia / Grupo OPT WhatsApp automation campaign | 182 |
 | StegoAd campaign, microsoft research; THREAT-TYPE set at… | 107 |
 | Palant Jun 2023 affiliate fraud cluster | 103 |
+| YowGames cursor farm | 73 |
 | Socket April 2026 MaaS campaign | 72 |
-| YowGames cursor farm | 65 |
 | DarkSpectre | 36 |
 | Palant serasearchtop.com campaign | 34 |
 | Part of Dec 2024 Cyberhaven supply chain campaign | 31 |
