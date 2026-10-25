@@ -8,14 +8,14 @@
 
 | Metric | Count |
 |--------|-------|
-| Total malicious extensions | **8,481** |
+| Total malicious extensions | **8,511** |
 | Unique campaigns | **34** |
-| Entries without campaign attribution | **6,867** |
+| Entries without campaign attribution | **6,897** |
 | Ownership transfer cases | **34** |
 | Stubs — pending (ID confirmed, still searchable) | **0** |
 | Stubs — exhausted (ID confirmed, enrichment attempted and unsuccessful) | **268** |
 | Earliest discovery | **2017-08-17** |
-| Most recent discovery | **2026-10-23** |
+| Most recent discovery | **2026-10-24** |
 
 ---
 
@@ -23,7 +23,7 @@
 
 | Browser | Extensions |
 |---------|-----------|
-| Chrome | 8,339 (98.3%) |
+| Chrome | 8,369 (98.3%) |
 | Edge | 129 (1.5%) |
 | Both | 13 (0.2%) |
 
@@ -33,10 +33,10 @@
 
 | Threat Type | Extensions |
 |-------------|-----------|
-| unknown | 3,572 (42.1%) |
-| adware | 2,567 (30.3%) |
-| data-theft | 2,295 (27.1%) |
-| spyware | 1,736 (20.5%) |
+| unknown | 3,602 (42.3%) |
+| adware | 2,567 (30.2%) |
+| data-theft | 2,295 (27.0%) |
+| spyware | 1,736 (20.4%) |
 | browser-hijack | 1,163 (13.7%) |
 | click-fraud | 397 (4.7%) |
 | credential-theft | 334 (3.9%) |
@@ -51,9 +51,9 @@
 
 ## Campaigns
 
-A total of **34** distinct campaigns are tracked, covering **1,614** of 8,481 entries.
+A total of **34** distinct campaigns are tracked, covering **1,614** of 8,511 entries.
 
-The remaining **6,867** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
+The remaining **6,897** entries carry a threat classification but no campaign attribution — typically bulk IOC-feed imports where the source recorded a category (adware, policy violation, search hijacking) rather than naming an operation. Their classification is preserved in `THREAT-TYPE`; they are excluded here because a category is not a campaign.
 
 | Campaign | Extensions |
 |----------|-----------|
@@ -137,10 +137,10 @@ How entries entered the database — recurring monitored sources (RSS/GitHub/CSV
 
 | Method | Extensions |
 |--------|-----------|
-| csv_import+ThreatType_Classified | 3,837 (45.2%) |
-| csv_import | 1,810 (21.3%) |
+| csv_import+ThreatType_Classified | 3,837 (45.1%) |
+| csv_import | 1,840 (21.6%) |
 | Delta_Import+Store_Enrichment | 1,392 (16.4%) |
-| Google_Search | 938 (11.1%) |
+| Google_Search | 938 (11.0%) |
 | csv_import+ThreatType_Fallback | 156 (1.8%) |
 | Delta_Import+Store_Enrichment+ThreatType_Classified | 114 (1.3%) |
 | PDF_Import | 107 (1.3%) |
