@@ -4,15 +4,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -171,6 +171,7 @@ detection:
         - adpffjpbhgiofmjffgcnohaielbeekfk
         - adpijlbkilodlpkhckpiacplohcbpnfb
         - adpkfblbeihmbjljeffbaklklgofcgae
+        - adpmmefccjoocjaimklocglmagnldabl
         - aeaddnfdpidgnpffohphcfbbjjlaeeim
         - aebeinpdalieokjaemlcilmkpbjdadnh
         - aebkmibbbnflibdpfmbcpppopjgmljaf
@@ -523,7 +524,6 @@ detection:
         - anbnajjakpmfdofijejenaclbceejlll
         - ancnmpkcpgcikoolhhfedcmbndbepidc
         - anconclhkknnbkgiflfeppbcdoikcpca
-        - anflghppebdhjipndogapfagemgnlblh
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -552,15 +552,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -572,6 +572,7 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - anflghppebdhjipndogapfagemgnlblh
         - anggbncfkojnpldcpblaboandcjajkgl
         - angljchkijbgfnlhahcmoibfijjihhjh
         - anhiejgmolfehiklonbgpnnaaijgecki
@@ -902,6 +903,7 @@ detection:
         - bgbabcbfnphklneccpldeecbnpogpbfn
         - bgdcaohapbjnmgcajplkhccfkjfjpclm
         - bgdkbjcdecedfoejdfgeafdodjgfohno
+        - bgecemhbllcmiggkolcialnelflpgaek
         - bgejafhieobnfpjlpcjjggoboebonfcg
         - bgfbjecajjjficigoaljcceopljnojga
         - bgffinjklipdhacmidehoncomokcmjmh
@@ -993,6 +995,7 @@ detection:
         - binegohghebdmajnfnfgjijikalfhhec
         - biobgdechobmiadhmlkmopcfodhcliae
         - biomgcpapdpcmcgllomfljgpkeiebfjo
+        - bioobpobpbeohjoefndgkiaakboimpch
         - bipfmfenklfkpcndlabflmabipnbnfif
         - bjacehmkdjdpknkoomphgfheehjfiocg
         - bjdadoolmhglopjkfnedihebfalldcfo
@@ -1069,9 +1072,6 @@ detection:
         - bleimifmiabmhihkdggbebohflemfhjl
         - blelcpofmadkopeeglgjpammmnnkjpag
         - blfehknobghonbjigahfbmmjecooeeja
-        - blffnkdfaobeknbcahjppbifklofofhh
-        - blglmpaffakdfkbfamnoabjjddjihpld
-        - blgndjikjcfefobfajfocdcgmionhoem
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -1100,15 +1100,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -1120,6 +1120,9 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - blffnkdfaobeknbcahjppbifklofofhh
+        - blglmpaffakdfkbfamnoabjjddjihpld
+        - blgndjikjcfefobfajfocdcgmionhoem
         - blibecomdmpcndbgkinclhaokmaheild
         - blipiofdiknkllpajgepiiigfmfgnfep
         - blkonmamoemobkmhmhpmffefmdmokpac
@@ -1577,6 +1580,7 @@ detection:
         - chpoflhgkljglhibjimaoncdbfmgegeg
         - ciadmnanclfadfcfjbbajmggediammha
         - ciaifekkipafophedfhonphhbnjfpibg
+        - cialacpolkecknpfjaohafnidkajlcij
         - cianopbgdobcpihoajfonekopkjmdpid
         - cibigjhoekijbagpgcgpgimebaiocdgm
         - cibjcmjmceidbigngkhpfbgijjcebahb
@@ -1616,10 +1620,6 @@ detection:
         - cjainfpclhpohjeekmackkebfelacpab
         - cjbdbomgdbdgdlainhobpjnfkoidcond
         - cjbechdfefcpmcinnbgpaboogibfmaip
-        - cjbfjjgeabjjhnpleabidibepdfmbpog
-        - cjbgpofiokeepomjjajmenhhohdnpdkd
-        - cjbhcdpljoplpemnbdinngaefcfdmbkb
-        - cjccjhkpejpnldpmcgpimmdinnaplcmk
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -1648,15 +1648,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -1668,6 +1668,10 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - cjbfjjgeabjjhnpleabidibepdfmbpog
+        - cjbgpofiokeepomjjajmenhhohdnpdkd
+        - cjbhcdpljoplpemnbdinngaefcfdmbkb
+        - cjccjhkpejpnldpmcgpimmdinnaplcmk
         - cjdaccpcajkfpaodphogohknlkfiipeb
         - cjdafpdojamncegfmbconlicklgepidc
         - cjdfocfccgmbbpcdnahldpglkgkbhcae
@@ -1823,6 +1827,7 @@ detection:
         - cnknoekdnoipmhminfggiphafjpofdnf
         - cnlciplbfbidjehlmifabihnjnalknoj
         - cnonalncbigedpgjllghbffeldgojjhh
+        - cnongeebpacaoppmniamfomdbcfdphha
         - cnpaeomolciogkhnjkkbjdgacpcemoel
         - cnpfaflfkfleeokkekbjeeooacaaboec
         - cnpnphabpodigmbeaginipjakcnafgcj
@@ -1901,6 +1906,7 @@ detection:
         - dabhnmecpbkofnmafgplelcdnglfdgnd
         - dabldgicbpmigbnfediggldlgdhcoljn
         - dabmofbfhddildficlpkhecknggdghip
+        - dacfbnogkkcmoabiechdkbjfnbpeicbm
         - dacliiapfipnlipdmifioaijepgmhdga
         - dadaikpnpabblcfljbmgkpgpnmjlnnka
         - dadbcjjekodkjcbnlamfofljldfledia
@@ -2030,6 +2036,7 @@ detection:
         - ddlnpmihnbdfhmiefebbogipmemmachh
         - ddmdhffcphmlnafopjnpcppkkbajcdhn
         - ddmjmbkgdcknajaomkmpmonaeafgkdhn
+        - ddnfadnachfpajdkbjgnciomfllbimee
         - ddngakojenccegjjdolkefpackiljlof
         - ddnjjbpcilhdanngghncgcpeegmpemno
         - ddodaoihhhohncjalnjgmgnlfhgckgdj
@@ -2161,13 +2168,6 @@ detection:
         - dhnlhhidinkcmmkbkgohodpnnolpecod
         - dhogjjpkggldkfonmdilkdhjpgokhkdn
         - dhoolcnhokmhfjlenbefdhilmhnjphhd
-        - dhpfidchcjjoicmmikaneognhiohnphe
-        - dhpgneegbflgangnpfeoafgpabacholj
-        - dibhnlpmjcfhefbjmaiehggdicfdmjci
-        - dibjpjiifnahccnokciamjlfgdlgimmn
-        - diblcdnompiejamidfckpilhfdgjdaem
-        - dicihfjifnnpchakgjinoeimpcakdooa
-        - didajmbgcplnmplaejcdgigdmjalckcd
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -2196,15 +2196,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -2216,6 +2216,14 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - dhpdpfbjnkmkjhefebgffpljdknifhbo
+        - dhpfidchcjjoicmmikaneognhiohnphe
+        - dhpgneegbflgangnpfeoafgpabacholj
+        - dibhnlpmjcfhefbjmaiehggdicfdmjci
+        - dibjpjiifnahccnokciamjlfgdlgimmn
+        - diblcdnompiejamidfckpilhfdgjdaem
+        - dicihfjifnnpchakgjinoeimpcakdooa
+        - didajmbgcplnmplaejcdgigdmjalckcd
         - didbenpmfaidkhohcliedfmgbepkakam
         - didejimjadkjfaehffafpacklmhbjejb
         - didhgeamncokiaegffipckhhcpnmlcbl
@@ -2311,6 +2319,7 @@ detection:
         - dkhpgbbhlnmjbkihoeniojpkggkabbbl
         - dkhphblbcfigaakffhpmdnldfcnpfkmj
         - dkifdjjgjdojpifmcnacjkpbkjnebhbi
+        - dkjcbfalbdfkldmnbanldhibejlppfef
         - dkjimebmnegdpnondpkpjhphdgcihacp
         - dkjjcgeccgnnkgfmdjkocdjplociikcp
         - dkkelmoggdihadhbpaalbokbgngkhfkn
@@ -2323,6 +2332,7 @@ detection:
         - dknpldlgooamknmnkcogbojkkogcckkm
         - dkonkehmngnpbapnlmjffpjfohbnhmgc
         - dkpjidebjoknnffncnfennaebelblafa
+        - dlaahlfnphmaklngedbombmkgiihbpld
         - dlaeopfffpngikkaccaknkmdgjdianin
         - dlanpgfginllefahhibhbeanopbhbkkh
         - dlaonnkmgmchbmlbngepgioejjmglape
@@ -2369,6 +2379,7 @@ detection:
         - dmeobgcjjndelcooaleinhkkchhodcii
         - dmfccdhbfjmpgaldefnfeeknjfdnlbhe
         - dmfhalihcclgfiimhpmcmfmnolhbjipj
+        - dmfnmobeodidnfdkkfcpobhjlpeameef
         - dmgmeikmlhmmannflgejmdonbefmkiif
         - dmgobcngihcgpgkbpcaielbjnjikamac
         - dmhkdbnopgdobjfijfgdppgoajghhhef
@@ -2544,6 +2555,7 @@ detection:
         - ebligfajbedgdngapjplbcmahoofmnio
         - ebmmjmakencgmgoijdfnbailknaaiffh
         - ebnehgiimlhkcafneabngnhamiefhlpp
+        - ebnfodjaapmcbeainbfclmfbhlogcjpb
         - ebnkenjcbhmpapihbcnfebfgclipllgj
         - ebnoicngibkinocfemedifbollfpficb
         - ebocieeblijelefbfimlmhffnmcndpal
@@ -2704,18 +2716,6 @@ detection:
         - egbakibhcjjeknldfoaifgmifhgneehg
         - egbkgelnkodaldbpkgjmhcekjakkcpnk
         - egbpmfgojjbonjpajgjjfokblneogjpj
-        - egdcgdpdnnbhfdlinhdfhnjbckmgcgbo
-        - egdoppiodljlaphamgkoabpdjgdpfpmk
-        - egdpmjnldpefdaiekiapjkanabfiaodp
-        - eggegjdejilddmnlglakcaigefefcdaf
-        - eggeoellnjnnglaibpcmggjnjifeebpi
-        - eghhningdmhknlkgopdgilflkcdeikca
-        - egicjjdcjhfdnejimnhngogjmoajffpm
-        - egifeinajhdlccogphdbphlphmfgmhnh
-        - egiodmjijcaelcblkmdpdbcalhdfclmj
-        - egjbjcajgkkdmkmblfchbgamljdbccpo
-        - egjncjlfkgefiadgidmkhedpajmjcaca
-        - egkahokhijlhocmfbmhndpilpdcjndjf
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -2744,15 +2744,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -2764,6 +2764,18 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - egdcgdpdnnbhfdlinhdfhnjbckmgcgbo
+        - egdoppiodljlaphamgkoabpdjgdpfpmk
+        - egdpmjnldpefdaiekiapjkanabfiaodp
+        - eggegjdejilddmnlglakcaigefefcdaf
+        - eggeoellnjnnglaibpcmggjnjifeebpi
+        - eghhningdmhknlkgopdgilflkcdeikca
+        - egicjjdcjhfdnejimnhngogjmoajffpm
+        - egifeinajhdlccogphdbphlphmfgmhnh
+        - egiodmjijcaelcblkmdpdbcalhdfclmj
+        - egjbjcajgkkdmkmblfchbgamljdbccpo
+        - egjncjlfkgefiadgidmkhedpajmjcaca
+        - egkahokhijlhocmfbmhndpilpdcjndjf
         - egkcfaaoiapplheppcnoajmlbicailnb
         - eglfjllaioolignmanjllpblacnjbbal
         - eglhokebokdmejdfpejnagcmnmjbfhig
@@ -3075,6 +3087,7 @@ detection:
         - eojpcomhenokfoodcdcbejifiepjbbcd
         - eokeelfpmnjglflgjaclplchmcpgefmc
         - eokgelcndocggkpbcbojgkkbeicgfggj
+        - eokidhkocjfcegbbgoipndankoogbcbj
         - eokjikchkppnkdipbiggnmlkahcdkikp
         - eokkbmoflgpfigececbpdndmfjilhgoo
         - eoklnfefipnjfeknpmigmogeeepddcch
@@ -3251,19 +3264,6 @@ detection:
         - fdgndkeabepnjiohbabfnchdkikaeoik
         - fdgnkokilinpplfjkogpmomlfedjlfif
         - fdhebkefpfdjkmclmkjojfhoklbpbheo
-        - fdhjfohpmnliieiimdncnheflacobldp
-        - fdjdkailnhchpjljogdhhodjbaoagapk
-        - fdjpcjggpgdmdikmhoagohakklihimbo
-        - fdjpommjpahieenehallhicdhponhacm
-        - fdlagfnfaheppaigholhoojabfaapnhb
-        - fdlnohoeapmcmigokpablnmihbokkjjh
-        - fdnjfblfaddbodlgibpdfipmjfmdleon
-        - fdoagnpcpgkjkcmnpnmdlbikfdagklhk
-        - fdohffmkhlflcpcibkgenbenmnlhjpmf
-        - fdpfefigehncacfdajbdlechfpabaage
-        - fdpionfpmdlnakcckhhjehdbioinbddo
-        - fdpodfpnneefkigmkkigcbhohdcoklge
-        - fdpohaocaechififmbbbbbknoalclacl
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -3292,15 +3292,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -3312,11 +3312,25 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - fdhjfohpmnliieiimdncnheflacobldp
+        - fdjdkailnhchpjljogdhhodjbaoagapk
+        - fdjpcjggpgdmdikmhoagohakklihimbo
+        - fdjpommjpahieenehallhicdhponhacm
+        - fdlagfnfaheppaigholhoojabfaapnhb
+        - fdlnohoeapmcmigokpablnmihbokkjjh
+        - fdnjfblfaddbodlgibpdfipmjfmdleon
+        - fdoagnpcpgkjkcmnpnmdlbikfdagklhk
+        - fdohffmkhlflcpcibkgenbenmnlhjpmf
+        - fdpfefigehncacfdajbdlechfpabaage
+        - fdpionfpmdlnakcckhhjehdbioinbddo
+        - fdpodfpnneefkigmkkigcbhohdcoklge
+        - fdpohaocaechififmbbbbbknoalclacl
         - feaikpidjjmejpkhehkfncdcpmjamcha
         - febgaeoegckcdcdhammknmiobpjkpgbe
         - febheipcbpjemgcfelalhpaafdohaaka
         - febhfcofbhjohhobohnhblllafchmibb
         - febhnklncplcmdbjmplmljbdgfppipeo
+        - fecgaghibdnobjekppbelobanfajhcdj
         - fecohheohodkgmdmdpiocogboienindc
         - fedchalbmgfhdobblebblldiblbmpgdj
         - fedimamkpgiemhacbdhkkaihgofncola
@@ -3473,6 +3487,7 @@ detection:
         - fjckkchgapdcemoanlejgcjbpopagele
         - fjclfmhapndgeabdcikbhemimpijpnah
         - fjcpkhkjibcmojfmmhofakhlmhhffoib
+        - fjdlpaldcfddkeeijijkfcfaidmofpah
         - fjebfdoidoidnifeddibbinlghgfldmd
         - fjfakkojmeodjgbgkaccocihfklhncdj
         - fjfclchnmkilojpjkfhngijlomhnendk
@@ -3740,6 +3755,7 @@ detection:
         - fppadhdkfjcideooekehaabmccepcmhh
         - fppbiomdkfbhgjjdmojlogeceejinadg
         - fppchnhginnfabgenhihpncnphhafmac
+        - fppgjcgeajekgdpcfgogbiboanoiokdk
         - fppligndgodoiccafcpcgpilblljcffo
         - gaafhblhbnkekenogcjniofhbicchlke
         - gaajcpnkapnemeiohoighjmjknpfcdfd
@@ -3796,22 +3812,6 @@ detection:
         - gbdamjbjihmdfifjnpinooofipibgahj
         - gbdjcgalliefpinpmggefbloehmmknca
         - gbdkickgjmaahpikkcldmdcpbpjlflkj
-        - gbeldgdcloiceglhpdnkhbafeoddjehm
-        - gbepdhiinglhceigbfodbklagmgofmco
-        - gbfegmandpjflblkckeoddidpipohdle
-        - gbfehnilmikecbbenafhoceeckfpoojh
-        - gbfiadncpbcjhahkbdfglobhocjgmhfi
-        - gbgdekgkmaaamplkcdaanpdokmjjcdbm
-        - gbhfapnpdaahfkjpfedpeobpdgpeopdl
-        - gbhhgipmedccnankkjchgcidiigmioio
-        - gbhiajhjoaanjnpmcbpklgpbninbigfb
-        - gbhmoohcbeeefdeipfcecgdgelfpjoob
-        - gbjanaamghfmlocjnncejdjafoomhbbh
-        - gbjffmkncjkpnkhjdigbigahdkiccmhd
-        - gbkicngmnoedeajgodbbokjadbfbbpng
-        - gbkifnmjkjmmncjcfcpdcnajlipadhem
-        - gbkljgfdoehfkoeoncdokchfgpkjaicp
-        - gbkmkgfjngebdcpklbkeccelcjaobblk
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -3840,15 +3840,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -3860,6 +3860,22 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - gbeldgdcloiceglhpdnkhbafeoddjehm
+        - gbepdhiinglhceigbfodbklagmgofmco
+        - gbfegmandpjflblkckeoddidpipohdle
+        - gbfehnilmikecbbenafhoceeckfpoojh
+        - gbfiadncpbcjhahkbdfglobhocjgmhfi
+        - gbgdekgkmaaamplkcdaanpdokmjjcdbm
+        - gbhfapnpdaahfkjpfedpeobpdgpeopdl
+        - gbhhgipmedccnankkjchgcidiigmioio
+        - gbhiajhjoaanjnpmcbpklgpbninbigfb
+        - gbhmoohcbeeefdeipfcecgdgelfpjoob
+        - gbjanaamghfmlocjnncejdjafoomhbbh
+        - gbjffmkncjkpnkhjdigbigahdkiccmhd
+        - gbkicngmnoedeajgodbbokjadbfbbpng
+        - gbkifnmjkjmmncjcfcpdcnajlipadhem
+        - gbkljgfdoehfkoeoncdokchfgpkjaicp
+        - gbkmkgfjngebdcpklbkeccelcjaobblk
         - gbmbmldgodcjbfaghnjohphndkobjpce
         - gbmehnljoagfghaeaohdodlnocgcnonk
         - gbmekljjkebaibldbnjcccnjjcldelld
@@ -3925,6 +3941,7 @@ detection:
         - gdeoeofbchjilkohgbhfclljcbfplald
         - gdfjahfbaillhkeigeinoomhjnfajbon
         - gdgigpdodpadbemkhkacgeichjlppkbn
+        - gdgmchpcnljdnfkoomeogecfclcjdedc
         - gdifegeihkihjbkkgdijkcpkjekoicbl
         - gdimkldndbdjaefcfghghlbokjbmbdlo
         - gdimnaklefhodfpollbnjohnegmdahpa
@@ -4091,6 +4108,7 @@ detection:
         - giinnpfogdnpckecjdcobinfjcdnhbbg
         - gijdlcgcmadappinmgdgiihiepcgboaf
         - gijlkeaijpeaoihdajcgmiajeoonnkoj
+        - gijokebkaijbgjdkdjihccpddihppgcf
         - gikcjnmpegacammmaigabkhiifjdacec
         - gilfbnldcnldfbbgcppoabkghidmedlk
         - gillmlaalielgmhgekhkolcbcjghaeki
@@ -4342,24 +4360,6 @@ detection:
         - gpbioggjdpkjpjmedkjcjdclbllginfk
         - gpbjkpeplkgbglpinncflpeejgkppdkc
         - gpblnaemhnmbiaflcjaanlagohelcdje
-        - gpbnhdjoknjmghjfljgcankdldimokmk
-        - gpcbiopkninpnabhbbalpglmnnbopjpd
-        - gpccpcdemhblfiokefdpdfahnebkfbde
-        - gpcoclklmoinbdogciipfiicpkiofdne
-        - gpdfpljioapjogbnlpmganakfjcemifk
-        - gpdkajdgppoccfpeocndflnlmjemalfh
-        - gpebnhphgnldkfjnbgldikbmeoejcecg
-        - gpefikhhckedlalbpjfncnocgfnoadpl
-        - gpfdgpikbndcmbfnemoplnkcepogomkl
-        - gpffceikmehgifkjjginoibpceadefih
-        - gpflhmpghfekhbkllpohddhdblekmkjm
-        - gpghckfoffcjppkochpddgpjhifpkfhl
-        - gpghebehjahceknfdcfifeifhdbongld
-        - gphjkkbkmaiccfnhcoiibpkfpmpnkfeb
-        - gpibachbddnihfkbjcfggbejjgjdijeb
-        - gpibjjfllodpcfhcjpamonnblkbinbie
-        - gpjbmpcpkjgedjleoogmdpmbfmfghkei
-        - gpkcecbpfdlbocbkimkmgelaojfkihgh
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -4388,15 +4388,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -4408,6 +4408,24 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - gpbnhdjoknjmghjfljgcankdldimokmk
+        - gpcbiopkninpnabhbbalpglmnnbopjpd
+        - gpccpcdemhblfiokefdpdfahnebkfbde
+        - gpcoclklmoinbdogciipfiicpkiofdne
+        - gpdfpljioapjogbnlpmganakfjcemifk
+        - gpdkajdgppoccfpeocndflnlmjemalfh
+        - gpebnhphgnldkfjnbgldikbmeoejcecg
+        - gpefikhhckedlalbpjfncnocgfnoadpl
+        - gpfdgpikbndcmbfnemoplnkcepogomkl
+        - gpffceikmehgifkjjginoibpceadefih
+        - gpflhmpghfekhbkllpohddhdblekmkjm
+        - gpghckfoffcjppkochpddgpjhifpkfhl
+        - gpghebehjahceknfdcfifeifhdbongld
+        - gphjkkbkmaiccfnhcoiibpkfpmpnkfeb
+        - gpibachbddnihfkbjcfggbejjgjdijeb
+        - gpibjjfllodpcfhcjpamonnblkbinbie
+        - gpjbmpcpkjgedjleoogmdpmbfmfghkei
+        - gpkcecbpfdlbocbkimkmgelaojfkihgh
         - gpkdjhcfaldbdhhoahlfphfmmnaibamm
         - gpkdlejeihbcehnpioaajogdiioccili
         - gpkggolchlcmlnhjnfdihakpahefneao
@@ -4478,6 +4496,7 @@ detection:
         - hbhamhdmcofpadbpdkpdlmkgheonnigl
         - hbibidnoffdfhkndgijknelkibedfelc
         - hbiehebkidnfifekbihbangdnkcefckm
+        - hbiichfklkmlebacdfhkojcpmmakmamk
         - hbjeophpjnopmeheabcilmgdhnnjbmbo
         - hbjnjlphiignpgpfccofegplcjahkcod
         - hbkabpokafbfdcfonbnbhmkdnfamgppj
@@ -4618,6 +4637,7 @@ detection:
         - hfdaiamamknieecaphgpbgkadhhpallj
         - hfdejdcbgacglcafiobfkpnnmjdhmaed
         - hfdhodfhhlplgghhjbphhehaaglbacom
+        - hfdicknclhghbjihgmficjoklahmilmg
         - hfdpdgblphooommgcjdnnmhpglleaafj
         - hfehghfhpojabhahafkfigbaklcppomb
         - hfeialplaojonefabmojhobdmghnjkmf
@@ -4818,6 +4838,7 @@ detection:
         - hknohgfkdplfanfeaoeenibilkllofcd
         - hknpgglilblpjeofblgfmmhebfkbnmlo
         - hkobeinmfiiihegbcflpmpnpdgdcciga
+        - hkoecgkaknimiikdkmaologoemammohc
         - hkpeaemfahfcgpcggikiagabfkggbeje
         - hkpmehimmmbnkjhijfpblfcfdmdolmgb
         - hlacaekdajdgiiofjplpofbgebgjbnco
@@ -4882,32 +4903,11 @@ detection:
         - hmklcckkmciijdfaaifpmcgfclgdnmbg
         - hmldnpigepegofdmmmhbkgjmcnefpgig
         - hmlnefhgicedcmebmkjdcogieefbaagl
+        - hmmbilmcjpiaclgkjdncifpabjihelan
         - hmmikoignbdlgkhmnfjpjhalaohnmibb
         - hmmkhbiknngbgkecdjnhblikmjnkmfph
         - hmnpiaijfkaoecnpckcfjjkdlajnonbh
         - hmokjfomkbkhmojjgmopeccjphlmmomg
-        - hmooaemjmediafeacjplpbpenjnpcneg
-        - hmooknfodfbbncnhncnednnkiommggpj
-        - hmpjdeippjapohpkmalhmnohbipnggjf
-        - hmpjibmngagmkafmijncjokocepchnea
-        - hnadleianomnjcoeplifgbkiejchjmah
-        - hnakfelnnejpfpgloplggopakmljjdjo
-        - hnalilpmcibmaohfmmoigfogdfkhebba
-        - hncokbmdmbmmlkjhoagcpokehopdikhc
-        - hndiddblhijokmfbhmfgdmeeiddjnbme
-        - hnejomncipegjafegedbaifgpaimllik
-        - hnembaemjbciokbnhklbcngopfakpkeo
-        - hnfabcchmopgohnhkcojhocneefbnffg
-        - hnfdneofpohlkoeljnmkdocokcdkjiaa
-        - hnfnnjohofgmlfmaplpnmedompbglnai
-        - hngacenlcfldjhhdjdimghflfoapocol
-        - hnggnhinapdcjocbciajaffnofecfale
-        - hnhafbbkfmgngiglpcebancbkbhglpab
-        - hnhlhlnbgjocolmlecblbbpbhdacjmdd
-        - hnhlmcmkplopnbdhbllnnpchbekhnjil
-        - hnhpnbajfmmopedidmiablkcdnlegkmd
-        - hniliminddkboapeeogjbggeejepfmja
-        - hniljfkejhefckcekmghacmjabfmplbi
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -4936,15 +4936,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -4956,6 +4956,28 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - hmooaemjmediafeacjplpbpenjnpcneg
+        - hmooknfodfbbncnhncnednnkiommggpj
+        - hmpjdeippjapohpkmalhmnohbipnggjf
+        - hmpjibmngagmkafmijncjokocepchnea
+        - hnadleianomnjcoeplifgbkiejchjmah
+        - hnakfelnnejpfpgloplggopakmljjdjo
+        - hnalilpmcibmaohfmmoigfogdfkhebba
+        - hncokbmdmbmmlkjhoagcpokehopdikhc
+        - hndiddblhijokmfbhmfgdmeeiddjnbme
+        - hnejomncipegjafegedbaifgpaimllik
+        - hnembaemjbciokbnhklbcngopfakpkeo
+        - hnfabcchmopgohnhkcojhocneefbnffg
+        - hnfdneofpohlkoeljnmkdocokcdkjiaa
+        - hnfnnjohofgmlfmaplpnmedompbglnai
+        - hngacenlcfldjhhdjdimghflfoapocol
+        - hnggnhinapdcjocbciajaffnofecfale
+        - hnhafbbkfmgngiglpcebancbkbhglpab
+        - hnhlhlnbgjocolmlecblbbpbhdacjmdd
+        - hnhlmcmkplopnbdhbllnnpchbekhnjil
+        - hnhpnbajfmmopedidmiablkcdnlegkmd
+        - hniliminddkboapeeogjbggeejepfmja
+        - hniljfkejhefckcekmghacmjabfmplbi
         - hninibdhkeepfndhcdknlijeapngbgdp
         - hnjimlofpddkhkjdobibpoakphdnjpkb
         - hnkagccbeijempndkojdajdicgggplpi
@@ -5434,28 +5456,6 @@ detection:
         - ildhhjfikfjkmgicnhpbhoaokjnbcmde
         - ildkklndaaomaekffopcnegfhmlnkpgf
         - ildlljiieebcmeciijmfgcjedigednch
-        - iledfdbchnibnjkcfekiibbcgagncklg
-        - ileggckmpfmboofdnghohcgcppdcklfd
-        - ileiafapndbljebaglgblndmmmkgeeni
-        - ilemanhbkcklijjeoakoimffopoemajj
-        - ileojfedpkdbkcchpnghhaebfoimamop
-        - ilfcpbbdfonlebhedjddpbkkfhaagmbb
-        - ilfjcahdnehenecjignhabdcnnhiphfa
-        - ilfmafejmnhkfkmgfnpfelppnpdkaadf
-        - ilgbcnkedmncjlhpfconadpjnhlflejf
-        - ilgjeogcieakklcagmidpiclclcpojjb
-        - ilhkddenpjglbamfkdfcggplilcibono
-        - ilhmpmehcagdoeijhdondmidljihohfc
-        - ilhnnmiaoeiogojmdgokibkngmmadmoo
-        - iljhneiglmboeoojccalhcmcdgogkenb
-        - ilkdaiednajbdbjfpcjcpecjmincmkkl
-        - ilkeadgdlbmabcdkgmiogcamcogbjoii
-        - ilkhenocanldeldoloophlhibcnfbnld
-        - illemhbijpiebjfilfmgebahaakajkpe
-        - illoljcjjjjmblealplijcjkedjlkdfg
-        - ilmkijoinbfdgnmckdlmmaibegcpeomc
-        - ilndnbhdnhmcoanancfoonpolacophlo
-        - ilobdefmdlcdcgppfnjlclbcngaplgpn
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -5484,15 +5484,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -5504,6 +5504,28 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - iledfdbchnibnjkcfekiibbcgagncklg
+        - ileggckmpfmboofdnghohcgcppdcklfd
+        - ileiafapndbljebaglgblndmmmkgeeni
+        - ilemanhbkcklijjeoakoimffopoemajj
+        - ileojfedpkdbkcchpnghhaebfoimamop
+        - ilfcpbbdfonlebhedjddpbkkfhaagmbb
+        - ilfjcahdnehenecjignhabdcnnhiphfa
+        - ilfmafejmnhkfkmgfnpfelppnpdkaadf
+        - ilgbcnkedmncjlhpfconadpjnhlflejf
+        - ilgjeogcieakklcagmidpiclclcpojjb
+        - ilhkddenpjglbamfkdfcggplilcibono
+        - ilhmpmehcagdoeijhdondmidljihohfc
+        - ilhnnmiaoeiogojmdgokibkngmmadmoo
+        - iljhneiglmboeoojccalhcmcdgogkenb
+        - ilkdaiednajbdbjfpcjcpecjmincmkkl
+        - ilkeadgdlbmabcdkgmiogcamcogbjoii
+        - ilkhenocanldeldoloophlhibcnfbnld
+        - illemhbijpiebjfilfmgebahaakajkpe
+        - illoljcjjjjmblealplijcjkedjlkdfg
+        - ilmkijoinbfdgnmckdlmmaibegcpeomc
+        - ilndnbhdnhmcoanancfoonpolacophlo
+        - ilobdefmdlcdcgppfnjlclbcngaplgpn
         - ilocammifnbfcmkmekpejocckcdgnbli
         - ilochmnhdmegehebepopjfdooanokmgn
         - iloeambbfeeikpjhkpfcbcplpobgapel
@@ -5834,6 +5856,7 @@ detection:
         - jepcdjidlnpjfdblhhkkfhgbgdgphile
         - jepocknhdcgdmbiodbpopcbjnlgecdhf
         - jfabeeibdcbopiffpeadgkbibhpjbend
+        - jfabgdapaondcfbjhocmokdjjfdmpomp
         - jfahobnijomecdebpfpjanbcgiaideck
         - jfaijficgmogbfdkiihojhjfildgppdf
         - jfamimfejiccpbnghhjfcibhkgblmiml
@@ -5906,6 +5929,7 @@ detection:
         - jgnaieemebmijpgpjebiihoknlneoede
         - jgndljkhaojflfhfcdplhihpopdgnlhl
         - jgngkchljnldpnjimaboboomjmpfpoie
+        - jgnigkmbdnimeklnjnpfjnjmmidbhccd
         - jgnjpnmofkalfliddjelaciggjgnphgm
         - jgnooogdbjdihfmpkmbcaaddnjmcifng
         - jgofflaejgklikbnoefbfmhfohlnockd
@@ -5980,30 +6004,6 @@ detection:
         - jiodaacchgkgkgnmgmbjoommaebhnkke
         - jiofmdifioeejeilfkpegipdjiopiekl
         - jiopaphnoebconjcblfkljoedjlplhbd
-        - jipclfaahkhinbelbojjblmbcpkaipko
-        - jipgijhhpbhbolifeedbilflmacdfdld
-        - jjajohkphajaammllkihainemejpgknc
-        - jjakkanbbdmkhbobplckmkofonljmjio
-        - jjanimbikemkeiigecnglnafafkhiogf
-        - jjbjcelpjgagfgdpobjkpjnkhffmnlda
-        - jjcjdbgpoeidbdhibjemkldomcgjpppo
-        - jjckcnakdjgadphhofdebdanmbncedlb
-        - jjcmodckokjdbgdjahmkcmkincjkgljp
-        - jjdajogomggcjifnjgkpghcijgkbcjdi
-        - jjddkcchgfebpakoodmamlngbnmciofa
-        - jjdfciihihcpgfgmoonfpgglbgclpfai
-        - jjdhjfgoadphekgihokkigfghndfmffb
-        - jjedeajjpgnjgaachmlmcbmppmdpcgec
-        - jjeeajlkhoghmjfembjcjegnenpmphoo
-        - jjeopjhdomaogejikcibjjomdkeeeljj
-        - jjfdefoagjpikoogkpbfhppliojkaphn
-        - jjfihociifhljdnenpkbapkihiojdcfa
-        - jjgmjelgglplamabhfnfempcgagfombi
-        - jjgnkfncaadmaobenjjpmngdpgalemho
-        - jjhepmoeblmpiecjclakeeolfdemhepb
-        - jjibkaphagoijhdmkllmcndemnidhjjd
-        - jjijhajiibghbdnmbkeidhgkafliocja
-        - jjipgmjlbjgmkimepgddbkgcbbncnidj
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -6032,15 +6032,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -6052,6 +6052,31 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - jipclfaahkhinbelbojjblmbcpkaipko
+        - jipgijhhpbhbolifeedbilflmacdfdld
+        - jjajohkphajaammllkihainemejpgknc
+        - jjakkanbbdmkhbobplckmkofonljmjio
+        - jjanimbikemkeiigecnglnafafkhiogf
+        - jjbjcelpjgagfgdpobjkpjnkhffmnlda
+        - jjcigbgkfmobiegbfipoaolediphpljp
+        - jjcjdbgpoeidbdhibjemkldomcgjpppo
+        - jjckcnakdjgadphhofdebdanmbncedlb
+        - jjcmodckokjdbgdjahmkcmkincjkgljp
+        - jjdajogomggcjifnjgkpghcijgkbcjdi
+        - jjddkcchgfebpakoodmamlngbnmciofa
+        - jjdfciihihcpgfgmoonfpgglbgclpfai
+        - jjdhjfgoadphekgihokkigfghndfmffb
+        - jjedeajjpgnjgaachmlmcbmppmdpcgec
+        - jjeeajlkhoghmjfembjcjegnenpmphoo
+        - jjeopjhdomaogejikcibjjomdkeeeljj
+        - jjfdefoagjpikoogkpbfhppliojkaphn
+        - jjfihociifhljdnenpkbapkihiojdcfa
+        - jjgmjelgglplamabhfnfempcgagfombi
+        - jjgnkfncaadmaobenjjpmngdpgalemho
+        - jjhepmoeblmpiecjclakeeolfdemhepb
+        - jjibkaphagoijhdmkllmcndemnidhjjd
+        - jjijhajiibghbdnmbkeidhgkafliocja
+        - jjipgmjlbjgmkimepgddbkgcbbncnidj
         - jjjcfdkehnkklmknckcopmognicfoege
         - jjjehgebfecefmkfahdcmggghohnkddj
         - jjjnaeocgphpfkmkinkgbnipapkfipee
@@ -6527,31 +6552,6 @@ detection:
         - khfjnooigjklcocioenjmjdjlollohil
         - khflfgmcpjmdejmmkilcendgfnkomjdn
         - khfmfdepnleebhonomgihppncahojfig
-        - khgkcnmepkkccpojldheccpladhflmen
-        - khgokgmhkcpaapphpgbgodclgbappmbl
-        - khgpimcjkelfpbaejbfkpolgameimfoa
-        - khhdonicflgfjdildpgklcpcballmegk
-        - khhemdcdllgomlbleegjdpbeflgbomcj
-        - khheojkcinlbbgjedicdehfbcpbfolok
-        - khigbojhkoneeaifbgdhplmcahoapdgp
-        - khkhnljbiikhodfhkbpfpgeodjmaghek
-        - khldlkommddmelemmjbijjmjmkoagadi
-        - khllhhmmnenklbpagjifnmieennmabne
-        - khngdllgpoifpfakbhmjofobackgdoaj
-        - khofcbddbbmcmfkbomhafbdapaedbjkn
-        - khoigeopdelmjmimedipaoebcmkoljdg
-        - khpbhpjjenngckfbjcnaljhphfdagknc
-        - kibfldpafjcmfdfigebomanimhfhfdgc
-        - kibhffdhcmjcpjajigpnccgmnokaiame
-        - kibmlclaoikpecffbghchkcbkhlecbhm
-        - kicbgbfbjfmmbjaencmdomehodefcjbo
-        - kicgclkbiilobmccmmidfghnijgfamdb
-        - kiciibdldkjbaoclfppioahnadncljjm
-        - kicmnilchjfefpceoaiopdpbpkicgjjm
-        - kidhjgofjnmjpbdhagacohdggmdfcgfl
-        - kieakfgdeiflalkbfpflmbddoobcggek
-        - kiecdaoopedhfgapicmpebbhodepnbbp
-        - kiefglobgcfoolkfjkopcnopaagpohlc
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -6580,15 +6580,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -6600,6 +6600,31 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - khgkcnmepkkccpojldheccpladhflmen
+        - khgokgmhkcpaapphpgbgodclgbappmbl
+        - khgpimcjkelfpbaejbfkpolgameimfoa
+        - khhdonicflgfjdildpgklcpcballmegk
+        - khhemdcdllgomlbleegjdpbeflgbomcj
+        - khheojkcinlbbgjedicdehfbcpbfolok
+        - khigbojhkoneeaifbgdhplmcahoapdgp
+        - khkhnljbiikhodfhkbpfpgeodjmaghek
+        - khldlkommddmelemmjbijjmjmkoagadi
+        - khllhhmmnenklbpagjifnmieennmabne
+        - khngdllgpoifpfakbhmjofobackgdoaj
+        - khofcbddbbmcmfkbomhafbdapaedbjkn
+        - khoigeopdelmjmimedipaoebcmkoljdg
+        - khpbhpjjenngckfbjcnaljhphfdagknc
+        - kibfldpafjcmfdfigebomanimhfhfdgc
+        - kibhffdhcmjcpjajigpnccgmnokaiame
+        - kibmlclaoikpecffbghchkcbkhlecbhm
+        - kicbgbfbjfmmbjaencmdomehodefcjbo
+        - kicgclkbiilobmccmmidfghnijgfamdb
+        - kiciibdldkjbaoclfppioahnadncljjm
+        - kicmnilchjfefpceoaiopdpbpkicgjjm
+        - kidhjgofjnmjpbdhagacohdggmdfcgfl
+        - kieakfgdeiflalkbfpflmbddoobcggek
+        - kiecdaoopedhfgapicmpebbhodepnbbp
+        - kiefglobgcfoolkfjkopcnopaagpohlc
         - kieipmkfehdihbjbhlgcjonfgkbefgaa
         - kifijalpmpoccbmpfdmdjefhdinhhbdk
         - kigiheamdfmilbhkfdploghfnndcgkko
@@ -6647,6 +6672,7 @@ detection:
         - kjkkejocbgnkfnhiblmfmgancjodcpbm
         - kjlapochhonejbhekmlgjebfcknlhmna
         - kjlgppmnejejifcfbmpoogbbagknpekm
+        - kjlklgjjakfpkhdhhcliidmcenfgpglm
         - kjlmibpolphjelkfpiohhnecoldjknaa
         - kjnakdbpijigdbfepipnbafnhbcfdkga
         - kjniieionhcgbbceccfpjnlbhloffnjb
@@ -6876,6 +6902,7 @@ detection:
         - ladjabmcgadeknpfngdihgeimccmgmpj
         - laeciedchhnmnfhllplcgkfcdbdfgdhn
         - laeibiahhafegciipfmmddnccfpaofcc
+        - laeiielmfaebicamghnemnjooikicidd
         - laeldphahkfanlibbahljcgmaflibdai
         - lagdcjmbchphhndlbpfajelapcodekll
         - lagmnikdijkhbggnahaagjlbcebpikom
@@ -6966,6 +6993,7 @@ detection:
         - ldciccoklkhpjfcjinimijfmoobhempp
         - lddaoiilonccpbomblnacdhhhnjdpkol
         - lddjfbkmmffmdfmmpdjgafojklbpnajb
+        - ldealfkelhonhhdpfmobioombfojifnc
         - ldecmalpmimbhlmaifaimbbiijjjbpkl
         - ldekndjlfmgconpffajebjnbkhejhcdh
         - ldfhjpmekioecmhbmefnnjgkhnilcafi
@@ -7072,34 +7100,6 @@ detection:
         - lfllggaagjhnmcajgkmhlggpmdocnjfc
         - lflpoohnikdcjjphblgklcdepmdppodc
         - lfmanjgjccjkajbppaccimngmgfkoplf
-        - lfmdddfdacgdimongmjclgijepoknmjm
-        - lfmkljhfpjpcoeghgomhemecbcojikai
-        - lfnionffkeogndgookgchgcbdbpbdecd
-        - lfnlgdmddmiidbnaeiibmlbadefcnjhi
-        - lfoapagiglbbmpaoibnhbpcofpnaipff
-        - lgakkahjfibfgmacigibnhcgepajgfdb
-        - lgbbbbhjghplkdaagclganmbddfipgmb
-        - lgbiibancdnfpiihkehpfkijgnidfoap
-        - lgdhgkhhglmhiacjecigalebiffjklec
-        - lgdmjaflbcieonpajmfpgchoajfjjalm
-        - lgecddhfcfhlmllljooldkbbijdcnlpe
-        - lgekbdjboenacbkiabfkkcpjgacmjcdg
-        - lgfbgeeakdfpmachejffoacihdelidbf
-        - lgffhbpldjikplafmngceihdfnpcjhfb
-        - lggbbeebphidldagkpajkogjnmcalijp
-        - lggkajpnihaenfdkekebaegnjcknlied
-        - lggmpibegkcnfogpophgnchognofcdgo
-        - lghpenffcbekpbfbiappefgimefaclcm
-        - lgioohiljciagplmndfbdcgknagpjomn
-        - lgjdgmdbfhobkdbcjnpnlmhnplnidkkp
-        - lgjdpnpkoebfhclocjoiffpafplcdkjn
-        - lgjmjfjpldlhbaeinfjbgokoakpjglbn
-        - lgjogljbnbfjcaigalbhiagkboajmkkj
-        - lgjplckjkndnoedomdpbhhjgiopmblnj
-        - lgknneiodddmfbbpaklighafdocbfnme
-        - lgljionbhcfbnpjgfnhhoadpdngkmfnh
-        - lgmdiagiphelkdikgjehjpmfaecgmmfl
-        - lgmeadmiopfbbhmddhamajdiekbffkbc
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -7128,15 +7128,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -7148,6 +7148,34 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - lfmdddfdacgdimongmjclgijepoknmjm
+        - lfmkljhfpjpcoeghgomhemecbcojikai
+        - lfnionffkeogndgookgchgcbdbpbdecd
+        - lfnlgdmddmiidbnaeiibmlbadefcnjhi
+        - lfoapagiglbbmpaoibnhbpcofpnaipff
+        - lgakkahjfibfgmacigibnhcgepajgfdb
+        - lgbbbbhjghplkdaagclganmbddfipgmb
+        - lgbiibancdnfpiihkehpfkijgnidfoap
+        - lgdhgkhhglmhiacjecigalebiffjklec
+        - lgdmjaflbcieonpajmfpgchoajfjjalm
+        - lgecddhfcfhlmllljooldkbbijdcnlpe
+        - lgekbdjboenacbkiabfkkcpjgacmjcdg
+        - lgfbgeeakdfpmachejffoacihdelidbf
+        - lgffhbpldjikplafmngceihdfnpcjhfb
+        - lggbbeebphidldagkpajkogjnmcalijp
+        - lggkajpnihaenfdkekebaegnjcknlied
+        - lggmpibegkcnfogpophgnchognofcdgo
+        - lghpenffcbekpbfbiappefgimefaclcm
+        - lgioohiljciagplmndfbdcgknagpjomn
+        - lgjdgmdbfhobkdbcjnpnlmhnplnidkkp
+        - lgjdpnpkoebfhclocjoiffpafplcdkjn
+        - lgjmjfjpldlhbaeinfjbgokoakpjglbn
+        - lgjogljbnbfjcaigalbhiagkboajmkkj
+        - lgjplckjkndnoedomdpbhhjgiopmblnj
+        - lgknneiodddmfbbpaklighafdocbfnme
+        - lgljionbhcfbnpjgfnhhoadpdngkmfnh
+        - lgmdiagiphelkdikgjehjpmfaecgmmfl
+        - lgmeadmiopfbbhmddhamajdiekbffkbc
         - lgmeeibplclmipfdkenikbladlcdjiej
         - lgmgdhlihincpcankmmnopnkiaekmlnf
         - lgnbgeiilaodieofbfpbfkhganlfddoc
@@ -7324,6 +7352,7 @@ detection:
         - llgafggebnggpcgaemmehplbakjobeml
         - llgdcikkeedgminkikfleecnhdkpjblg
         - llgfjlihggbnidedpjgdenpflhoiaaji
+        - llgigokgnhjafjjdlgcinnhkghlochkb
         - llgknoepjbcomfcbnaegceikjkcapfoc
         - llglaggpleplnndcjjemiddidpikbkjj
         - llhbijlenbngmdapikbnncbphmchgfcl
@@ -7553,6 +7582,7 @@ detection:
         - mcfeaailfhmpdphgnheboncfiikfkenn
         - mchacgmgddefeohkjobefhihbadocneh
         - mchceimbhojpoeogdnimlbopidfdfphk
+        - mchfdclkdanpahfendecnkollhimafag
         - mchfoinmbnbbogcdoohfpdjopcemaknd
         - mchgbnpekhpngnomfbfffnodlldcjpcm
         - mciddpldhpdpibckghnaoidpolnmighk
@@ -7618,36 +7648,6 @@ detection:
         - medkneifmjcpgmmibfppjpfjbkgbgebl
         - mednmckglhbmgbjpombcjnijkgghnlmo
         - meffljleomgifbbcffejnmhjagncfpbd
-        - meghgkmdmcncggfiamanleadfliacbgk
-        - megonkedidbhgokacgilpjmhlbbhanck
-        - mehipcdhalmoecjhhfcgmiodeokllnno
-        - mehpokgiebgcnelgnlfkeldlfnpdhdha
-        - meioomnaphfjchjidcfnbadkbaaoanok
-        - mejjgaogggabifjfjdbnobinfibaamla
-        - mekficoajaehkcbenfdeicfaopdjgecn
-        - mekhmoakacmpddmiejmkjmmcihbmopnh
-        - mekleadipfcpdbfklehcmnmibdolmeih
-        - melcllbcepoakpgccapphgiilfefclfp
-        - meljmedplehjlnnaempfdoecookjenph
-        - melojeghidmomfldeeiacfcjmkfamole
-        - memaakonnagaloagpobnapphnjebchni
-        - membjdlghnjabalehklnkchehfhplibj
-        - menbkbopdppaemfocbkmeflcejkghhcj
-        - menihhcicpgkoakckmlcjnclmpmlijmi
-        - menjepdmopaplpmaadiioflhgjfdogll
-        - menllhiocaggjibkofembnkeapkfagcf
-        - meobjhkdifjealkiaanikkpajiaalcad
-        - meophpndbjjojmledlkjganjiijhlleo
-        - mepcegjolholpjggdikkgdkkofednhop
-        - mephkmedpjhgihgboeiodaglkdghfppi
-        - mepojgmknjjiogaioolgbelfnkdncopf
-        - mfaloejbpgglmjkodkkiclngekncoghe
-        - mfapmkkleedaafigeeianmkfklamafaf
-        - mfbiaieoddgadfcfkgkbohehnnpcplga
-        - mfbjlcbbpkfaccgglimohobeedbfibgf
-        - mfbnogenneacgjcjljllnkllgpbhhgbo
-        - mfcaneeehggllfdnekaicinjidbbongi
-        - mfcgngmfjdfamdfbcfmkollonkacohep
     condition: selection
 falsepositives:
     - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
@@ -7676,15 +7676,15 @@ status: experimental
 description: >
     Detects the presence or activity of a known malicious Chrome or Edge
     browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
     across campaigns including credential theft, data exfiltration, browser
     hijacking, click fraud, and supply chain attacks via ownership transfer.
 references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
@@ -7696,6 +7696,37 @@ detection:
         # Match extension IDs in filesystem paths, registry, logs, or network traffic
         # Adjust field names to match your log source schema
         |contains:
+        - meghgkmdmcncggfiamanleadfliacbgk
+        - megonkedidbhgokacgilpjmhlbbhanck
+        - mehimfocdlbihahlpaoegihilgimkohb
+        - mehipcdhalmoecjhhfcgmiodeokllnno
+        - mehpokgiebgcnelgnlfkeldlfnpdhdha
+        - meioomnaphfjchjidcfnbadkbaaoanok
+        - mejjgaogggabifjfjdbnobinfibaamla
+        - mekficoajaehkcbenfdeicfaopdjgecn
+        - mekhmoakacmpddmiejmkjmmcihbmopnh
+        - mekleadipfcpdbfklehcmnmibdolmeih
+        - melcllbcepoakpgccapphgiilfefclfp
+        - meljmedplehjlnnaempfdoecookjenph
+        - melojeghidmomfldeeiacfcjmkfamole
+        - memaakonnagaloagpobnapphnjebchni
+        - membjdlghnjabalehklnkchehfhplibj
+        - menbkbopdppaemfocbkmeflcejkghhcj
+        - menihhcicpgkoakckmlcjnclmpmlijmi
+        - menjepdmopaplpmaadiioflhgjfdogll
+        - menllhiocaggjibkofembnkeapkfagcf
+        - meobjhkdifjealkiaanikkpajiaalcad
+        - meophpndbjjojmledlkjganjiijhlleo
+        - mepcegjolholpjggdikkgdkkofednhop
+        - mephkmedpjhgihgboeiodaglkdghfppi
+        - mepojgmknjjiogaioolgbelfnkdncopf
+        - mfaloejbpgglmjkodkkiclngekncoghe
+        - mfapmkkleedaafigeeianmkfklamafaf
+        - mfbiaieoddgadfcfkgkbohehnnpcplga
+        - mfbjlcbbpkfaccgglimohobeedbfibgf
+        - mfbnogenneacgjcjljllnkllgpbhhgbo
+        - mfcaneeehggllfdnekaicinjidbbongi
+        - mfcgngmfjdfamdfbcfmkollonkacohep
         - mfdemjihbpojomhhimkifcakpkpcblbo
         - mfdjdcehbbppoogkamldmbihomamhmca
         - mfeglpankepoebhgolkpepjbihmhmedf
@@ -7783,6 +7814,7 @@ detection:
         - mihbpkopbloapjgpcpfkblilhlcapbfj
         - mihejilgifecplfpdfhjghfmhbhajcke
         - mihiainclhehjnklijgpokdpldjmjdap
+        - mihmklnonmojnfnjciklphjiahjhchpp
         - miidjpmjpkbpefhnfcdcoolaaedfmlam
         - miiolehfoldajjpfjcnajmalaojhjaoa
         - mijdciieliebbecpchpbaamnmkdhjpbg
@@ -7908,6 +7940,7 @@ detection:
         - mmbbjakjlpmndjlbhihlddgcdppblpka
         - mmbkmjmlnhocfcnjmbchmflamalekbnb
         - mmccpogbmjchkdgkggiikcggjochobcn
+        - mmclamjkknobggpiohfneimmnlggagok
         - mmcmenmhcbafgjjjpcjlaeemhnecpjbd
         - mmcnmppeeghenglmidpmjkaiamcacmgm
         - mmcpfohhfeomglnlfilelojkchefajip
@@ -8162,6 +8195,55 @@ detection:
         - ndibbpjeioklnplbjkfdfjknacpjddmo
         - ndihciopmidkbamcfgpdmojcpalolfgo
         - ndjpllenomnodfoahfnjmgpagdjipefl
+        - ndkdnfdghiobjfohecenmdceffkfcgmp
+    condition: selection
+falsepositives:
+    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
+    - Test environments with intentionally installed malicious extensions
+level: high
+logsources:
+    # Uncomment and adjust for your environment:
+    # Windows registry (Chrome/Edge extension installation):
+    # category: registry_event
+    # Windows filesystem (extension directory creation):
+    # category: file_event
+    # Browser history / network logs:
+    # category: proxy
+    # Endpoint detection:
+    # category: process_creation
+fields:
+    - ExtensionID
+    - RegistryKey
+    - FilePath
+    - NetworkURL
+
+---
+title: Malicious Chrome/Edge Extension Detected (part 16/19)
+id: chrome-mal-ids-sigma_part16
+status: experimental
+description: >
+    Detects the presence or activity of a known malicious Chrome or Edge
+    browser extension based on the Malicious Chrome Extension IOC Database
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
+    across campaigns including credential theft, data exfiltration, browser
+    hijacking, click fraud, and supply chain attacks via ownership transfer.
+references:
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
+author: Malicious Chrome Extension IOC Database (@mallorybowes)
+date: 2026-11-20
+modified: 2026-11-20
+tags:
+    - attack.collection
+    - attack.t1176
+    - attack.credential_access
+    - attack.t1539
+    - attack.exfiltration
+detection:
+    selection:
+        # Match extension IDs in filesystem paths, registry, logs, or network traffic
+        # Adjust field names to match your log source schema
+        |contains:
         - ndkmflfgemoefmfdannjoijjcgglpmic
         - ndlbedplllcgconngcnfmkadhokfaaln
         - ndlebcdegkpmecfkeiaeabebphkggknn
@@ -8196,54 +8278,6 @@ detection:
         - nejhmgcmgongaaionhciamlinanklinh
         - nekiddplfpeikpfljcopihankmpgilja
         - nekimocmhfdimckbgchifahcgafhnagb
-    condition: selection
-falsepositives:
-    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
-    - Test environments with intentionally installed malicious extensions
-level: high
-logsources:
-    # Uncomment and adjust for your environment:
-    # Windows registry (Chrome/Edge extension installation):
-    # category: registry_event
-    # Windows filesystem (extension directory creation):
-    # category: file_event
-    # Browser history / network logs:
-    # category: proxy
-    # Endpoint detection:
-    # category: process_creation
-fields:
-    - ExtensionID
-    - RegistryKey
-    - FilePath
-    - NetworkURL
-
----
-title: Malicious Chrome/Edge Extension Detected (part 16/19)
-id: chrome-mal-ids-sigma_part16
-status: experimental
-description: >
-    Detects the presence or activity of a known malicious Chrome or Edge
-    browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
-    across campaigns including credential theft, data exfiltration, browser
-    hijacking, click fraud, and supply chain attacks via ownership transfer.
-references:
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
-author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
-tags:
-    - attack.collection
-    - attack.t1176
-    - attack.credential_access
-    - attack.t1539
-    - attack.exfiltration
-detection:
-    selection:
-        # Match extension IDs in filesystem paths, registry, logs, or network traffic
-        # Adjust field names to match your log source schema
-        |contains:
         - neknfaddjhokmoajmhadjikdlieknmbk
         - neknljghdeiainlifcalpnkfbdicnghc
         - nekodnmpigighiohaepicibloafjpphc
@@ -8296,6 +8330,7 @@ detection:
         - nflnkbakbmolpccjpicmljnaclehelbi
         - nfmlkliedggdodlbgghmmchhgckjoaml
         - nfnilbcogkbmmloillpgenogjojihjlm
+        - nfnkpafbjoknlmmablnnphdphleilkkn
         - nfocihmlmhenkgiopgffdcmidppofgae
         - nfodepdbkedfahdadcglakjdmopkobon
         - nfpnclghflfcgkgdjcbpoljlafndbomk
@@ -8444,6 +8479,7 @@ detection:
         - njpegidkheieeecaiaaihggmnhklccjn
         - njplfepmomlenmocdjamepmbkoakljnd
         - nkacmelgoeejhjgmmgflbcdhonpaplcg
+        - nkahfnibmdghkekciilegnoadhehffei
         - nkbgidaebkndnjnndagnfbphcjnljjbh
         - nkbmneokhdalabfmafbgeimamddpgodc
         - nkbopmnkpfjhpngcpgafplamboaolhig
@@ -8708,6 +8744,54 @@ detection:
         - obdmdijahlikiphgddekbaboodblhmkj
         - obdobankihdfckkbfnoglefmdgmblcld
         - obedkjaaifedcfidfdjoinfaphghmbfl
+    condition: selection
+falsepositives:
+    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
+    - Test environments with intentionally installed malicious extensions
+level: high
+logsources:
+    # Uncomment and adjust for your environment:
+    # Windows registry (Chrome/Edge extension installation):
+    # category: registry_event
+    # Windows filesystem (extension directory creation):
+    # category: file_event
+    # Browser history / network logs:
+    # category: proxy
+    # Endpoint detection:
+    # category: process_creation
+fields:
+    - ExtensionID
+    - RegistryKey
+    - FilePath
+    - NetworkURL
+
+---
+title: Malicious Chrome/Edge Extension Detected (part 17/19)
+id: chrome-mal-ids-sigma_part17
+status: experimental
+description: >
+    Detects the presence or activity of a known malicious Chrome or Edge
+    browser extension based on the Malicious Chrome Extension IOC Database
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
+    across campaigns including credential theft, data exfiltration, browser
+    hijacking, click fraud, and supply chain attacks via ownership transfer.
+references:
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
+author: Malicious Chrome Extension IOC Database (@mallorybowes)
+date: 2026-11-20
+modified: 2026-11-20
+tags:
+    - attack.collection
+    - attack.t1176
+    - attack.credential_access
+    - attack.t1539
+    - attack.exfiltration
+detection:
+    selection:
+        # Match extension IDs in filesystem paths, registry, logs, or network traffic
+        # Adjust field names to match your log source schema
+        |contains:
         - obengahfabphpfidcaahbfgkhhdfjjlm
         - obeokabcpoilgegepbhlcleanmpgkhcp
         - obfnfejeddfgmeebjbmpfeipddclmfgi
@@ -8744,54 +8828,6 @@ detection:
         - ocflhkadmmnlbieoiiekfcdcmjcfeahe
         - ocfpmgbbkjeblbhdehminjdjffhcidbi
         - ocgfhclcahimdhfjgmakmfdnhomofljo
-    condition: selection
-falsepositives:
-    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
-    - Test environments with intentionally installed malicious extensions
-level: high
-logsources:
-    # Uncomment and adjust for your environment:
-    # Windows registry (Chrome/Edge extension installation):
-    # category: registry_event
-    # Windows filesystem (extension directory creation):
-    # category: file_event
-    # Browser history / network logs:
-    # category: proxy
-    # Endpoint detection:
-    # category: process_creation
-fields:
-    - ExtensionID
-    - RegistryKey
-    - FilePath
-    - NetworkURL
-
----
-title: Malicious Chrome/Edge Extension Detected (part 17/19)
-id: chrome-mal-ids-sigma_part17
-status: experimental
-description: >
-    Detects the presence or activity of a known malicious Chrome or Edge
-    browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
-    across campaigns including credential theft, data exfiltration, browser
-    hijacking, click fraud, and supply chain attacks via ownership transfer.
-references:
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
-author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
-tags:
-    - attack.collection
-    - attack.t1176
-    - attack.credential_access
-    - attack.t1539
-    - attack.exfiltration
-detection:
-    selection:
-        # Match extension IDs in filesystem paths, registry, logs, or network traffic
-        # Adjust field names to match your log source schema
-        |contains:
         - ocgfpdjimmnmnoddhlpibflajjhmjpki
         - ocghebkoeeoejbhkkhcibjancmfllcpf
         - ocginjipilabheemhfbedijlhajbcabh
@@ -8806,6 +8842,7 @@ detection:
         - ockelnmgipmhmcjedaekchaodpdegneb
         - ockodkhcgipoipdepkdledlnoplgjmfj
         - oclobnfedcdncflccolnlpebjphomjjd
+        - oclolfjagpccoaojhocgfaaeghefghmg
         - ocmfdaiphdfkenjopapohofnidpcjcdl
         - ocmgdkkdgcpjmamplkahollgddihpgge
         - ocmkgfnifakgckfeofcoakiniljdjcfp
@@ -8852,6 +8889,7 @@ detection:
         - oeacadlaclegkkkdehjmiifnjhcekclj
         - oebcbpokjkoooddmcokcjjoijcgnjoic
         - oecgdjcjbecfponcgnmjjglefnddibpa
+        - oecnhlfinmjfocnpklnfoojgehgnhcha
         - oeddabhhipaomblagaohfjfcikjacide
         - oedechpcnjolalnpghbibmadgfjgaopm
         - oedhhphckogbfnadcaomjgkllbbicakh
@@ -8966,6 +9004,7 @@ detection:
         - ohdkkamihjkjadflmpbcmofhhkheekge
         - ohdpiokdpmeffkihnalpafiedljikide
         - ohfphjhbilmblbbhdihnmabcagahmkhc
+        - ohgakgekjgecokngbbipojokipokkjho
         - ohgjocffdljdlnffpfdjkakdanobppon
         - ohhcibnomcgiocaokhhobpjbeeglngfb
         - ohhhngpnknpdhmdmpmoccgjmmkkleipn
@@ -8980,6 +9019,7 @@ detection:
         - ohkgflgjankblfnhpmmoddiegoofbljf
         - ohldfpiabdaaplbckgelngaafjnnfooa
         - ohlghhgckmkaflhepflfaghhidhbhgdd
+        - ohlmbbampapidnnkoimmmolnbdhacmdb
         - ohlplnjjaegdjagigcmhioofeobmfima
         - ohmeococmnfgleohnbpebbpacngjiklg
         - ohobkendnpiijpeiaimjbannfcmhaogi
@@ -9058,6 +9098,7 @@ detection:
         - ojnagfkemdilpdkjehfajjmcnaefhjhn
         - ojnbedahmpgokldecbnkooaicaiiecch
         - ojnlggfhmoioajgmnelfdpjojaeknjog
+        - ojocbpdkpjdgldocigehjodijopkifba
         - ojofdaokgfdlbeomlelkiiipkocneien
         - ojopbahcpbdegflnmocbkmcdgfkeppll
         - ojpipmhmkeialjmgepiomippphlcoijn
@@ -9073,6 +9114,8 @@ detection:
         - okckcmcehmodfocipicdmllmideoobjf
         - okclicinnbnfkgchommiamjnkjcibfid
         - okdjegllpbkhhiplkipcjbpgiildlbpo
+        - okdjfcnkanonahagfdgmobffgodgpmle
+        - okdkohiaklhiajonhgebakjpahokojml
         - okepehobneenpbhiendcjcanjodhmcbj
         - okggiiagcegdfiajlkodohfkeemnjlnd
         - okghffpbjoabbimlhcmdpejhghbegfcn
@@ -9135,6 +9178,7 @@ detection:
         - olkfbnembiieinliojginnfmnkiflnia
         - olkpikmlhoaojbbmmpejnimiglejmboe
         - ollchoijpmdibhmgmpdmibapgeildloe
+        - ollnblnnjlikaafinmciemgfgpkaendf
         - olmahkdmohbllikhhigdhbcnlediajco
         - olmbfmmlpodikepicechoekmiiejpmel
         - olmfkhpchghnicflnokkdgjbkoekdlpp
@@ -9248,6 +9292,54 @@ detection:
         - oooajbapompagfednbkpmaicgpcdmlok
         - ooobfpifjkgeopllkalfgkbiefhooggl
         - opahibnipmkjincplepgjiiinbfmppmh
+    condition: selection
+falsepositives:
+    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
+    - Test environments with intentionally installed malicious extensions
+level: high
+logsources:
+    # Uncomment and adjust for your environment:
+    # Windows registry (Chrome/Edge extension installation):
+    # category: registry_event
+    # Windows filesystem (extension directory creation):
+    # category: file_event
+    # Browser history / network logs:
+    # category: proxy
+    # Endpoint detection:
+    # category: process_creation
+fields:
+    - ExtensionID
+    - RegistryKey
+    - FilePath
+    - NetworkURL
+
+---
+title: Malicious Chrome/Edge Extension Detected (part 18/19)
+id: chrome-mal-ids-sigma_part18
+status: experimental
+description: >
+    Detects the presence or activity of a known malicious Chrome or Edge
+    browser extension based on the Malicious Chrome Extension IOC Database
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
+    across campaigns including credential theft, data exfiltration, browser
+    hijacking, click fraud, and supply chain attacks via ownership transfer.
+references:
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
+author: Malicious Chrome Extension IOC Database (@mallorybowes)
+date: 2026-11-20
+modified: 2026-11-20
+tags:
+    - attack.collection
+    - attack.t1176
+    - attack.credential_access
+    - attack.t1539
+    - attack.exfiltration
+detection:
+    selection:
+        # Match extension IDs in filesystem paths, registry, logs, or network traffic
+        # Adjust field names to match your log source schema
+        |contains:
         - opakkgodhhongnhbdkgjgdlcbknacpaa
         - opbobdfddmiemhekjiglckcenhpfdbjm
         - opcjjggkhndcdpedheeilommknkephik
@@ -9292,54 +9384,6 @@ detection:
         - paeehadncbhioleecnnjokgdedoennec
         - paeoffpheflnflpfndnilajhpefmjcnn
         - paghkadkhiladedijgodgghaajppmpcg
-    condition: selection
-falsepositives:
-    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
-    - Test environments with intentionally installed malicious extensions
-level: high
-logsources:
-    # Uncomment and adjust for your environment:
-    # Windows registry (Chrome/Edge extension installation):
-    # category: registry_event
-    # Windows filesystem (extension directory creation):
-    # category: file_event
-    # Browser history / network logs:
-    # category: proxy
-    # Endpoint detection:
-    # category: process_creation
-fields:
-    - ExtensionID
-    - RegistryKey
-    - FilePath
-    - NetworkURL
-
----
-title: Malicious Chrome/Edge Extension Detected (part 18/19)
-id: chrome-mal-ids-sigma_part18
-status: experimental
-description: >
-    Detects the presence or activity of a known malicious Chrome or Edge
-    browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
-    across campaigns including credential theft, data exfiltration, browser
-    hijacking, click fraud, and supply chain attacks via ownership transfer.
-references:
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
-author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
-tags:
-    - attack.collection
-    - attack.t1176
-    - attack.credential_access
-    - attack.t1539
-    - attack.exfiltration
-detection:
-    selection:
-        # Match extension IDs in filesystem paths, registry, logs, or network traffic
-        # Adjust field names to match your log source schema
-        |contains:
         - pagmdkoblmmabonnpafnbgfpgkimfcbf
         - pagmkjicfbleoghmdhmdbikhfaofcgnb
         - pagodnomjfjjbokibkbfieffdhafjfji
@@ -9352,6 +9396,7 @@ detection:
         - pajbempmgmalnfpbnpclkelnhfccikal
         - pajkjnmeojmbapicmbpliphjmcekeaac
         - pajnanibdfmmbpbcbcenclklaiidaagk
+        - pajpbamjbepjhohcldkfkbdobogcbffd
         - pakgnemmpanbkmjapomefhloemiagfjm
         - pakhdpiedpnponclldmbkiidkhfblejc
         - pakokdcamkaoehinfoogagbockgibphc
@@ -9795,6 +9840,54 @@ detection:
         - pmjfbdnpbhfgeioabfahbheefebeiehp
         - pmjklmikjlglapcdmnagibmlhffhbmcn
         - pmjnfndhdjmocibhfoddhinhpgjpipjb
+    condition: selection
+falsepositives:
+    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
+    - Test environments with intentionally installed malicious extensions
+level: high
+logsources:
+    # Uncomment and adjust for your environment:
+    # Windows registry (Chrome/Edge extension installation):
+    # category: registry_event
+    # Windows filesystem (extension directory creation):
+    # category: file_event
+    # Browser history / network logs:
+    # category: proxy
+    # Endpoint detection:
+    # category: process_creation
+fields:
+    - ExtensionID
+    - RegistryKey
+    - FilePath
+    - NetworkURL
+
+---
+title: Malicious Chrome/Edge Extension Detected (part 19/19)
+id: chrome-mal-ids-sigma_part19
+status: experimental
+description: >
+    Detects the presence or activity of a known malicious Chrome or Edge
+    browser extension based on the Malicious Chrome Extension IOC Database
+    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9124 confirmed malicious extension IDs
+    across campaigns including credential theft, data exfiltration, browser
+    hijacking, click fraud, and supply chain attacks via ownership transfer.
+references:
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
+    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
+author: Malicious Chrome Extension IOC Database (@mallorybowes)
+date: 2026-11-20
+modified: 2026-11-20
+tags:
+    - attack.collection
+    - attack.t1176
+    - attack.credential_access
+    - attack.t1539
+    - attack.exfiltration
+detection:
+    selection:
+        # Match extension IDs in filesystem paths, registry, logs, or network traffic
+        # Adjust field names to match your log source schema
+        |contains:
         - pmkbdfddjmnceffcgdgfnenkngkkeheg
         - pmkhifhhfdlppeoadkbnpccbanmkggnd
         - pmkjjplpgocdgcbcfdmdfbccmmodegee
@@ -9840,54 +9933,6 @@ detection:
         - pnjifegilbcoeffpbfickagedipiepcc
         - pnjimekgccmbpclgakplkoficlhnomln
         - pnjkndnffhhcbpjcnbjmnlnpenolboho
-    condition: selection
-falsepositives:
-    - Legitimate extensions with similar ID patterns (unlikely — IDs are unique)
-    - Test environments with intentionally installed malicious extensions
-level: high
-logsources:
-    # Uncomment and adjust for your environment:
-    # Windows registry (Chrome/Edge extension installation):
-    # category: registry_event
-    # Windows filesystem (extension directory creation):
-    # category: file_event
-    # Browser history / network logs:
-    # category: proxy
-    # Endpoint detection:
-    # category: process_creation
-fields:
-    - ExtensionID
-    - RegistryKey
-    - FilePath
-    - NetworkURL
-
----
-title: Malicious Chrome/Edge Extension Detected (part 19/19)
-id: chrome-mal-ids-sigma_part19
-status: experimental
-description: >
-    Detects the presence or activity of a known malicious Chrome or Edge
-    browser extension based on the Malicious Chrome Extension IOC Database
-    (https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids). Covers 9079 confirmed malicious extension IDs
-    across campaigns including credential theft, data exfiltration, browser
-    hijacking, click fraud, and supply chain attacks via ownership transfer.
-references:
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
-    - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
-author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
-tags:
-    - attack.collection
-    - attack.t1176
-    - attack.credential_access
-    - attack.t1539
-    - attack.exfiltration
-detection:
-    selection:
-        # Match extension IDs in filesystem paths, registry, logs, or network traffic
-        # Adjust field names to match your log source schema
-        |contains:
         - pnlgcjdpkjbacmgcbaciffijdkpdjmib
         - pnlphjjfielecalmmjjdhjjninkbjdod
         - pnmdogboalmhbaikfonpanaaimjjkmnc
@@ -10007,8 +10052,8 @@ references:
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids
     - https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/blob/master/STATS.md
 author: Malicious Chrome Extension IOC Database (@mallorybowes)
-date: 2026-11-15
-modified: 2026-11-15
+date: 2026-11-20
+modified: 2026-11-20
 tags:
     - attack.collection
     - attack.t1176
