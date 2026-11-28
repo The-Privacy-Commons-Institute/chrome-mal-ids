@@ -1,488 +1,472 @@
-# chrome-mal-ids Changelog
+# chrome-mal-ids Schema
 
-All notable changes to the chrome-mal-ids database and tooling are documented here.
-
-Format: newest first. Each entry includes date, version (if applicable), summary,
-and reasoning for significant data decisions.
+Full field documentation for `current-list-meta.csv`.
 
 ---
 
-## 2026-09-28 — Threat-type corrections; Stage 5A evidence retention
+## Fields
 
-### Summary
-Three data corrections and one pipeline bug, the last of which affects
-whether any published `TPCI-BEHAVIORAL` value can be independently
-reproduced.
-
-### `THREAT-TYPE=malware` retired — 140 rows
-
-`malware` was never in the taxonomy, published (SCHEMA.md, 16 values) or
-internal (7 values). It is not a threat type: it asserts that something is
-bad, which `CONFIRM-MAL` and `REPORTED-MAL` already record, rather than
-describing what it does.
-
-It came from an internal script's source-reason fallback, which wrote the
-contributing source's bare label straight through when the classifier
-returned nothing. Two labels reached it — `malware`, and `policy violation`,
-which silently upgraded a store-policy determination (metadata, keyword
-spam, a missing privacy policy) into a malware assertion.
-
-All 140 affected rows reached every distribution format. They now read
-`UNKNOWN`. The fallback is restricted to taxonomy values, and `search
-hijacking` / `search-hijacker` were added as mappings to `browser-hijack`.
-
-`CONTRIB-METHOD` is unchanged on these rows: SCHEMA defines
-`ThreatType_Fallback` as "classification attempted but no confident category
-assigned," which describes them accurately now.
-
-### `THREAT-TYPE` component order normalized — 677 rows
-
-`THREAT-TYPE` is a comma-separated list, and until 2026-09-22 components
-were emitted in whatever order the classifier returned. The same category
-existed under several spellings — `credential-theft,data-theft,session-hijack`
-appeared four different ways across 41 rows. Any consumer grouping on the
-field saw them as distinct.
-
-Components are now lowercased, deduplicated and sorted alphabetically.
-Distinct values dropped from 60 to 44. **No classification was added or
-removed** — order and spelling only.
-
-### UNKNOWN is higher, deliberately
-
-These corrections raise `THREAT-TYPE=UNKNOWN` by roughly 140. That is the
-correct direction: those rows previously carried a value we had no evidence
-for. Roughly 74% of the UNKNOWN population is extensions removed from the
-store before behavioral analysis was possible — the CRX is unreachable, so
-no classification is recoverable by us or anyone else.
-
-### Stage 5A findings file was being overwritten
-
-Another internal pipeline script loaded its existing findings only under `--resume`,
-but wrote unconditionally at the end of every run. Any run without that flag
-replaced the entire evidence file with just its own results.
-
-**Consequence:** `TPCI-BEHAVIORAL` values in the published CSV are valid —
-each was produced by a real analysis — but for entries analysed before the
-most recent run, the underlying findings no longer exist on disk. They
-cannot currently be reproduced or audited. This includes `below-threshold`
-values, which are what the `classification_divergent` flag is derived from.
-
-Fixed: findings are merged rather than replaced, writes are atomic, each run
-also writes an immutable timestamped copy, and the script now refuses to run
-if the findings file exists but cannot be parsed, rather than starting from
-empty.
-
-Recovery is limited.  Findings for entries whose CRX is no longer downloadable
-are not recoverable, and that limitation will be stated in PROVENANCE.md rather
-than worked around.
+| Field | Type | Description |
+|-------|------|-------------|
+| `EXTID` | string | 32-character Chrome/Edge extension ID (lowercase a-p) |
+| `EXTID-NAME` | string | Extension display name. `UNKNOWN` = stub pending enrichment |
+| `DATE-DIS` | date | Date malicious behavior first reported (YYYY-MM-DD). `UNKNOWN` if not established |
+| `DATE-ADD` | date | Date entry was added to this database (YYYY-MM-DD) |
+| `SOURCE` | url | Primary research source URL |
+| `ARTICLE` | url | News/blog article covering the campaign |
+| `ADD-SOURCES` | string | Space-separated additional source URLs (archive snapshots, CRX API confirmations, etc.) |
+| `CONTRIB` | string | Contributor handle or project name |
+| `CONTRIB-METHOD` | string | How the entry was added (see below) |
+| `CONFIRM-MAL` | integer | Malicious confirmation level (see below) |
+| `REPORTED-MAL` | integer | `1` if reported as malicious by a researcher or publication, `0` otherwise |
+| `NOTES` | string | Plain-English summary of malicious behavior. Leads with campaign name where known |
+| `THREAT-TYPE` | string | Comma-separated threat type(s) (see below) |
+| `OWNERSHIP-TRANSFER` | integer | `1` if a legitimate extension was acquired then weaponized, `0` otherwise |
+| `BROWSER` | string | `chrome`, `edge`, or `both` |
+| `STILL-ACTIVE` | string | `1` active in store, `0` removed, `unknown` unverified |
+| `CONTRIB-TYPE` | string | `human` or `automated` |
+| `CONTRIB-HANDLE` | string | GitHub handle or tool name of contributor |
+| `TPCI-VERIFY` | integer | TPCI verification level achieved (see below) |
+| `TPCI-VERIFY-DATE` | date | Date of last TPCI verification (YYYY-MM-DD) |
+| `TPCI-STORE-NAME` | string | Extension name as shown in store at time of TPCI verification |
+| `TPCI-STORE-DEV` | string | Developer name as shown in store at time of TPCI verification |
+| `TPCI-STORE-DATE` | date | Date store name and developer were recorded (YYYY-MM-DD) |
+| `TPCI-IDENTITY` | string | Identity continuity result (see below) |
+| `TPCI-CRX-HASH` | string | SHA-256 hash of the CRX package analyzed during Stage 5A |
+| `TPCI-BEHAVIORAL` | string | Stage 5A risk level: `malicious`, `suspicious`, `elevated`, `below-threshold`, or `unknown` |
+| `TPCI-BEHAVIORAL-DATE` | date | Date Stage 5A static analysis was performed (YYYY-MM-DD) |
+| `ENRICH-STATUS` | string | Enrichment pipeline status for stub entries (see below) |
+| `ENRICH-DATE` | date | Date enrichment was last attempted (YYYY-MM-DD) |
 
 ---
 
-## 2026-09-22 — `disputed` renamed to `divergent`
+## CONFIRM-MAL Values
 
-### Summary
-The classification flag introduced yesterday is renamed. Every published form of
-it changes. This is a breaking change for anyone who pinned the previous strings,
-one day after they first appeared.
+| Value | Meaning |
+|-------|---------|
+| `0` | Not confirmed — under investigation |
+| `1` | Researcher confirmed — reported by a security researcher or publication |
+| `2` | Google confirmed — CRX API returned `_malware="true"` |
+| `3` | Dual confirmed — both researcher AND Google confirmed |
 
-### Reasoning
-"Disputed" asserts a position we do not hold. We are not contesting the
-contributing source's finding — we ran a different method over the currently
-published package and did not reproduce it. Those are different claims, and the
-stronger one is the one we cannot support: we do not know how a given source
-derives its classifications, we analyse a build that is often not the one that
-was reported, and static analysis can be evaded. "Divergent" says what actually
-happened — two systems did not agree — without implying either is wrong.
+**On value `2`:** Google's CRX update API (`clients2.google.com/service/update2/crx`)
+returns `_malware="true"` when an extension is flagged in Google's malware database.
+This is authoritative confirmation from the Chrome Web Store operator, independent
+of any researcher reporting.
 
-### What changed
+**`CONFIRM-MAL` records EXTERNAL confirmation only.** TPCI's own Stage 5A
+static analysis does not raise it, however strong the finding — that result
+is recorded in `TPCI-BEHAVIORAL`. An entry may legitimately read
+`CONFIRM-MAL=0` alongside `TPCI-BEHAVIORAL=malicious`, and that combination
+says exactly what it looks like: our analysis found something, and no
+external source has confirmed the extension is malicious.
 
-| Output | Was | Now |
-|---|---|---|
-| `current-list.json` | `"classification_disputed"` | `"classification_divergent"` |
-| `current-list.txt` | `[disputed]` | `[divergent]` |
-| `current-list-sigma.yml` | rule id `chrome-mal-ids-sigma-disputed` | `chrome-mal-ids-sigma-divergent` |
-| MISP | tag `tpci:classification-disputed` | `tpci:classification-divergent` |
-| STIX | label `tpci:classification-disputed` | `tpci:classification-divergent` |
+Treating our own analyzer as the confirming researcher is what made this
+field carry a single value on 99.76% of entries until 2026-11-20.
 
-The Sigma rule id change means an existing import sees the old rule disappear
-rather than update. `grep -v '\[disputed\]'` becomes `grep -v '\[divergent\]'`.
+**For entries from a contributing feed,** the value is derived from the
+source's own category rather than assumed. A feed typically ships several
+kinds of determination in one field — behavioral findings, store-policy
+removals, and statements that assert nothing — and only the first kind
+supports "Researcher confirmed". A category that is hedged ("potentially",
+"suspicious"), administrative ("policy violation", "not whitelisted"), or
+absent ("removal reason unknown") maps to `0`. A reported vulnerability *in*
+an extension also maps to `0`: that extension is a victim, not a threat.
 
-Descriptions carried the same implication and were rewritten with the rename:
-the STIX indicator description and the Sigma rule description now state that the
-two methods do not agree, that neither result overrides the other, and that Stage
-5A analysed the *currently published* package. No data changed — the flag is still
-derived from `TPCI-BEHAVIORAL=below-threshold` and no CSV column was added.
-
-### Stage 5A: search-provider override detection
-
-Separately, Stage 5A gained detection for `chrome_settings_overrides` and
-`chrome_url_overrides` declared in the manifest. It previously scored only
-permissions, content-script scope, known C2 domains and JS patterns, so a search
-hijacker whose entire payload is a declared search-provider override scored at or
-near zero — including extensions shipping no JavaScript at all, which were
-structurally invisible to it. Search-hijacking entries were therefore
-systematically over-represented in the below-threshold population, and so in the
-divergence flag.
-
-Validation on six known search-hijacking extensions: all six produced the
-finding and all six moved off below-threshold. A control sample of eleven
-non-hijacking extensions produced no search-provider finding.
-
-**The cohort has not yet been re-analysed.** Entries flagged divergent today
-include ones that were flagged only because the detector did not exist when they
-were scored. Expect the divergent population to shrink when the re-run completes.
+**Known gap:** no entry in this database currently holds `2` or `3`. The
+signal that would set it — the `_malware="true"` CRX API response described
+above — is observed during verification but is not written to this field.
+Consumers filtering on `CONFIRM-MAL in (2, 3)` will therefore match nothing.
+`REPORTED-MAL` is a separate axis and is not derived from this field.
 
 ---
 
-## 2026-09-21 — Stage 5A terminology, disputed-classification flag, MISP feed grouping
+## TPCI-VERIFY Values
 
-### Summary
-Three consumer-visible changes to the distribution outputs, plus a correction
-to the 2026-05-22 entry below.
+**`TPCI-VERIFY` records the highest verification stage an entry has
+reached — not the outcome of that verification.** The liveness result is
+recorded separately in `STILL-ACTIVE`. The two fields are independent: any
+`TPCI-VERIFY` value can appear alongside any `STILL-ACTIVE` value.
 
-### `TPCI-BEHAVIORAL=clean` renamed to `below-threshold`
+| Value | Stage | Meaning |
+|-------|-------|---------|
+| `0` | — | Not yet verified by TPCI |
+| `1` | Stage 2 | *Legacy.* Early Stage 2 verification, superseded by `2`. Two entries remain, both dated 2026-05-20. |
+| `2` | Stage 2 | CRX infrastructure verification completed. Outcome in `STILL-ACTIVE`. |
+| `3` | Stage 3 | Store listing verified by headless browser, after Stage 2 returned indeterminate. Outcome in `STILL-ACTIVE`. |
+| `4` | Stage 4 | Identity continuity verified. Result in `TPCI-IDENTITY`. |
+| `5` | Stage 5A | Static behavioral analysis completed. Result in `TPCI-BEHAVIORAL`. |
 
-"Clean" was being read as a safety verification. It never meant that: it means
-the Stage 5A scanner found nothing above its lowest scoring threshold, under
-the scoring logic in force at the time of analysis. Static analysis can be
-evaded, thresholds change, and extensions are updated after they are analyzed.
+`TPCI-VERIFY-DATE` records the ISO date (YYYY-MM-DD) when verification was
+last performed. Store status changes over time — always check the date.
 
-34 existing rows were migrated. `SCHEMA.md` documents the value and what it
-does not mean. **Consumers filtering on the literal string `clean` must update.**
+**On the CRX API liveness problem:** 99.6% of extensions returning an indeterminate
+CRX API response (`status="noupdate"` without `_malware="true"`) are confirmed
+removed when verified by headless browser (Stage 3). Entries reaching Stage 3
+therefore skew heavily toward `STILL-ACTIVE=0`, but the stage value itself
+records only that Stage 3 ran — read `STILL-ACTIVE` for the result.
 
-### New: classification-disputed flag
-
-> **Renamed (2026-09-22):** this flag and every published form of it were renamed
-> from `disputed` to `divergent` the following day — see the entry above. The
-> names below are the ones that shipped on 2026-09-21 and are recorded here as
-> published; they are no longer current.
-
-An entry is flagged when TPCI's own Stage 5A analysis found nothing above
-threshold while the contributing source classified the extension as malicious.
-This is a recorded disagreement between two methods — not a judgment that the
-extension is safe, and not a retraction of the source's classification.
-
-**These entries are published, not removed.** The source's research stands and
-carries its own attribution in `CONTRIB` / `CONTRIB-HANDLE`; the disagreement
-is recorded so consumers can weight or filter it themselves. Where the flag
-appears:
-
-| Output | Form |
-|---|---|
-| `current-list.json` | `"classification_disputed": true`, plus a new `"behavioral"` field carrying the raw Stage 5A level |
-| `current-list.txt` | inline `[disputed]` marker; exclude with `grep -v '\[disputed\]'` |
-| `current-list-sigma.yml` | separate rule `chrome-mal-ids-sigma-disputed` at `level: low` |
-| MISP | attribute tag `tpci:classification-disputed` and a comment on the attribute |
-| `current-list-meta.csv` | derived from `TPCI-BEHAVIORAL=below-threshold` — no new column |
-
-Sigma is the only format with nowhere to put per-ID metadata, which is why it
-gets a second rule rather than an inline marker. Consumers wanting the previous
-behavior enable both rules.
-
-### Sigma: main rule ID count changed
-
-Disputed IDs moved out of `chrome-mal-ids-sigma` into the new
-`chrome-mal-ids-sigma-disputed`. The main rule's ID count and description text
-both change as a result. The main rule keeps its existing `id:` so an existing
-import updates rather than duplicating.
-
-### MISP feed: campaign grouping corrected
-
-Delta-feed entries often carry a bare classification as their entire `NOTES`
-("Adware", "Policy Violation"). The feed's campaign extractor read that leading
-fragment as a campaign name, so **82 of 188 published events were named after a
-threat category rather than a campaign** — "Adware — 50 malicious extension(s)
-(part 17 of 32)".
-
-The extractor now matches `generate_stats.py`'s, which has excluded these since
-August. Entries with no campaign attribution group under `Unattributed: <threat
-types>` instead, giving a MISP consumer something selectable. Threat-type
-components are sorted, so `spyware,data-theft` and `data-theft,spyware` are one
-bucket rather than two.
-
-Two related fixes in the same pass:
-
-- **Stale event files are now removed.** The campaign label feeds the event
-  UUID, so relabelling an entry orphans its old event file. Orphans stayed in
-  the repo, served from the raw feed URL while absent from `manifest.json`.
-- **MISP tag names are sanitized.** The previous form passed commas, colons and
-  periods straight through (`palant-serasearchtop.com-campaign`).
-
-### Correction to the 2026-05-22 entry below
-
-That entry's "Clean extensions (excluded from distribution outputs)" section
-states those entries were excluded from downstream formats. **They were not.**
-The distribution filter drops `Delta_Import` rows that lack a `TPCI-VERIFY`
-value — and reaching Stage 5A is what sets `TPCI-VERIFY`, so scoring below
-threshold qualified them to ship. All 34 have been present in every
-distribution output since.
-
-They remain published, now flagged as disputed per the above. The named
-examples in that entry — Amazon seller tools, Ground News, Grok — are among
-them.
+Google also returns a fifth CRX state, `_policy_violation="true"`, for
+extensions pulled for policy rather than malware reasons. It is a definitive
+removal signal and is handled as one.
 
 ---
 
-## 2026-09-20 — Pipeline breakage: Stage 5A target selection
+## TPCI-BEHAVIORAL Values
 
-### Summary
-Stage 5A static behavioral analysis stopped selecting new candidates. The
-target loader matched only `CONTRIB-METHOD=Delta_Import`, so entries from
-ongoing third-party ingestion (`csv_import`) were never eligible — 4,744
-entries affected. Fixed; those entries are working through the review queue.
+The `TPCI-BEHAVIORAL` field records the risk level assigned by Stage 5A static
+analysis of the extension's CRX package. Only populated for entries that have
+undergone Stage 5A analysis.
 
-### Consequence for consumers
-Entries from ongoing third-party ingestion carry the source's own
-classification and store-liveness verification, but no independent behavioral
-analysis. The README previously implied otherwise and has been corrected.
+**Relationship to `TPCI-VERIFY`, corrected 2026-11-20.** Stage 5A ran as an
+independent pass and did not raise `TPCI-VERIFY`, so 3,504 analysed entries
+sat at stage 2 or 3 while carrying a behavioral result. Those entries have
+been corrected: `TPCI-VERIFY=5` is now set wherever Stage 5A produced a
+result **other than `unknown`**.
 
-Source attribution is unchanged and unaffected: every such entry carries
-`CONTRIB` and `CONTRIB-HANDLE` identifying where the ID came from.
+Entries reading `unknown` deliberately keep their earlier stage. `unknown`
+means no CRX was retrieved, so no analysis took place, and recording stage 5A
+as completed would be false.
 
----
+**Filter on `TPCI-VERIFY=5` for entries that were actually analysed.**
+Filtering on `TPCI-BEHAVIORAL` being non-empty includes the `unknown`
+entries, where nothing was examined. This reverses the guidance given here
+before 2026-11-20, which was correct only while the stage field was
+under-populated.
 
-## 2026-07-17 — Metadata backfill: staged in a separate file, not NOTES
+Note also that stages 3 and 4 are conditional branches rather than
+prerequisites — stage 3 runs only when stage 2 returns indeterminate, stage 4
+only for suspected remediation. An entry at `5` may never have passed through
+either, and `5` makes no claim that it did.
 
-### Summary
-Began backfilling supplementary metadata — developer/author name, canonical
-listing URL, version history count, and Chrome Web Store "Featured" status 
-for both the UNKNOWN-name stub backlog and the much
-larger population of already-named entries. None of these fields have a
-dedicated column in the current schema yet.
+| Value | Meaning |
+|-------|---------|
+| `malicious` | Confirmed malicious patterns — risk score ≥100 or any critical finding |
+| `suspicious` | Multiple high-risk indicators — risk score ≥40 |
+| `elevated` | Concerning permissions or patterns — risk score ≥10 |
+| `below-threshold` | No findings above the scoring threshold — risk score <10. **Not a safety verification** — see note below |
+| `unknown` | CRX package could not be downloaded for analysis |
 
-### Design decision: separate staging file, not embedded in NOTES
-Considered embedding this new metadata as a parseable tag inside `NOTES`
-ahead of a schema migration. Rejected: `NOTES` flows directly into STIX
-indicator descriptions, MISP attribute comments, and `current-list.json` —
-all three reach automated consumers (MISP feed subscribers, OpenCTI
-scheduled pulls) with no opt-in and no README to read first. GitHub clone
-statistics show the derived `current-list.*` formats are pulled *more*
-often than the meta CSV itself, so this wasn't a narrow edge case.
+**Risk scoring:** Critical=100pts (known malicious C2 domain), High=30pts
+(broad host permissions, all-URL content scripts), Medium=10pts (obfuscation
+patterns, form harvesting, cookie access), Low=2pts. Thresholds are additive;
+any single critical finding (known malicious domain) results in `malicious`
+classification regardless of total score.
 
-### Related correction: `ENRICH-STATUS=exhausted` definition
-While building the corrected retry logic above, traced `exhausted`'s
-actual origin: it was set by a single manual commit ("Mark 230 extensions
-as exhausted based on enrichment runs," 2026-05-27), reclassifying entries
-that had been mislabeled `verified` despite having no real name resolved.
-Per `SCHEMA.md`: `exhausted` means the *original source material* never
-included names and archive lookups returned nothing — a statement about
-the source, not a retry count. 
+**On `below-threshold`:** This value records the absence of findings under
+Stage 5A's scoring logic *at the time of analysis*. It is not an independent
+safety verification, and it is not a retraction of a contributing source's
+malicious classification. Static analysis can be evaded, scoring thresholds
+change, and extensions are updated after they are analyzed — an extension can
+score below threshold and still be malicious.
 
-### Not yet done
-- Schema migration to promote these staged fields into real columns —
-  planned, not yet scheduled
+This value was named `clean` until 2026-09-21. The term was retired because it
+was read as a safety claim; "Still There" (Paper 1) documents the change and
+notes cases of extensions that scored clean while confirmed malicious by other
+means. The 34 existing `clean` values were migrated to `below-threshold` on
+that date. Consumers who pinned on the literal string `clean` should update.
 
----
+**Divergence flag (derived, not a column):** where `TPCI-BEHAVIORAL` is
+`below-threshold` and the contributing source classified the extension as
+malicious, the distribution outputs mark the entry — `classification_divergent`
+in `current-list.json`, an inline `[divergent]` marker in `current-list.txt`, a
+separate `level: low` rule in the Sigma output, and the `tpci:classification-divergent`
+tag in MISP and STIX. It is computed from `TPCI-BEHAVIORAL` at generation time;
+there is no corresponding column in this CSV. The flag records that two methods
+did not agree, and says nothing about which one is right. It was named
+`disputed` when introduced on 2026-09-21 and renamed on 2026-09-22.
 
-## 2026-05-22 — Stage 5A backfill: campaign attribution + TPCI verification
-
-### Summary
-300 delta import stub entries updated with campaign attribution and TPCI-VERIFY
-fields following Stage 5A static analysis of 375 confirmed-live delta import stubs.
-This is the first systematic behavioral verification of the malicious_extension_sentry
-delta import dataset.
-
-### New campaign attributions
-
-**DBX Tecnologia / WaScript campaign — 125 extensions**
-Brazilian WhatsApp automation operation originally documented by Socket Threat
-Research Team (October 2025) as a 131-extension franchise-model spamware
-campaign operated by DBX Tecnologia and Grupo OPT. The campaign uses a
-white-label reseller model where partners pay ~$2,180 USD to rebrand the
-extension under their own name; all builds share identical backend infrastructure
-published through two developer accounts (suporte@grupoopt.com.br,
-kaio.feitosa@grupoopt.com.br).
-
-TPCI Stage 5A analysis (May 2026) independently confirmed 125 extensions from
-this campaign in the delta import dataset and additionally identified
-`midia.wascript.com.br` as a data harvesting C2 infrastructure, confirming
-form harvesting, cookie access, and credential theft behavior beyond the bulk
-messaging activity documented by Socket. All 125 share an identical behavioral
-fingerprint (38 char code obfuscation instances, 20 base64 decodes, 15 dynamic
-function constructions, 9 form harvesting routines, 10 cookie accesses per
-extension).
-
-Source: socket.dev/blog/131-spamware-extensions-targeting-whatsapp-flood-chrome-web-store (Oct 2025)
-TPCI C2 analysis: midia.wascript.com.br (May 2026)
-
-**Socket April 2026 MaaS campaign — 45 extensions**
-Extensions connecting to `cloudapi[.]stream` C2 infrastructure, attributable to
-the Socket Threat Research Team April 2026 disclosure of 108 Chrome extensions
-operating as a Malware-as-a-Service platform. Steals Google OAuth identity and
-Telegram session data. Our analysis identified 45 extensions from this campaign
-in the delta import dataset. Source: socket.dev/blog/108-chrome-ext-linked-to-
-data-exfil-session-theft-shared-c2
-
-**YowGames cursor farm — 43 extensions**
-Cursor replacement extensions tracking install/uninstall events via `yowgames[.]com`
-with content scripts on all URLs (`*://*/*`). Browsing activity monitoring and
-ad injection. No prior named attribution found.
-
-**TabPlugins cursor farm — 26 extensions**
-Identical model to YowGames. Install/uninstall tracking via `tabplugins[.]com`,
-new tab hijacking infrastructure at `tabplugins[.]com/constructor/`.
-
-**Pixatab new tab hijacking cluster — 3 extensions**
-Content scripts on all URLs connecting to `pixatab[.]xyz/constructor/`.
-
-**Unattributed malicious — 58 extensions**
-Stage 5A confirmed malicious behavior (malicious/suspicious risk level) without
-matching a known C2 domain or cluster. TPCI-VERIFY=1 set; campaign attribution
-pending further analysis.
-
-### Fields updated
-- `TPCI-VERIFY` — set to `1` (confirmed malicious + active) for 268 entries
-- `TPCI-VERIFY-DATE` — set to `2026-05-22` for updated entries
-- `NOTES` — prepended with campaign attribution and Stage 5A confirmation
-- `THREAT-TYPE` — updated with behaviorally confirmed threat classifications
-
-### Distribution output impact
-The 300 newly attributed entries now meet the `TPCI-VERIFY >= 1` threshold
-and will appear in STIX, MISP, Sigma, and plain text blocklist outputs.
-Previously these were excluded as unverified delta imports.
-
-### Clean extensions (excluded from distribution outputs)
-
-> **Correction (2026-09-21):** these entries were **not** excluded from the
-> distribution outputs — the filter drops `Delta_Import` rows lacking a
-> `TPCI-VERIFY` value, and reaching Stage 5A sets it. They have shipped in
-> every output since. They remain published and are now flagged as
-> classification-divergent (introduced 2026-09-21 as `disputed`, renamed
-> 2026-09-22); see those entries. The `clean` risk level referenced below has
-> since been renamed `below-threshold`.
-
-32 delta import stub entries passed Stage 5A static analysis with no significant
-findings. These are retained in the CSV for historical completeness but excluded
-from downstream distribution formats. Notable false positives include Amazon
-seller tools, AliExpress tools, Ground News bias checker, and Grok AI extensions.
-These represent an estimated 8.5% false positive rate in the malicious_extension_sentry
-source feed for confirmed-live extensions.
-
-### Methodology note
-Stage 5A static analysis downloads CRX packages and analyzes manifest permissions,
-host permissions, content script scope, known C2 domain presence, JS behavioral
-patterns (obfuscation, form harvesting, credential access), and external URLs.
+`TPCI-CRX-HASH` contains the SHA-256 hash of the specific CRX package version
+analyzed. `TPCI-BEHAVIORAL-DATE` records when the analysis was performed.
 
 ---
 
-## 2026-05-22 — TPCI-V verification: Playwright store verification complete
+## TPCI-IDENTITY Values
 
-### Summary
-Stage 3 headless browser verification complete across all 1,610 indeterminate
-CRX API entries. 1,604 (99.6%) confirmed hard-removed from Chrome Web Store.
+The `TPCI-IDENTITY` field records the result of Stage 4 identity continuity
+verification — whether the current store listing is the same extension we
+documented as malicious.
 
-### Key finding
-The Chrome CRX update API returns `status=noupdate` without a malware flag for
-removed extensions indefinitely. This response is indistinguishable from a live
-extension at the API level. Playwright headless browser verification resolves
-this ambiguity. This finding is documented in the forthcoming TPCI research paper.
+| Value | Meaning |
+|-------|---------|
+| `match` | Current store name matches our record — same extension confirmed persistent |
+| `rebrand` | Different name, same developer key — product renamed by original developer |
+| `transfer` | Different developer account — signing key or account transferred |
+| `remediated` | Was victim of supply chain attack; developer patched and relaunched |
+| `unknown` | Could not determine — store not accessible or name unavailable |
 
-### Fields updated
-- `STILL-ACTIVE` — updated to `0` for 1,604 previously indeterminate entries
-- `TPCI-VERIFY` — set to `2` (confirmed removed) for verified entries
-- `TPCI-VERIFY-DATE` — set to `2026-05-22`
-
----
-
-## 2026-05-22 — Stage 4 identity continuity audit complete
-
-### Summary
-Stage 4 identity continuity verification across all 529 confirmed-live extensions.
-
-### Key findings
-- 21 extensions confirmed remediated (Cyberhaven Dec 2024 supply chain victims)
-- 3 name changes detected: Cuponomia localization (benign), PCVARK rebrand
-  (same adware operator), "Browsing Protector" stub (suspicious, pending review)
-- 0 malicious transfers detected
-
-### Cyberhaven victims reclassified
-21 extensions from the Cyberhaven December 2024 OAuth supply chain attack
-confirmed as developer-remediated. These extensions were malicious at the
-documented date due to unauthorized code injection. Developers patched and
-relaunched. `TPCI-IDENTITY=remediated` set. Retained in DB for historical
-accuracy — they were malicious at a documented point in time.
+**Technical note on identity:** Chrome extension IDs are derived
+cryptographically from the developer's RSA public key. It is computationally
+infeasible for a different developer to obtain the same ID without the original
+developer's private key. Therefore any extension sharing an ID with a
+documented malicious extension is operated by the original developer or
+someone who obtained their signing key.
 
 ---
 
-## 2026-05-22 — Schema update: TPCI-V fields added
+## ENRICH-STATUS Values
 
-### New fields
-| Field | Description |
+The `ENRICH-STATUS` field tracks the enrichment pipeline state for stub entries
+(`EXTID-NAME=UNKNOWN`). Populated by the TPCI enrichment pipeline.
+
+| Value | Meaning |
+|-------|---------|
+| `pending` | Not yet attempted — queued for enrichment |
+| `searched` | Enrichment attempted — no name found in store or archives |
+| `verified` | Enrichment successful — name confirmed from store or archive source |
+| `exhausted` | Enrichment attempted and confirmed unresolvable — source article did not include extension names and archive lookup returned no results |
+
+`ENRICH-DATE` records the ISO date (YYYY-MM-DD) when enrichment was last
+attempted or completed.
+
+**On `exhausted` entries:** These are typically extensions from early-era IOC
+sources (2020–2021) where the original researcher published extension IDs without
+corresponding names, and no archive coverage exists for the Chrome Web Store
+pages. The extension IDs are confirmed malicious but names cannot be recovered
+through automated means. Manual investigation of the original source material
+may yield names in some cases.
+
+**Filtering by enrichment status:**
+```python
+import csv
+with open('current-list-meta.csv') as f:
+    rows = list(csv.DictReader(f))
+    # Only fully verified entries
+    verified = [r for r in rows if r['ENRICH-STATUS'] == 'verified']
+    # Exclude exhausted stubs
+    actionable = [r for r in rows if r['ENRICH-STATUS'] != 'exhausted']
+```
+
+---
+
+## CONTRIB-METHOD Values
+
+Values are **compound**: more than one process may touch an entry, and the
+components are joined with `+` (e.g. `Delta_Import+Store_Enrichment+ThreatType_Classified`).
+Match with a substring test on the component, not equality on the whole string.
+[STATS.md](STATS.md) carries live per-method counts and a generated glossary.
+
+| Component | Meaning |
+|-----------|---------|
+| `Manual` | Hand-entered by a human researcher outside the automated pipeline |
+| `AI_Enrichment` | Metadata or classification added via AI-assisted research |
+| `Delta_Import` | One-time bulk import from an external IOC feed (with attribution) |
+| `csv_import` | Ongoing ingestion from an externally-provided CSV feed |
+| `PDF_Import` | Extracted from a PDF-format threat research report |
+| `Google_Search` | Independently discovered and verified through manual web research |
+| `Initial_Commit` | Part of the batch entered when the project restarted in May 2026 — often carrying original discovery dates from years earlier |
+| `Store_Enrichment` | Name and metadata resolved from the Chrome/Edge Web Store listing |
+| `ThreatType_Classified` | Threat category assigned via AI-based classification |
+| `ThreatType_Fallback` | AI classification attempted but no confident category assigned |
+
+**On third-party sourced entries:** `Delta_Import` and `csv_import` both denote
+IDs contributed by an external source rather than discovered by TPCI. They differ
+in verification coverage — see the third-party note in [README.md](README.md).
+
+**When a contributing feed is itself an aggregation,** `SOURCE` carries the
+primary report that feed cites, not the feed's own URL, and the feed URL moves
+to `ADD-SOURCES`. `SOURCE` is defined as the primary research source; an
+aggregation vector is not one. Attribution for the ingestion path is unaffected
+and remains in `CONTRIB` and `CONTRIB-HANDLE`. Where the feed names no primary
+source — because the entry came from its own monitoring — `SOURCE` holds the
+feed URL, which in that case genuinely is the primary source.
+
+---
+
+## THREAT-TYPE Values
+
+| Value | Description |
 |-------|-------------|
-| `TPCI-VERIFY` | Verification level (0-5) per TPCI-V protocol |
+| `spyware` | Monitors and exfiltrates user activity |
+| `data-theft` | Steals user data |
+| `credential-theft` | Targets login credentials |
+| `session-hijack` | Hijacks authenticated sessions |
+| `browser-hijack` | Redirects searches, injects content |
+| `adware` | Injects ads or monetizes traffic |
+| `click-fraud` | Generates fraudulent ad clicks |
+| `cryptojacking` | Mines cryptocurrency via browser |
+| `ransomware` | Encrypts or holds data hostage |
+| `backdoor` | Provides persistent remote access |
+| `trojan` | Disguises malicious functionality |
+| `ai-chat-scraper` | Harvests AI conversation data |
+| `fake-extension` | Impersonates a legitimate extension |
+| `ownership-transfer` | Legitimate extension acquired and weaponized |
+| `malvertising` | Delivers malicious advertisements |
+| `phishing` | Harvests credentials via fake UI |
+
+**`THREAT-TYPE` is descriptive, not a confirmation level.** It records what
+*kind* of behavior was reported or found. It carries no claim about who
+established it or how strongly:
+
+- **who asserted it** is in `CONTRIB-METHOD` — `ThreatType_Classified`,
+  `ThreatType_Fallback`, `AI_Enrichment` or `Manual`
+- **whether an external source confirmed maliciousness** is in `CONFIRM-MAL`
+- **what TPCI's own analysis found** is in `TPCI-BEHAVIORAL`
+
+So a value here sourced from a contributing researcher's own classification
+is legitimate, and does not imply TPCI corroborated it. Read the three fields
+above to establish provenance and strength.
+
+`UNKNOWN` means no type has been assigned — not that the entry is benign, and
+not that one was attempted and declined. Use `CONTRIB-METHOD` to tell those
+apart: `ThreatType_Fallback` records classification attempted without a
+confident category.
+
+Values outside the table above are not valid. `malware` appeared in 140
+published entries until 2026-09-28; it asserts that something is bad, which
+`CONFIRM-MAL` and `REPORTED-MAL` already record, rather than describing what
+it does. Those entries now read `UNKNOWN`.
+
+---
+
+## STILL-ACTIVE Values
+
+| Value | Meaning |
+|-------|---------|
+| `1` | Confirmed active in store at last check |
+| `0` | Confirmed removed from store |
+| `unknown` | Status not yet verified |
+
+**Note:** `STILL-ACTIVE` and `TPCI-VERIFY` are independent. `TPCI-VERIFY`
+records how far through the verification protocol an entry has been taken;
+`STILL-ACTIVE` records what that verification found. Do not infer one from
+the other — an entry with `TPCI-VERIFY=2` may be live, removed, or unknown.
+
+Always check `TPCI-VERIFY-DATE` for the currency of this status — extensions
+can be re-listed after removal.
+
+---
+
+## CRX API Removal States
+
+The Chrome CRX update API (`clients2.google.com/service/update2/crx`) returns
+four distinct states for removed extensions, distinguished only at the API
+level — the public Chrome Web Store shows identical "Item not available" pages
+for all removal states.
+
+| CRX API Response | State | STILL-ACTIVE |
+|-----------------|-------|--------------|
+| `codebase=` URL present | Active — Chrome serving updates | `1` |
+| `_malware="true"` + `noupdate` | Malware-flagged — record retained | `0` |
+| `_policy_violation="true"` + `noupdate` | Policy-violation — delisted for policy rather than malware reasons | `0` |
+| `error-unknownApplication` | Hard-purged — completely removed | `0` |
+| `noupdate`, no malware or policy flag | Indeterminate — requires Stage 3 | see TPCI-VERIFY |
+
+**On policy-violation entries:** the storefront serves a generic Chrome Web Store
+page rather than a listing for these, so name and description cannot be recovered
+from the store, and the CRX package cannot be downloaded for Stage 5A analysis.
+Both enrichment routes are closed; such entries commonly retain
+`THREAT-TYPE=UNKNOWN` permanently.
+
+**Key finding:** 99.6% of indeterminate CRX API responses correspond to
+hard-removed extensions when verified by headless browser (Stage 3).
+The CRX infrastructure retains records for removed extensions indefinitely,
+making it an unreliable liveness indicator without corroboration.
+
+---
+
+## Stub Entries
+
+Entries with `EXTID-NAME = UNKNOWN` are stubs — the ID is confirmed malicious
+but metadata is pending enrichment. Use `ENRICH-STATUS` to distinguish between
+entries that have never been attempted (`pending`), have been searched without
+result (`searched`), and are confirmed unresolvable (`exhausted`).
+
+```python
+import csv
+with open('current-list-meta.csv') as f:
+    rows = list(csv.DictReader(f))
+    stubs = [r for r in rows if r['EXTID-NAME'] == 'UNKNOWN']
+    pending   = [r for r in stubs if r['ENRICH-STATUS'] == 'pending']
+    searched  = [r for r in stubs if r['ENRICH-STATUS'] == 'searched']
+    exhausted = [r for r in stubs if r['ENRICH-STATUS'] == 'exhausted']
+```
+
+---
+
+## Schema Changelog
+
+### November 2026 — field semantics clarified (no new fields)
+
+No columns were added or removed. Four definitions were made explicit after
+the data showed them being read three different ways:
+
+- **`CONFIRM-MAL`** records external confirmation only; TPCI's own Stage 5A
+  result does not raise it. For feed-sourced entries it is derived from the
+  source's own category. The absence of any `2`/`3` value is documented as a
+  known gap.
+- **`TPCI-VERIFY=5`** is now set wherever Stage 5A produced a result other
+  than `unknown`, correcting 2,931 entries. The filtering guidance in the
+  `TPCI-BEHAVIORAL` section is reversed as a result.
+- **`THREAT-TYPE`** is descriptive rather than a confirmation level, and
+  provenance is read from `CONTRIB-METHOD`, `CONFIRM-MAL` and
+  `TPCI-BEHAVIORAL`.
+- **`SOURCE`** carries the primary report where a contributing feed is itself
+  an aggregation, with the feed URL in `ADD-SOURCES`.
+
+### May 2026 — v4 additions (enrichment tracking + Stage 5A fields)
+
+| Field | Notes |
+|-------|-------|
+| `TPCI-CRX-HASH` | SHA-256 hash of CRX package analyzed in Stage 5A |
+| `TPCI-BEHAVIORAL` | Stage 5A risk level classification |
+| `TPCI-BEHAVIORAL-DATE` | Date of Stage 5A analysis |
+| `ENRICH-STATUS` | Enrichment pipeline state: `pending`, `searched`, `verified`, `exhausted` |
+| `ENRICH-DATE` | Date enrichment was last attempted |
+
+Also in v4:
+- `TPCI-VERIFY=3` documented as Playwright-confirmed **active** — superseded; see the
+  TPCI-VERIFY section. The field has always recorded verification stage, not outcome.
+- `STILL-ACTIVE` described as synchronized with `TPCI-VERIFY` — superseded; the two
+  fields are independent.
+- `BROWSER` now includes `both` for cross-browser extensions
+
+### May 2026 — v3 additions (TPCI-V protocol)
+
+| Field | Notes |
+|-------|-------|
+| `TPCI-VERIFY` | Extended to include value `4` (remediated) and `5` (Stage 5A) |
 | `TPCI-VERIFY-DATE` | Date of last TPCI verification |
 | `TPCI-STORE-NAME` | Extension name at time of TPCI check |
-| `TPCI-STORE-DEV` | Developer at time of TPCI check |
-| `TPCI-STORE-DATE` | Date of store name/dev snapshot |
+| `TPCI-STORE-DEV` | Developer name at time of TPCI check |
+| `TPCI-STORE-DATE` | Date store snapshot was recorded |
 | `TPCI-IDENTITY` | Identity continuity result |
 
-See SCHEMA.md for full field documentation.
+### May 2026 — v2 additions
 
-### Migration guidance
-Scripts using `csv.DictReader` or named columns require no changes. New fields
-will simply be present; existing entries have empty strings for new fields.
-Scripts using positional column indexing must be updated.
+| Field | Notes |
+|-------|-------|
+| `TPCI-VERIFY` | Initial values 0–3 |
+| `TPCI-VERIFY-DATE` | Initial implementation |
 
----
+### May 2026 — v1 additions
 
-## 2026-05-22 — Delta import quality notice added
-
-### Summary
-README updated to clearly distinguish independently verified entries (990) from
-delta import entries (1,535). Delta imports excluded from downstream distribution
-formats (STIX, MISP, Sigma, blocklist) pending TPCI verification.
-
-### Reasoning
-Stage 4 visual review of confirmed-live delta import stubs revealed extension
-categories not typically associated with named security research campaigns.
-Out of abundance of caution, delta imports were excluded from distribution
-outputs while Stage 5A verification was performed. Stage 5A subsequently
-confirmed the source data is substantially accurate (8.5% false positive rate)
-with documentation quality as the primary gap.
-
-### Distribution output change
-Generate scripts updated with `verified_only=True` filter. Entries pass filter if:
-- `CONTRIB-METHOD` does not contain `Delta_Import`, OR
-- `TPCI-VERIFY` is 1-5, OR
-- `CONFIRM-MAL` is 2 or 3
+| Field | Notes |
+|-------|-------|
+| `ADD-SOURCES` | Space-separated archive/reference URLs |
+| `CONTRIB-METHOD` | How entry was added |
+| `CONTRIB-TYPE` | `human` or `automated` |
+| `CONTRIB-HANDLE` | GitHub handle or tool name |
 
 ---
 
-## 2026-05 — Initial delta import from malicious_extension_sentry
+## Migration guidance
 
-### Summary
-1,535 extension IDs imported from malicious_extension_sentry
-(github.com/toborrm9/malicious_extension_sentry, MIT license).
+**Scripts using positional column indexing** — update to named headers.
+The CSV always has a header row; use `csv.DictReader` in Python or equivalent.
 
-### Attribution
-IDs sourced from malicious_extension_sentry. No per-entry research citations
-or campaign attribution were provided by the source. Entries tagged
-`CONTRIB-METHOD=Delta_Import` to distinguish from independently verified entries.
+**Scripts using named columns** — no changes needed for existing fields.
+New fields will simply be present; existing entries will have empty strings.
 
-### Note
-The malicious_extension_sentry dataset does not provide per-entry evidence or
-research citations. Subsequent TPCI Stage 5A analysis (May 2026) confirmed
-91.5% of confirmed-live delta import stubs exhibit malicious or elevated-risk
-behavior. The source data is substantially accurate; the gap is documentation
-quality.
+**Checking current fields:**
+```python
+import csv
+with open('current-list-meta.csv') as f:
+    headers = next(csv.reader(f))
+    print(headers)
+```
 
 ---
 
-## 2026-05 — Initial TPCI-V verification sweep (Stage 2+3)
-
-### Summary
-Full CRX API + Playwright verification sweep across all 2,525 entries.
-
-### Results
-- 529 confirmed live (21%)
-- ~1,995 confirmed removed (79%)
-- 391 Google malware-flagged (15.5%)
-- 1,604 hard-removed via Playwright (previously indeterminate)
-- 5 publicly listed from indeterminate set
-
----
-
-## Prior history
-
-Changes prior to May 2026 are tracked via git commit history.
-See: https://github.com/The-Privacy-Commons-Institute/chrome-mal-ids/commits/master
+*See [README.md](README.md) for usage and import instructions.*  
+*See [TPCI-V protocol specification](https://tpc.institute/research/tpci-v) for full verification methodology.*

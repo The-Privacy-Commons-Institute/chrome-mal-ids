@@ -54,6 +54,31 @@ returns `_malware="true"` when an extension is flagged in Google's malware datab
 This is authoritative confirmation from the Chrome Web Store operator, independent
 of any researcher reporting.
 
+**`CONFIRM-MAL` records EXTERNAL confirmation only.** TPCI's own Stage 5A
+static analysis does not raise it, however strong the finding — that result
+is recorded in `TPCI-BEHAVIORAL`. An entry may legitimately read
+`CONFIRM-MAL=0` alongside `TPCI-BEHAVIORAL=malicious`, and that combination
+says exactly what it looks like: our analysis found something, and no
+external source has confirmed the extension is malicious.
+
+Treating our own analyzer as the confirming researcher is what made this
+field carry a single value on 99.76% of entries until 2026-11-20.
+
+**For entries from a contributing feed,** the value is derived from the
+source's own category rather than assumed. A feed typically ships several
+kinds of determination in one field — behavioral findings, store-policy
+removals, and statements that assert nothing — and only the first kind
+supports "Researcher confirmed". A category that is hedged ("potentially",
+"suspicious"), administrative ("policy violation", "not whitelisted"), or
+absent ("removal reason unknown") maps to `0`. A reported vulnerability *in*
+an extension also maps to `0`: that extension is a victim, not a threat.
+
+**Known gap:** no entry in this database currently holds `2` or `3`. The
+signal that would set it — the `_malware="true"` CRX API response described
+above — is observed during verification but is not written to this field.
+Consumers filtering on `CONFIRM-MAL in (2, 3)` will therefore match nothing.
+`REPORTED-MAL` is a separate axis and is not derived from this field.
+
 ---
 
 ## TPCI-VERIFY Values
@@ -93,10 +118,26 @@ The `TPCI-BEHAVIORAL` field records the risk level assigned by Stage 5A static
 analysis of the extension's CRX package. Only populated for entries that have
 undergone Stage 5A analysis.
 
-Note that `TPCI-VERIFY` may read lower than `5` on such entries. Verification
-stage is never downgraded, but Stage 5A does not always raise it — an entry
-already at stage 2 or 3 keeps that value while gaining a behavioral result.
-**Filter on `TPCI-BEHAVIORAL` being non-empty, not on `TPCI-VERIFY=5`.**
+**Relationship to `TPCI-VERIFY`, corrected 2026-11-20.** Stage 5A ran as an
+independent pass and did not raise `TPCI-VERIFY`, so 3,504 analysed entries
+sat at stage 2 or 3 while carrying a behavioral result. Those entries have
+been corrected: `TPCI-VERIFY=5` is now set wherever Stage 5A produced a
+result **other than `unknown`**.
+
+Entries reading `unknown` deliberately keep their earlier stage. `unknown`
+means no CRX was retrieved, so no analysis took place, and recording stage 5A
+as completed would be false.
+
+**Filter on `TPCI-VERIFY=5` for entries that were actually analysed.**
+Filtering on `TPCI-BEHAVIORAL` being non-empty includes the `unknown`
+entries, where nothing was examined. This reverses the guidance given here
+before 2026-11-20, which was correct only while the stage field was
+under-populated.
+
+Note also that stages 3 and 4 are conditional branches rather than
+prerequisites — stage 3 runs only when stage 2 returns indeterminate, stage 4
+only for suspected remediation. An entry at `5` may never have passed through
+either, and `5` makes no claim that it did.
 
 | Value | Meaning |
 |-------|---------|
@@ -222,6 +263,14 @@ Match with a substring test on the component, not equality on the whole string.
 IDs contributed by an external source rather than discovered by TPCI. They differ
 in verification coverage — see the third-party note in [README.md](README.md).
 
+**When a contributing feed is itself an aggregation,** `SOURCE` carries the
+primary report that feed cites, not the feed's own URL, and the feed URL moves
+to `ADD-SOURCES`. `SOURCE` is defined as the primary research source; an
+aggregation vector is not one. Attribution for the ingestion path is unaffected
+and remains in `CONTRIB` and `CONTRIB-HANDLE`. Where the feed names no primary
+source — because the entry came from its own monitoring — `SOURCE` holds the
+feed URL, which in that case genuinely is the primary source.
+
 ---
 
 ## THREAT-TYPE Values
@@ -244,6 +293,29 @@ in verification coverage — see the third-party note in [README.md](README.md).
 | `ownership-transfer` | Legitimate extension acquired and weaponized |
 | `malvertising` | Delivers malicious advertisements |
 | `phishing` | Harvests credentials via fake UI |
+
+**`THREAT-TYPE` is descriptive, not a confirmation level.** It records what
+*kind* of behavior was reported or found. It carries no claim about who
+established it or how strongly:
+
+- **who asserted it** is in `CONTRIB-METHOD` — `ThreatType_Classified`,
+  `ThreatType_Fallback`, `AI_Enrichment` or `Manual`
+- **whether an external source confirmed maliciousness** is in `CONFIRM-MAL`
+- **what TPCI's own analysis found** is in `TPCI-BEHAVIORAL`
+
+So a value here sourced from a contributing researcher's own classification
+is legitimate, and does not imply TPCI corroborated it. Read the three fields
+above to establish provenance and strength.
+
+`UNKNOWN` means no type has been assigned — not that the entry is benign, and
+not that one was attempted and declined. Use `CONTRIB-METHOD` to tell those
+apart: `ThreatType_Fallback` records classification attempted without a
+confident category.
+
+Values outside the table above are not valid. `malware` appeared in 140
+published entries until 2026-09-28; it asserts that something is bad, which
+`CONFIRM-MAL` and `REPORTED-MAL` already record, rather than describing what
+it does. Those entries now read `UNKNOWN`.
 
 ---
 
@@ -313,6 +385,24 @@ with open('current-list-meta.csv') as f:
 ---
 
 ## Schema Changelog
+
+### November 2026 — field semantics clarified (no new fields)
+
+No columns were added or removed. Four definitions were made explicit after
+the data showed them being read three different ways:
+
+- **`CONFIRM-MAL`** records external confirmation only; TPCI's own Stage 5A
+  result does not raise it. For feed-sourced entries it is derived from the
+  source's own category. The absence of any `2`/`3` value is documented as a
+  known gap.
+- **`TPCI-VERIFY=5`** is now set wherever Stage 5A produced a result other
+  than `unknown`, correcting 2,931 entries. The filtering guidance in the
+  `TPCI-BEHAVIORAL` section is reversed as a result.
+- **`THREAT-TYPE`** is descriptive rather than a confirmation level, and
+  provenance is read from `CONTRIB-METHOD`, `CONFIRM-MAL` and
+  `TPCI-BEHAVIORAL`.
+- **`SOURCE`** carries the primary report where a contributing feed is itself
+  an aggregation, with the feed URL in `ADD-SOURCES`.
 
 ### May 2026 — v4 additions (enrichment tracking + Stage 5A fields)
 
